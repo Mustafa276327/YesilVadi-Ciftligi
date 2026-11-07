@@ -1,0 +1,10 @@
+#Sun Oct 25 06:02:13 GMT 2026
+base.0=/data/data/com.termux/files/home/green_valley_farm_android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/data/data/com.termux/files/home/green_valley_farm_android/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/data/data/com.termux/files/home/green_valley_farm_android/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=4/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex

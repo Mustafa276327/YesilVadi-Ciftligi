@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#F5F1E8">
+<meta name="description" content="Yeşil Vadi Çiftliği — tarla, hayvan, pazar ve hava durumuyla Türkçe çiftlik tycoon oyunu.">
+<meta name="application-name" content="Yeşil Vadi Çiftliği">
+<meta name="apple-mobile-web-app-title" content="Yeşil Vadi">
+<title>Yeşil Vadi Çiftliği</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="stage">
+  <div class="device">
+    <div class="app" id="app" data-phase="day" data-weather="sunny" data-season="spring">
+
+      <div class="statusbar" id="statusbar">
+        <button class="sb-profile" data-nav="profile" aria-label="Profil">
+          <span class="sb-avatar"><svg viewBox="0 0 64 64"><use href="#avatarMan"/></svg><span id="sbLevel">1</span></span>
+          <span class="sb-identity"><b id="sbFarmName">Yeşil Vadi Çiftliği</b><small id="sbProfileName">Çiftçi</small></span>
+        </button>
+        <div class="sb-right">
+          <span class="sb-time" id="sbTime">06:00</span>
+          <span class="sb-coin-target" id="coinTarget" aria-hidden="true"></span>
+          <button class="sb-bell" id="bellBtn" aria-label="Bildirimler">
+            <svg viewBox="0 0 24 24"><use href="#i-bell"/></svg>
+            <span class="bell-dot" id="bellCount">2</span>
+          </button>
+          <div class="sb-icons">
+            <svg viewBox="0 0 18 12" class="sb-signal"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+            <svg viewBox="0 0 16 12" class="sb-wifi" id="sbWifi"><path d="M1 4.2C3 2.4 5.4 1.5 8 1.5s5 .9 7 2.7M3.4 6.7C4.8 5.4 6.3 4.8 8 4.8s3.2.6 4.6 1.9M5.9 9.1C6.5 8.5 7.2 8.2 8 8.2s1.5.3 2.1.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8" cy="10.8" r="1.15" fill="currentColor"/></svg>
+            <span class="sb-battery" id="sbBattery" title="Çiftlik enerjisi"><i id="sbBatteryFill"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <main class="screens" id="screens">
+
+        <!-- ================= ANA SAYFA ================= -->
+        <section class="screen active" id="scr-home" data-tab="home">
+          <div class="home" id="homeWrap">
+            <div class="hero" id="homeHero" aria-hidden="true">
+              <svg viewBox="0 0 430 400" preserveAspectRatio="xMidYMid slice"><use href="#heroScene"/></svg>
+              <div class="hero-rays"></div>
+              <div class="hero-time-tint"></div>
+              <div class="hero-stars" id="homeStars"></div>
+              <div class="hero-weather" id="homeFx"></div>
+              <div class="hero-float" id="homeFloat"></div>
+            </div>
+
+            <div class="home-panels">
+              <div class="card health-card">
+                <div class="mini-ring" data-ring="92" id="homeHealthRing">
+                  <svg viewBox="0 0 60 60"><circle class="ring-track" cx="30" cy="30" r="25"/><circle class="ring-fill" cx="30" cy="30" r="25"/></svg>
+                  <b>92%</b>
+                </div>
+                <div class="health-copy">
+                  <span class="lbl">Çiftlik Sağlığı</span>
+                  <strong id="homeHealthLabel">Sağlıklı</strong>
+                  <span class="ok"><i></i><span id="homeHealthNote">Her şey yolunda</span></span>
+                </div>
+              </div>
+              <button class="card weather-card" data-action="weather" aria-label="Hava durumu">
+                <div class="weather-main">
+                  <span class="weather-glyph" id="homeWeatherIcon"><svg class="ic"><use href="#i-cloudsun"/></svg></span>
+                  <div><div class="temp" id="homeTemp">24°</div><div class="sunny" id="homeWeatherName">Güneşli</div><span class="weather-day" id="homeDayBox">Gün 1</span></div>
+                </div>
+                <div class="weather-meta">
+                  <span><svg class="ic"><use href="#i-drop"/></svg><span id="homeWeatherWater">Yağmur yok</span></span>
+                  <span><svg class="ic"><use href="#i-sun"/></svg><span id="homeWeatherSolar">Güçlü</span></span>
+                </div>
+              </button>
+            </div>
+
+            <div class="home-body">
+              <div class="card wallet-card">
+                <div class="wallet-top">
+                  <span class="wallet-coin">₺</span>
+                  <div class="wallet-main"><small>Kasa</small><b id="walletMoney">2.500 ₺</b></div>
+                  <span class="pill mint" id="walletSeason">İlkbahar</span>
+                </div>
+                <div class="wallet-xp">
+                  <div class="wallet-xp-head"><small id="walletLevel">Seviye 1</small><span id="walletXpText">0 / 150 XP</span></div>
+                  <div class="xpbar"><i id="walletXpBar"></i></div>
+                </div>
+                <button class="wallet-link" data-goto="market">Pazara git <svg class="ic"><use href="#i-arrow-right"/></svg></button>
+              </div>
+
+              <div class="home-section-head">
+                <h2 class="section-h">Hızlı Bakış</h2>
+                <button class="link-btn" data-goto="farm">Çiftlik <svg class="ic"><use href="#i-chev"/></svg></button>
+              </div>
+              <div class="quick-grid">
+                <button class="card quick-card" data-goto="market">
+                  <span class="qc-top"><span class="tile wheat"><svg class="ic"><use href="#i-coin"/></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+                  <span class="qc-num" id="qcMoney">2.500 <small>₺</small></span><span class="qc-lbl">Kasa</span>
+                </button>
+                <button class="card quick-card" data-goto="farm" data-zone="tomato">
+                  <span class="qc-top"><span class="tile mint"><svg class="ic"><use href="#i-tomato"/></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+                  <span class="qc-num" id="qcHarvest">1</span><span class="qc-lbl">Hasada hazır</span>
+                </button>
+                <button class="card quick-card" data-goto="livestock">
+                  <span class="qc-top"><span class="tile peach"><svg class="ic"><use href="#i-cow"/></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+                  <span class="qc-num" id="qcAnimals">48</span><span class="qc-lbl">Hayvan</span>
+                </button>
+                <button class="card quick-card" data-goto="farm" data-zone="water">
+                  <span class="qc-top"><span class="tile lav"><svg class="ic"><use href="#i-drop"/></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+                  <span class="qc-num" id="qcWater">82%</span><span class="qc-lbl">Su deposu</span>
+                </button>
+              </div>
+
+              <div class="home-section-head">
+                <h2 class="section-h">Günlük Görevler</h2>
+                <button class="link-btn" data-action="quests">Tümü <svg class="ic"><use href="#i-chev"/></svg></button>
+              </div>
+              <div class="card quests-card" id="homeQuests"></div>
+
+              <button class="card daily-card" id="homeDaily" data-action="daily"></button>
+            </div>
+          </div>
+        </section>

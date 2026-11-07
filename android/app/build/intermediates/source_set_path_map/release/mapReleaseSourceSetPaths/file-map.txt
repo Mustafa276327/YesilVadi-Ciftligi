@@ -1,0 +1,7 @@
+com.greenvalley.farm.app-pngs-0 /data/data/com.termux/files/home/green_valley_farm_android/app/build/generated/res/pngs/release
+com.greenvalley.farm.app-resValues-1 /data/data/com.termux/files/home/green_valley_farm_android/app/build/generated/res/resValues/release
+com.greenvalley.farm.app-packageReleaseResources-2 /data/data/com.termux/files/home/green_valley_farm_android/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
+com.greenvalley.farm.app-packageReleaseResources-3 /data/data/com.termux/files/home/green_valley_farm_android/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
+com.greenvalley.farm.app-release-4 /data/data/com.termux/files/home/green_valley_farm_android/app/build/intermediates/merged_res/release/mergeReleaseResources
+com.greenvalley.farm.app-main-5 /data/data/com.termux/files/home/green_valley_farm_android/app/src/main/res
+com.greenvalley.farm.app-release-6 /data/data/com.termux/files/home/green_valley_farm_android/app/src/release/res

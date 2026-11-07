@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.greenvalley.farm.app-mergeDebugResources-2:/values/values.xml",
+            "map": [
+                {
+                    "source": "/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/res/values/themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "510"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "112",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "567"
+                    }
+                },
+                {
+                    "source": "/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "56",
+                        "endOffsets": "107"
+                    }
+                }
+            ]
+        }
+    ]
+}

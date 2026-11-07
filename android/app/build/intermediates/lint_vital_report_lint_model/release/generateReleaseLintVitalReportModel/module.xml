@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="/data/data/com.termux/files/home/green_valley_farm_android/app"
+    name=":app"
+    type="APP"
+    maven="GreenValleyFarm:app:unspecified"
+    agpVersion="8.11.1"
+    buildFolder="build"
+    bootClassPath="/data/data/com.termux/files/home/android-sdk/platforms/android-35/android.jar:/data/data/com.termux/files/home/android-sdk/build-tools/35.0.0/core-lambda-stubs.jar"
+    javaSourceLevel="17"
+    compileTarget="android-35"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

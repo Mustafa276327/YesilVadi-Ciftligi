@@ -1,0 +1,215 @@
+
+        <!-- ================= FARM ================= -->
+        <section class="screen" id="scr-farm" data-tab="farm">
+          <div class="farm">
+            <header class="page-head">
+              <div>
+                <h1>My Farm</h1>
+                <p class="sub"><svg class="ic pin"><use href="#i-pin"/></svg>Green Valley Farm · 12.5 ha</p>
+              </div>
+              <button class="round-btn weather-btn" aria-label="Weather"><svg class="ic"><use href="#i-cloudsun"/></svg></button>
+            </header>
+
+            <div class="chips" id="farmChips" role="tablist">
+              <button class="chip active" data-zone="overview" role="tab"><svg class="ic"><use href="#i-map"/></svg>Overview</button>
+              <button class="chip" data-zone="house" role="tab"><svg class="ic"><use href="#i-house"/></svg>Farm House</button>
+              <button class="chip" data-zone="tomato" role="tab"><svg class="ic"><use href="#i-tomato"/></svg>Tomato Field</button>
+              <button class="chip" data-zone="vegetable" role="tab"><svg class="ic"><use href="#i-leaf"/></svg>Vegetable Field</button>
+              <button class="chip" data-zone="corn" role="tab"><svg class="ic"><use href="#i-corn"/></svg>Corn Field</button>
+              <button class="chip" data-zone="animal" role="tab"><svg class="ic"><use href="#i-cow"/></svg>Animal Area</button>
+              <button class="chip" data-zone="water" role="tab"><svg class="ic"><use href="#i-drop"/></svg>Water Tank</button>
+            </div>
+
+            <div class="map-card" id="farmMapCard">
+              <svg class="farm-map" id="farmMap" viewBox="0 0 1000 1250" preserveAspectRatio="xMidYMid slice">
+                <use href="#mapBase"/>
+                <use href="#mapZonesTop"/>
+                <use href="#mapZonesBottom"/>
+                <g class="zone-hl" aria-hidden="true">
+                  <rect class="hl-glow"/><rect class="hl-ring"/>
+                </g>
+                <use href="#mapLabels" class="map-labels"/>
+              </svg>
+              <button class="map-expand" id="expandFarm" aria-label="Expand map"><svg class="ic"><use href="#i-expand"/></svg></button>
+              <div class="map-tip" id="mapTip"><span class="tap-ic"><svg class="ic"><use href="#i-tap"/></svg></span><span><b>Tap an area to explore</b><small>7 zones · 4 crops · 48 animals</small></span></div>
+            </div>
+
+            <div id="farmInfo" class="farm-info"></div>
+
+            <section class="explore" id="farmExplore">
+              <h2 class="section-h">Explore</h2>
+              <div class="explore-grid">
+                <button class="explore-card" data-goto="farm" data-zone="vegetable"><span class="ex-ic mint"><svg class="ic"><use href="#i-leaf"/></svg></span><span><b>My Crops</b><small>4 growing</small></span></button>
+                <button class="explore-card" data-goto="farm" data-zone="animal"><span class="ex-ic peach"><svg class="ic"><use href="#i-cow"/></svg></span><span><b>Livestock</b><small>48 animals</small></span></button>
+                <button class="explore-card" data-goto="farm" data-zone="water"><span class="ex-ic lav"><svg class="ic"><use href="#i-drop"/></svg></span><span><b>Watering</b><small>Next 7:00 AM</small></span></button>
+                <button class="explore-card" data-goto="farm" data-zone="overview"><span class="ex-ic wheat"><svg class="ic"><use href="#i-sun"/></svg></span><span><b>Weather</b><small>Sunny · 28°C</small></span></button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ================= LIVESTOCK ================= -->
+        <section class="screen" id="scr-livestock" data-tab="livestock">
+          <div class="livestock">
+            <header class="subhead">
+              <button class="back-btn" data-back="farm" aria-label="Back"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Livestock</h1><p>Green Valley Farm</p></div>
+              <span class="back-spacer"></span>
+            </header>
+
+            <div class="card herd-card">
+              <div class="herd-top">
+                <span class="eyebrow">Total herd</span>
+                <span class="pill mint"><svg class="ic"><use href="#i-shield"/></svg>All healthy</span>
+              </div>
+              <div class="herd-number"><b class="count" data-count="48">48</b><span>Animals</span></div>
+              <div class="hairline"></div>
+              <div class="gauges">
+                <div class="gauge">
+                  <div class="ring" data-ring="96" data-color="#3E8B55"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"/><circle class="ring-fill" cx="38" cy="38" r="32"/></svg><b>96%</b></div>
+                  <strong>Health</strong><small>Excellent</small>
+                </div>
+                <div class="gauge">
+                  <div class="ring" data-ring="82" data-color="#E8A13A"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"/><circle class="ring-fill" cx="38" cy="38" r="32"/></svg><b>82%</b></div>
+                  <strong>Feed</strong><small>12 days stock</small>
+                </div>
+                <div class="gauge">
+                  <div class="ring" data-ring="91" data-color="#55A9DC"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"/><circle class="ring-fill" cx="38" cy="38" r="32"/></svg><b>91%</b></div>
+                  <strong>Production</strong><small>On target</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="card feed-card">
+              <div class="feed-head">
+                <span class="tile wheat"><svg class="ic"><use href="#i-wheat"/></svg></span>
+                <b>Today's feeding</b>
+                <span class="pill plain" id="feedCount">2 of 3 done</span>
+              </div>
+              <div class="steps" id="feedSteps">
+                <div class="step done" data-step="0"><span class="node"><svg class="ic"><use href="#i-check"/></svg></span><b>06:00</b><small>Hay &amp; silage</small><em>Done</em></div>
+                <div class="step done" data-step="1"><span class="node"><svg class="ic"><use href="#i-check"/></svg></span><b>12:00</b><small>Grain mix</small><em>Done</em></div>
+                <div class="step" data-step="2"><span class="node"><svg class="ic"><use href="#i-check"/></svg></span><b>18:00</b><small>Evening feed</small><em>Upcoming</em></div>
+                <div class="step-line"><i></i><i></i></div>
+              </div>
+            </div>
+
+            <section class="cat-section">
+              <h2 class="section-h">Categories</h2>
+              <p class="section-sub">Tap a group to see its animals</p>
+              <div class="cat-grid" id="catGrid">
+                <button class="cat-card active" data-cat="cows"><svg class="cat-art" viewBox="0 0 64 64"><use href="#artCow"/></svg><b>18</b><span><svg class="ic"><use href="#i-cow"/></svg>Cows</span></button>
+                <button class="cat-card" data-cat="chickens"><svg class="cat-art" viewBox="0 0 64 64"><use href="#artChicken"/></svg><b>20</b><span><svg class="ic"><use href="#i-bird"/></svg>Chickens</span></button>
+                <button class="cat-card" data-cat="sheep"><svg class="cat-art" viewBox="0 0 64 64"><use href="#artSheep"/></svg><b>6</b><span><svg class="ic"><use href="#i-sheep"/></svg>Sheep</span></button>
+                <button class="cat-card" data-cat="goats"><svg class="cat-art" viewBox="0 0 64 64"><use href="#artGoat"/></svg><b>4</b><span><svg class="ic"><use href="#i-goat"/></svg>Goats</span></button>
+              </div>
+            </section>
+
+            <section class="cow-section">
+              <div class="cow-head"><h2 class="section-h" id="herdTitle">Your cows</h2><p class="section-sub" id="herdSub">18 in the herd · tap one for details</p></div>
+              <div class="cow-list" id="cowList"></div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ================= DETAIL (crop / water) ================= -->
+        <section class="screen" id="scr-detail" data-tab="farm">
+          <div class="detail">
+            <div class="detail-hero">
+              <button class="back-btn detail-back" data-back="farm" aria-label="Back"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <svg class="farm-map" id="detailMap" viewBox="0 0 520 630" preserveAspectRatio="xMidYMid slice">
+                <use href="#mapBase"/><use href="#mapZonesTop"/><use href="#mapZonesBottom"/>
+                <g class="zone-hl"><rect class="hl-glow"/><rect class="hl-ring"/></g>
+              </svg>
+              <button class="map-expand" id="expandDetail" aria-label="Expand map"><svg class="ic"><use href="#i-expand"/></svg></button>
+            </div>
+            <div class="detail-body">
+              <div class="sheet" id="detailSheet"></div>
+              <section class="explore">
+                <h2 class="section-h">Explore</h2>
+                <div class="explore-grid">
+                  <button class="explore-card" data-goto="farm" data-zone="vegetable"><span class="ex-ic mint"><svg class="ic"><use href="#i-leaf"/></svg></span><span><b>My Crops</b><small>4 growing</small></span></button>
+                  <button class="explore-card" data-goto="livestock"><span class="ex-ic peach"><svg class="ic"><use href="#i-cow"/></svg></span><span><b>Livestock</b><small>48 animals</small></span></button>
+                  <button class="explore-card" data-goto="farm" data-zone="water"><span class="ex-ic lav"><svg class="ic"><use href="#i-drop"/></svg></span><span><b>Watering</b><small>Next 7:00 AM</small></span></button>
+                  <button class="explore-card" data-goto="farm" data-zone="overview"><span class="ex-ic wheat"><svg class="ic"><use href="#i-sun"/></svg></span><span><b>Weather</b><small>Sunny · 28°C</small></span></button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= ANALYTICS ================= -->
+        <section class="screen" id="scr-analytics" data-tab="analytics">
+          <div class="simple">
+            <header class="page-head"><div><h1>Analytics</h1><p class="sub"><svg class="ic pin"><use href="#i-pin"/></svg>Green Valley Farm · 12.5 ha</p></div><button class="round-btn"><svg class="ic"><use href="#i-chart"/></svg></button></header>
+            <div class="kpi-row">
+              <div class="card kpi"><small>Harvest</small><b>1,280 <i>kg</i></b><span class="up">+12.4%</span></div>
+              <div class="card kpi"><small>Yield</small><b>92<i>%</i></b><span class="up">+3.1%</span></div>
+            </div>
+            <div class="card chart-card"><div class="chart-head"><b>Weekly harvest</b><span class="pill mint">+8.2%</span></div><div class="bars" id="barChart"></div><div class="bars-x"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div></div>
+            <h2 class="section-h">Crop performance</h2>
+            <div class="card perf-list" id="perfList"></div>
+          </div>
+        </section>
+
+        <!-- ================= HARVEST ================= -->
+        <section class="screen" id="scr-harvest" data-tab="harvest">
+          <div class="simple">
+            <header class="page-head"><div><h1>Harvest</h1><p class="sub"><svg class="ic pin"><use href="#i-pin"/></svg>Season 2026 · 1,280 kg</p></div><button class="round-btn"><svg class="ic"><use href="#i-box"/></svg></button></header>
+            <div class="harvest-list" id="harvestList"></div>
+          </div>
+        </section>
+
+        <!-- ================= PROFILE ================= -->
+        <section class="screen" id="scr-profile" data-tab="profile">
+          <div class="simple">
+            <header class="page-head"><div><h1>Profile</h1><p class="sub"><svg class="ic pin"><use href="#i-pin"/></svg>Green Valley Farm</p></div><button class="round-btn"><svg class="ic"><use href="#i-gear"/></svg></button></header>
+            <div class="card profile-card">
+              <div class="avatar big"><svg viewBox="0 0 64 64"><use href="#avatarMan"/></svg></div>
+              <div><b>Guest</b><small>Farm owner</small></div>
+              <span class="pill mint">Active</span>
+            </div>
+            <div class="kpi-row three">
+              <div class="card kpi"><b>12</b><small>Crops</small></div>
+              <div class="card kpi"><b>48</b><small>Animals</small></div>
+              <div class="card kpi"><b>12.5</b><small>Hectares</small></div>
+            </div>
+            <div class="card settings">
+              <button><span class="tile mint"><svg class="ic"><use href="#i-bell"/></svg></span><b>Notifications</b><span class="switch on"><i></i></span></button>
+              <button><span class="tile lav"><svg class="ic"><use href="#i-drop"/></svg></span><b>Irrigation schedule</b><svg class="ic chev"><use href="#i-chev"/></svg></button>
+              <button><span class="tile wheat"><svg class="ic"><use href="#i-sun"/></svg></span><b>Weather units</b><span class="muted-val">Metric</span></button>
+              <button><span class="tile peach"><svg class="ic"><use href="#i-shield"/></svg></span><b>Farm settings</b><svg class="ic chev"><use href="#i-chev"/></svg></button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <nav class="tabbar" id="tabbar">
+        <button data-nav="home" class="tab active"><svg class="ic"><use href="#i-home"/></svg><span>Home</span></button>
+        <button data-nav="farm" class="tab"><svg class="ic"><use href="#i-sprout"/></svg><span>Farm</span></button>
+        <button data-nav="analytics" class="tab"><svg class="ic"><use href="#i-chart"/></svg><span>Analytics</span></button>
+        <button data-nav="harvest" class="tab"><svg class="ic"><use href="#i-box"/></svg><span>Harvest</span></button>
+        <button data-nav="profile" class="tab"><svg class="ic"><use href="#i-user"/></svg><span>Profile</span></button>
+      </nav>
+
+      <div class="toast" id="toast" role="status"></div>
+
+      <div class="modal map-modal" id="mapModal" aria-hidden="true">
+        <div class="modal-head"><b id="modalTitle">Farm map</b><button class="back-btn" id="closeMap" aria-label="Close"><svg class="ic"><use href="#i-close"/></svg></button></div>
+        <svg class="farm-map" id="modalMap" viewBox="0 0 1000 1200" preserveAspectRatio="xMidYMid slice">
+          <use href="#mapBase"/>
+          <use href="#mapZonesTop"/>
+          <use href="#mapZonesBottom"/>
+          <g class="zone-hl"><rect class="hl-glow"/><rect class="hl-ring"/></g>
+          <use href="#mapLabels" class="map-labels"/>
+        </svg>
+      </div>
+
+      <div class="sheet-scrim" id="cowScrim" aria-hidden="true">
+        <div class="bottom-sheet" id="cowSheet"></div>
+      </div>
+
+    </div>
+  </div>
+</div>

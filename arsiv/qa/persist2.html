@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="tr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#F5F1E8">
+<meta name="description" content="Yeşil Vadi Çiftliği — tarla, hayvan, pazar ve hava durumuyla Türkçe çiftlik tycoon oyunu.">
+<meta name="application-name" content="Yeşil Vadi Çiftliği">
+<meta name="apple-mobile-web-app-title" content="Yeşil Vadi">
+<title>Yeşil Vadi Çiftliği</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="stage">
+  <div class="device">
+    <div class="app" id="app" data-phase="dawn" data-weather="sunny" data-season="i̇lkbahar">
+
+      <div class="statusbar" id="statusbar">
+        <div class="sb-left">
+          <span class="sb-time" id="sbTime">07:21</span>
+          <span class="sb-sub" id="sbDay">Gün 1 · Güneşli 24°</span>
+        </div>
+        <div class="island" aria-hidden="true"></div>
+        <div class="sb-right">
+          <div class="sb-icons">
+            <svg viewBox="0 0 18 12" class="sb-signal"><rect x="0" y="7" width="3" height="5" rx="1"></rect><rect x="5" y="5" width="3" height="7" rx="1"></rect><rect x="10" y="2.5" width="3" height="9.5" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect></svg>
+            <svg viewBox="0 0 16 12" class="sb-wifi saving" id="sbWifi"><path d="M1 4.2C3 2.4 5.4 1.5 8 1.5s5 .9 7 2.7M3.4 6.7C4.8 5.4 6.3 4.8 8 4.8s3.2.6 4.6 1.9M5.9 9.1C6.5 8.5 7.2 8.2 8 8.2s1.5.3 2.1.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><circle cx="8" cy="10.8" r="1.15" fill="currentColor"></circle></svg>
+            <span class="sb-battery" id="sbBattery" title="Çiftlik enerjisi: %77"><i id="sbBatteryFill" style="width: 77.2595%;"></i></span>
+          </div>
+          <span class="sb-money" id="sbMoney">2.500 ₺</span>
+        </div>
+      </div>
+
+      <main class="screens" id="screens">
+
+        <!-- ================= ANA SAYFA ================= -->
+        <section class="screen active" id="scr-home" data-tab="home">
+          <div class="home" id="homeWrap">
+            <div class="hero" id="homeHero" aria-hidden="true">
+              <svg viewBox="0 0 430 400" preserveAspectRatio="xMidYMid slice"><use href="#heroScene"></use></svg>
+              <div class="hero-rays"></div>
+              <div class="hero-time-tint"></div>
+              <div class="hero-stars" id="homeStars" style="opacity: 0;" data-done="1"><i style="left:46.9%;top:27.4%;animation-delay:3.0s;opacity:0.75"></i><i style="left:52.5%;top:38.3%;animation-delay:0.6s;opacity:0.94"></i><i style="left:16.1%;top:38.4%;animation-delay:2.3s;opacity:0.62"></i><i style="left:67.6%;top:30.1%;animation-delay:1.0s;opacity:0.51"></i><i style="left:48.8%;top:56.6%;animation-delay:2.5s;opacity:0.67"></i><i style="left:84.1%;top:59.9%;animation-delay:1.3s;opacity:0.41"></i><i style="left:19.3%;top:6.3%;animation-delay:2.1s;opacity:0.41"></i><i style="left:54.1%;top:15.9%;animation-delay:2.6s;opacity:0.47"></i><i style="left:1.8%;top:25.9%;animation-delay:2.5s;opacity:0.62"></i><i style="left:29.8%;top:9.0%;animation-delay:0.7s;opacity:0.88"></i><i style="left:99.0%;top:28.5%;animation-delay:1.2s;opacity:0.68"></i><i style="left:26.3%;top:53.6%;animation-delay:0.7s;opacity:0.39"></i><i style="left:40.6%;top:47.9%;animation-delay:2.9s;opacity:0.33"></i><i style="left:46.3%;top:40.4%;animation-delay:0.1s;opacity:0.50"></i><i style="left:42.7%;top:49.3%;animation-delay:0.9s;opacity:0.44"></i><i style="left:35.8%;top:50.3%;animation-delay:1.5s;opacity:0.48"></i><i style="left:60.9%;top:52.6%;animation-delay:0.9s;opacity:0.59"></i><i style="left:29.1%;top:0.1%;animation-delay:0.7s;opacity:0.97"></i><i style="left:26.8%;top:17.8%;animation-delay:0.7s;opacity:0.59"></i><i style="left:6.4%;top:59.6%;animation-delay:0.4s;opacity:0.76"></i><i style="left:8.5%;top:33.9%;animation-delay:2.5s;opacity:0.82"></i><i style="left:42.8%;top:25.8%;animation-delay:0.1s;opacity:0.31"></i><i style="left:7.5%;top:33.1%;animation-delay:0.9s;opacity:0.68"></i><i style="left:71.8%;top:12.7%;animation-delay:0.4s;opacity:0.99"></i><i style="left:28.4%;top:28.0%;animation-delay:0.2s;opacity:0.97"></i><i style="left:79.2%;top:22.1%;animation-delay:0.1s;opacity:0.91"></i></div>
+              <div class="hero-weather" id="homeFx"><i class="sun-mote" style="left: 42.0929%; top: 69.6182%; animation-duration: 5.43347s; animation-delay: 2.51107s;"></i><i class="sun-mote" style="left: 8.36142%; top: 25.8435%; animation-duration: 4.76787s; animation-delay: 1.664s;"></i><i class="sun-mote" style="left: 53.9648%; top: 33.5219%; animation-duration: 6.14082s; animation-delay: 0.705784s;"></i><i class="sun-mote" style="left: 97.2261%; top: 32.6869%; animation-duration: 4.54222s; animation-delay: 2.7057s;"></i><i class="sun-mote" style="left: 7.86027%; top: 42.3803%; animation-duration: 5.79098s; animation-delay: 3.91892s;"></i><i class="sun-mote" style="left: 19.9799%; top: 83.6066%; animation-duration: 7.57398s; animation-delay: 0.722479s;"></i><i class="sun-mote" style="left: 35.2089%; top: 41.5216%; animation-duration: 7.98047s; animation-delay: 2.44931s;"></i><i class="sun-mote" style="left: 99.1975%; top: 64.56%; animation-duration: 5.97453s; animation-delay: 1.77115s;"></i><i class="sun-mote" style="left: 9.7085%; top: 59.8674%; animation-duration: 6.77495s; animation-delay: 2.24318s;"></i><i class="sun-mote" style="left: 19.2879%; top: 50.04%; animation-duration: 6.24553s; animation-delay: 3.63246s;"></i><i class="sun-mote" style="left: 16.3215%; top: 8.27505%; animation-duration: 5.5937s; animation-delay: 3.81922s;"></i><i class="leaf-drift" style="left: 6.35895%; top: -2.73377%; animation-duration: 10.4941s; animation-delay: 0.393069s; opacity: 0.45684;"></i><i class="leaf-drift" style="left: 57.3642%; top: 6.27669%; animation-duration: 9.24504s; animation-delay: 2.29988s; opacity: 0.443529;"></i><i class="leaf-drift" style="left: 37.4516%; top: -3.18834%; animation-duration: 8.68739s; animation-delay: 3.94968s; opacity: 0.353132;"></i><i class="leaf-drift" style="left: 28.4103%; top: -0.360114%; animation-duration: 9.39957s; animation-delay: 2.17288s; opacity: 0.447021;"></i></div>
+              <div class="hero-float" id="homeFloat" data-done="1"><i style="left:52.9%;top:62.2%;font-size:10px;animation-duration:6.8s;animation-delay:3.8s;opacity:0.64">🌿</i><i style="left:29.0%;top:69.2%;font-size:13px;animation-duration:7.1s;animation-delay:2.8s;opacity:0.66">🍃</i><i style="left:33.9%;top:20.6%;font-size:15px;animation-duration:8.5s;animation-delay:2.8s;opacity:0.38">✨</i><i style="left:30.4%;top:55.8%;font-size:10px;animation-duration:5.4s;animation-delay:2.5s;opacity:0.38">🌾</i><i style="left:89.9%;top:62.7%;font-size:13px;animation-duration:9.9s;animation-delay:2.1s;opacity:0.47">🍂</i><i style="left:6.7%;top:64.8%;font-size:16px;animation-duration:9.5s;animation-delay:3.6s;opacity:0.55">✨</i><i style="left:40.7%;top:38.4%;font-size:12px;animation-duration:7.2s;animation-delay:3.1s;opacity:0.45">🌱</i></div>
+            </div>
+
+            <header class="home-head">
+              <div class="avatar-wrap">
+                <div class="avatar"><svg viewBox="0 0 64 64"><use href="#avatarMan"></use></svg></div>
+                <span class="level-badge" id="homeLevel">1</span>
+              </div>
+              <div class="home-greet">
+                <p id="homeGreet">Gün 1 · 07:21 · Güneşli</p>
+                <h1>Yeşil Vadi Çiftliği</h1>
+              </div>
+              <button class="bell" id="bellBtn" aria-label="Bildirimler">
+                <svg viewBox="0 0 24 24"><use href="#i-bell"></use></svg>
+                <span class="bell-dot" id="bellCount" style="display: grid;">5</span>
+              </button>
+            </header>
+
+            <div class="home-panels">
+              <div class="card health-card">
+                <div class="mini-ring" data-ring="91" id="homeHealthRing" data-init="1">
+                  <svg viewBox="0 0 60 60"><circle class="ring-track" cx="30" cy="30" r="25"></circle><circle class="ring-fill" cx="30" cy="30" r="25" style="stroke-dashoffset: 14.13;"></circle></svg>
+                  <b>91%</b>
+                </div>
+                <div class="health-copy">
+                  <span class="lbl">Çiftlik Sağlığı</span>
+                  <strong id="homeHealthLabel">Sağlıklı</strong>
+                  <span class="ok"><i></i><span id="homeHealthNote">3 tarla hasada hazır</span></span>
+                </div>
+              </div>
+              <button class="card weather-card" data-action="weather" aria-label="Hava durumu">
+                <div class="weather-main">
+                  <span class="weather-glyph" id="homeWeatherIcon"><svg class="ic"><use href="#i-sun"></use></svg></span>
+                  <div><div class="temp" id="homeTemp">24°</div><div class="sunny" id="homeWeatherName">Güneşli</div></div>
+                </div>
+                <div class="weather-meta">
+                  <span><svg class="ic"><use href="#i-drop"></use></svg><span id="homeWeatherWater">Yağmur yok</span></span>
+                  <span><svg class="ic"><use href="#i-sun"></use></svg><span id="homeWeatherSolar">Güçlü</span></span>
+                </div>
+              </button>
+            </div>
+
+            <div class="home-body">
+              <div class="card wallet-card">
+                <div class="wallet-top">
+                  <span class="wallet-coin">₺</span>
+                  <div class="wallet-main"><small>Kasa</small><b id="walletMoney">2.500 ₺</b></div>
+                  <span class="pill mint" id="walletSeason">İlkbahar</span>
+                </div>
+                <div class="wallet-xp">
+                  <div class="wallet-xp-head"><small id="walletLevel">Seviye 1</small><span id="walletXpText">0 / 150 XP</span></div>
+                  <div class="xpbar"><i id="walletXpBar" style="width: 0%;"></i></div>
+                </div>
+                <button class="wallet-link" data-goto="market">Pazara git <svg class="ic"><use href="#i-arrow-right"></use></svg></button>
+              </div>
+
+              <div class="home-section-head">
+                <h2 class="section-h">Hızlı Bakış</h2>
+                <button class="link-btn" data-goto="farm">Çiftlik <svg class="ic"><use href="#i-chev"></use></svg></button>
+              </div>
+              <div class="quick-grid">
+                <button class="card quick-card" data-goto="market">
+                  <span class="qc-top"><span class="tile wheat"><svg class="ic"><use href="#i-coin"></use></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"></use></svg></span></span>
+                  <span class="qc-num" id="qcMoney">2.500 <small>₺</small></span><span class="qc-lbl">Kasa</span>
+                </button>
+                <button class="card quick-card" data-goto="farm" data-zone="tomato">
+                  <span class="qc-top"><span class="tile mint"><svg class="ic"><use href="#i-tomato"></use></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"></use></svg></span></span>
+                  <span class="qc-num" id="qcHarvest">3</span><span class="qc-lbl">Hasada hazır</span>
+                </button>
+                <button class="card quick-card" data-goto="livestock">
+                  <span class="qc-top"><span class="tile peach"><svg class="ic"><use href="#i-cow"></use></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"></use></svg></span></span>
+                  <span class="qc-num" id="qcAnimals">48</span><span class="qc-lbl">Hayvan</span>
+                </button>
+                <button class="card quick-card" data-goto="farm" data-zone="water">
+                  <span class="qc-top"><span class="tile lav"><svg class="ic"><use href="#i-drop"></use></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"></use></svg></span></span>
+                  <span class="qc-num" id="qcWater">%82</span><span class="qc-lbl">Su deposu</span>
+                </button>
+              </div>
+
+              <div class="home-section-head">
+                <h2 class="section-h">Günlük Görevler</h2>
+                <button class="link-btn" data-action="quests">Tümü <svg class="ic"><use href="#i-chev"></use></svg></button>
+              </div>
+              <div class="card quests-card" id="homeQuests"><div class="quest-row"><span class="quest-ic"><svg class="ic"><use href="#i-tomato"></use></svg></span><div class="quest-main"><b>Hasat Zamanı</b><small>Tarlalardan hasat yap · 0 / 3</small><div class="quest-prog"><span class="xpbar"><i style="width:0%"></i></span><span>%0</span></div></div><span class="quest-reward">260 ₺</span><button class="quest-claim" data-action="claim-quest" data-quest="q1-0" disabled="">Al</button></div><div class="quest-row"><span class="quest-ic"><svg class="ic"><use href="#i-arrow-up"></use></svg></span><div class="quest-main"><b>Modernleşme</b><small>Bir bölgeyi yükselt · 0 / 1</small><div class="quest-prog"><span class="xpbar"><i style="width:0%"></i></span><span>%0</span></div></div><span class="quest-reward">360 ₺</span><button class="quest-claim" data-action="claim-quest" data-quest="q1-1" disabled="">Al</button></div><div class="quest-row"><span class="quest-ic"><svg class="ic"><use href="#i-coin"></use></svg></span><div class="quest-main"><b>Kazanç</b><small>Para kazan · 0 / 1.000 ₺</small><div class="quest-prog"><span class="xpbar"><i style="width:0%"></i></span><span>%0</span></div></div><span class="quest-reward">300 ₺</span><button class="quest-claim" data-action="claim-quest" data-quest="q1-2" disabled="">Al</button></div></div>
+
+              <button class="card daily-card" id="homeDaily" data-action="daily"><span class="daily-gift"><svg class="ic"><use href="#i-gift"></use></svg></span><span class="daily-main"><b>Günün ödülü hazır!</b><small>Seri: 0 gün · 150 ₺</small></span><span class="daily-cta">Al</span><span class="daily-dot"></span></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= ÇİFTLİK ================= -->
+        <section class="screen" id="scr-farm" data-tab="farm">
+          <div class="farm">
+            <header class="page-head">
+              <div>
+                <h1>Çiftliğim</h1>
+                <p class="sub"><svg class="ic pin"><use href="#i-pin"></use></svg>12,5 hektar · <span id="farmSeason">İlkbahar</span> · <span id="farmWeatherText">Güneşli 24°</span></p>
+              </div>
+              <button class="round-btn weather-btn" data-action="weather" aria-label="Hava durumu"><span id="farmWeatherIcon"><svg class="ic"><use href="#i-cloudsun"></use></svg></span></button>
+            </header>
+
+            <div class="farm-hud">
+              <button class="fh-item" data-goto="market">
+                <small>Kasa</small>
+                <b id="farmMoney">2.500 ₺</b>
+                <span class="fh-sub" id="farmIncome">Bugün 0 ₺</span>
+              </button>
+              <button class="fh-item fh-level" data-goto="profile">
+                <small id="farmLevelText">Seviye 1</small>
+                <b id="farmXpText">0 / 150 XP</b>
+                <span class="xpbar"><i id="farmXpBar"></i></span>
+              </button>
+              <button class="fh-item" data-action="weather">
+                <small>Hava</small>
+                <b id="farmTemp">24°</b>
+                <span class="fh-sub" id="farmForecast">Yarın: Bulutlu</span>
+              </button>
+            </div>
+
+            <div class="chips" id="farmChips" role="tablist">
+              <button class="chip active" data-zone="overview" role="tab"><svg class="ic"><use href="#i-map"></use></svg>Genel Bakış</button>
+              <button class="chip" data-zone="house" role="tab"><svg class="ic"><use href="#i-house"></use></svg>Ev</button>
+              <button class="chip" data-zone="tomato" role="tab"><svg class="ic"><use href="#i-tomato"></use></svg>Domates</button>
+              <button class="chip" data-zone="vegetable" role="tab"><svg class="ic"><use href="#i-leaf"></use></svg>Sebze</button>
+              <button class="chip" data-zone="corn" role="tab"><svg class="ic"><use href="#i-corn"></use></svg>Mısır</button>
+              <button class="chip" data-zone="animal" role="tab"><svg class="ic"><use href="#i-cow"></use></svg>Hayvanlar</button>
+              <button class="chip" data-zone="water" role="tab"><svg class="ic"><use href="#i-drop"></use></svg>Su</button>
+            </div>
+
+            <div class="map-card phase-dawn w-sunny" id="farmMapCard">
+              <svg class="farm-map" id="farmMap" viewBox="0 0 1000 1250" preserveAspectRatio="xMidYMid slice">
+                <use href="#mapBase"></use>
+                <use href="#mapZonesTop"></use>
+                <use href="#mapZonesBottom"></use>
+                <g class="dyn-farm" id="dynFarm"><g transform="translate(700 1090) scale(0.66)"><use href="#mapStore"></use></g><g class="dyn-badge" transform="translate(408 374)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(908 374)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(408 798)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(908 798)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(590 1148)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(938 930)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(938 1110)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-ready" transform="translate(752 242)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-ready" transform="translate(248 688)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-ready" transform="translate(752 688)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-bob" transform="translate(330 1006)">
+    <circle r="25" fill="#FFFDF8" opacity=".92"></circle>
+    <circle r="19" fill="#D99A2A"></circle>
+    <use href="#i-wheat" x="-10" y="-10" width="20" height="20" color="#FFFDF8"></use>
+  </g></g>
+                <g class="zone-hl" aria-hidden="true">
+                  <rect class="hl-glow"></rect><rect class="hl-ring"></rect>
+                </g>
+                <use href="#mapLabels" class="map-labels"></use>
+              </svg>
+              <div class="map-time-tint"></div>
+              <div class="map-fx" id="farmMapFx"><i class="sun-mote" style="left: 77.1166%; top: 80.1061%; animation-duration: 4.57587s; animation-delay: 0.386211s;"></i><i class="sun-mote" style="left: 65.7919%; top: 78.0785%; animation-duration: 4.52837s; animation-delay: 1.98929s;"></i><i class="sun-mote" style="left: 82.4193%; top: 58.9487%; animation-duration: 4.58676s; animation-delay: 0.33715s;"></i><i class="sun-mote" style="left: 88.1988%; top: 77.929%; animation-duration: 6.49343s; animation-delay: 3.93572s;"></i><i class="sun-mote" style="left: 95.8806%; top: 76.0313%; animation-duration: 5.25192s; animation-delay: 1.32144s;"></i><i class="sun-mote" style="left: 42.7212%; top: 78.5058%; animation-duration: 6.02405s; animation-delay: 0.345899s;"></i><i class="sun-mote" style="left: 1.67902%; top: 8.22463%; animation-duration: 7.31077s; animation-delay: 3.89842s;"></i><i class="sun-mote" style="left: 90.9573%; top: 53.1279%; animation-duration: 6.40514s; animation-delay: 0.954219s;"></i><i class="sun-mote" style="left: 18.8366%; top: 8.65792%; animation-duration: 5.73305s; animation-delay: 1.07321s;"></i><i class="sun-mote" style="left: 32.8385%; top: 64.1241%; animation-duration: 7.92019s; animation-delay: 1.6852s;"></i><i class="sun-mote" style="left: 92.3028%; top: 53.8341%; animation-duration: 6.76026s; animation-delay: 3.981s;"></i><i class="leaf-drift" style="left: 58.1211%; top: 1.44287%; animation-duration: 6.28363s; animation-delay: 0.70173s; opacity: 0.309398;"></i><i class="leaf-drift" style="left: 33.6398%; top: 4.84006%; animation-duration: 10.0821s; animation-delay: 0.985875s; opacity: 0.45743;"></i><i class="leaf-drift" style="left: 0.771566%; top: -4.58747%; animation-duration: 6.48504s; animation-delay: 0.107903s; opacity: 0.382847;"></i><i class="leaf-drift" style="left: 16.4287%; top: -3.39041%; animation-duration: 10.9623s; animation-delay: 3.96028s; opacity: 0.370857;"></i></div>
+              <button class="map-expand" id="expandFarm" aria-label="Haritayı büyüt"><svg class="ic"><use href="#i-expand"></use></svg></button>
+              <div class="map-tip" id="mapTip"><span class="tap-ic"><svg class="ic"><use href="#i-tap"></use></svg></span><span><b>Bir alana dokun</b><small id="mapTipSub">7 bölge · 4 ürün · 48 hayvan</small></span></div>
+            </div>
+
+            <div id="farmInfo" class="farm-info"></div>
+
+            <section class="explore" id="farmExplore">
+              <div class="home-section-head"><h2 class="section-h">Keşfet</h2><span class="section-note" id="exploreNote">4 ürün büyüyor</span></div>
+              <div class="explore-grid">
+                <button class="explore-card" data-goto="farm" data-zone="vegetable"><span class="ex-ic mint"><svg class="ic"><use href="#i-leaf"></use></svg></span><span><b>Tarlalarım</b><small id="exploreCrops">3 tarla</small></span></button>
+                <button class="explore-card" data-goto="livestock"><span class="ex-ic peach"><svg class="ic"><use href="#i-cow"></use></svg></span><span><b>Hayvanlar</b><small id="exploreAnimals">48 hayvan</small></span></button>
+                <button class="explore-card" data-goto="farm" data-zone="water"><span class="ex-ic lav"><svg class="ic"><use href="#i-drop"></use></svg></span><span><b>Sulama</b><small id="exploreWater">Su: %82</small></span></button>
+                <button class="explore-card" data-action="weather"><span class="ex-ic wheat"><svg class="ic"><use href="#i-sun"></use></svg></span><span><b>Hava Durumu</b><small id="exploreWeather">Güneşli · 24°</small></span></button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ================= HAYVANLAR ================= -->
+        <section class="screen" id="scr-livestock" data-tab="livestock">
+          <div class="livestock">
+            <header class="subhead">
+              <button class="back-btn" data-back="farm" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"></use></svg></button>
+              <div class="subhead-title"><h1>Hayvanlar</h1><p id="livestockSub">Yeşil Vadi Çiftliği · 48 hayvan</p></div>
+              <button class="back-btn" data-action="scroll-upgrade" aria-label="Ahır yükseltme kartına git"><svg class="ic"><use href="#i-arrow-up"></use></svg></button>
+            </header>
+
+            <div class="card herd-card">
+              <div class="herd-top">
+                <span class="eyebrow">Toplam sürü</span>
+                <span class="pill mint" id="herdStatus"><svg class="ic"><use href="#i-shield"></use></svg>Sağlıklı</span>
+              </div>
+              <div class="herd-number"><b class="count" id="herdCount">48</b><span>hayvan</span></div>
+              <div class="hairline"></div>
+              <div class="gauges">
+                <div class="gauge">
+                  <div class="ring" id="ringHealth" data-ring="96" data-color="#3E8B55"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"></circle><circle class="ring-fill" cx="38" cy="38" r="32"></circle></svg><b>96%</b></div>
+                  <strong>Sağlık</strong><small id="gaugeHealthNote">Mükemmel</small>
+                </div>
+                <div class="gauge">
+                  <div class="ring" id="ringFeed" data-ring="60" data-color="#E8A13A"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"></circle><circle class="ring-fill" cx="38" cy="38" r="32"></circle></svg><b>60%</b></div>
+                  <strong>Yem</strong><small id="gaugeFeedNote">120 kg stok</small>
+                </div>
+                <div class="gauge">
+                  <div class="ring" id="ringProd" data-ring="91" data-color="#55A9DC"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"></circle><circle class="ring-fill" cx="38" cy="38" r="32"></circle></svg><b>91%</b></div>
+                  <strong>Üretim</strong><small id="gaugeProdNote">Hedefte</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="card feed-card">
+              <div class="feed-head">
+                <span class="tile wheat"><svg class="ic"><use href="#i-wheat"></use></svg></span>
+                <b>Bugünkü besleme</b>
+                <span class="pill plain" id="feedCount">0 / 3</span>
+              </div>
+              <div class="steps" id="feedSteps"></div>
+              <div class="feed-action">
+                <button class="btn primary feed-btn" id="feedBtn" data-action="feed"><svg class="ic"><use href="#i-wheat"></use></svg><span id="feedBtnLabel">Yem Ver</span><small id="feedBtnCost">14 kg</small></button>
+                <div class="feed-stock"><small>Yem stoğu</small><b id="feedStock">120 kg</b><span class="mini-bar"><i id="feedStockBar"></i></span></div>
+              </div>
+            </div>
+
+            <div class="card production-card">
+              <div class="production-head">
+                <span class="tile mint"><svg class="ic"><use href="#i-box"></use></svg></span>
+                <div><b>Ürünler</b><small id="productionSub">Sağmal ürünleri topla</small></div>
+                <button class="btn soft small" id="collectBtn" data-action="collect">Topla</button>
+              </div>
+              <div class="production-list" id="productionList"></div>
+            </div>
+
+            <div class="card animal-upgrade" id="animalUpgradeCard"></div>
+
+            <section class="cat-section">
+              <div class="home-section-head"><h2 class="section-h">Kategoriler</h2><span class="section-note">Bir gruba dokun</span></div>
+              <div class="cat-grid" id="catGrid"></div>
+            </section>
+
+            <section class="cow-section">
+              <div class="cow-head"><h2 class="section-h" id="herdTitle">İneklerin</h2><p class="section-sub" id="herdSub">18 sürüde · detay için dokun</p></div>
+              <div class="cow-list" id="cowList"></div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ================= DETAY ================= -->
+        <section class="screen" id="scr-detail" data-tab="farm">
+          <div class="detail">
+            <div class="detail-hero phase-dawn w-sunny" id="detailHero">
+              <button class="back-btn detail-back" data-back="farm" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"></use></svg></button>
+              <svg class="farm-map" id="detailMap" viewBox="0 0 520 630" preserveAspectRatio="xMidYMid slice">
+                <use href="#mapBase"></use><use href="#mapZonesTop"></use><use href="#mapZonesBottom"></use>
+                <g class="dyn-farm" id="dynDetail"><g transform="translate(700 1090) scale(0.66)"><use href="#mapStore"></use></g><g class="dyn-badge" transform="translate(408 374)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(908 374)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(408 798)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(908 798)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(590 1148)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(938 930)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(938 1110)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-ready" transform="translate(752 242)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-ready" transform="translate(248 688)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-ready" transform="translate(752 688)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-bob" transform="translate(330 1006)">
+    <circle r="25" fill="#FFFDF8" opacity=".92"></circle>
+    <circle r="19" fill="#D99A2A"></circle>
+    <use href="#i-wheat" x="-10" y="-10" width="20" height="20" color="#FFFDF8"></use>
+  </g></g>
+                <g class="zone-hl"><rect class="hl-glow"></rect><rect class="hl-ring"></rect></g>
+              </svg>
+              <div class="map-time-tint"></div>
+              <div class="map-fx" id="detailFx"><i class="sun-mote" style="left: 73.7967%; top: 81.0091%; animation-duration: 5.29158s; animation-delay: 2.62336s;"></i><i class="sun-mote" style="left: 92.504%; top: 17.2311%; animation-duration: 7.45651s; animation-delay: 3.27981s;"></i><i class="sun-mote" style="left: 27.4325%; top: 34.3653%; animation-duration: 4.67917s; animation-delay: 0.520372s;"></i><i class="sun-mote" style="left: 76.0352%; top: 42.135%; animation-duration: 4.57339s; animation-delay: 0.236279s;"></i><i class="sun-mote" style="left: 68.1297%; top: 84.6253%; animation-duration: 6.03098s; animation-delay: 3.99653s;"></i><i class="sun-mote" style="left: 87.177%; top: 29.4913%; animation-duration: 7.31492s; animation-delay: 1.41395s;"></i><i class="sun-mote" style="left: 53.1874%; top: 17.7419%; animation-duration: 7.52206s; animation-delay: 0.181859s;"></i><i class="sun-mote" style="left: 17.1073%; top: 32.732%; animation-duration: 6.44208s; animation-delay: 2.96802s;"></i><i class="sun-mote" style="left: 66.0971%; top: 15.0856%; animation-duration: 6.90959s; animation-delay: 0.917012s;"></i><i class="sun-mote" style="left: 1.8046%; top: 9.58682%; animation-duration: 5.28934s; animation-delay: 2.31178s;"></i><i class="sun-mote" style="left: 44.9936%; top: 40.1886%; animation-duration: 6.24306s; animation-delay: 0.884687s;"></i><i class="leaf-drift" style="left: 13.1177%; top: 7.29835%; animation-duration: 9.4791s; animation-delay: 3.15538s; opacity: 0.293053;"></i><i class="leaf-drift" style="left: 0.684757%; top: 4.56783%; animation-duration: 9.62667s; animation-delay: 2.91911s; opacity: 0.307734;"></i><i class="leaf-drift" style="left: 20.0535%; top: -1.22345%; animation-duration: 10.3131s; animation-delay: 0.980907s; opacity: 0.474057;"></i><i class="leaf-drift" style="left: 67.342%; top: 4.19353%; animation-duration: 9.94831s; animation-delay: 2.88103s; opacity: 0.447167;"></i></div>
+              <button class="map-expand" id="expandDetail" aria-label="Haritayı büyüt"><svg class="ic"><use href="#i-expand"></use></svg></button>
+            </div>
+            <div class="detail-body">
+              <div class="sheet" id="detailSheet"></div>
+              <section class="explore">
+                <div class="home-section-head"><h2 class="section-h">Keşfet</h2></div>
+                <div class="explore-grid">
+                  <button class="explore-card" data-goto="farm" data-zone="vegetable"><span class="ex-ic mint"><svg class="ic"><use href="#i-leaf"></use></svg></span><span><b>Tarlalarım</b><small id="detailExploreCrops">3 tarla</small></span></button>
+                  <button class="explore-card" data-goto="livestock"><span class="ex-ic peach"><svg class="ic"><use href="#i-cow"></use></svg></span><span><b>Hayvanlar</b><small id="detailExploreAnimals">48 hayvan</small></span></button>
+                  <button class="explore-card" data-goto="market"><span class="ex-ic wheat"><svg class="ic"><use href="#i-tag"></use></svg></span><span><b>Pazar</b><small>Ürünleri sat</small></span></button>
+                  <button class="explore-card" data-action="weather"><span class="ex-ic lav"><svg class="ic"><use href="#i-cloudsun"></use></svg></span><span><b>Hava</b><small id="detailExploreWeather">Güneşli</small></span></button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PAZAR ================= -->
+        <section class="screen" id="scr-market" data-tab="market">
+          <div class="simple market">
+            <header class="page-head">
+              <div><h1>Pazar</h1><p class="sub"><svg class="ic pin"><use href="#i-pin"></use></svg>Gün <span id="marketDay">1</span> · <span id="marketWeather">Güneşli</span> · <span id="marketSeason">İlkbahar</span></p></div>
+              <button class="round-btn" data-action="sellAll" aria-label="Tümünü sat"><svg class="ic"><use href="#i-tag"></use></svg></button>
+            </header>
+
+            <div class="card market-summary">
+              <div class="ms-main">
+                <small>Kasa</small>
+                <b id="marketMoney">2.500 ₺</b>
+                <span class="ms-trend" id="marketTrend">Fiyatlar güncel</span>
+              </div>
+              <div class="ms-side">
+                <div><small>Depo</small><b id="marketCapacity">0 / 2600</b></div>
+                <div><small>Bugünkü satış</small><b id="marketToday">0 ₺</b></div>
+              </div>
+            </div>
+
+            <div class="market-tabs" id="marketTabs">
+              <button class="mtab active" data-mtab="sell">Ürünler</button>
+              <button class="mtab" data-mtab="supply">Tedarik</button>
+              <button class="mtab" data-mtab="orders">Siparişler</button>
+            </div>
+            <div id="marketContent" class="market-content"></div>
+          </div>
+        </section>
+
+        <!-- ================= PROFİL ================= -->
+        <section class="screen" id="scr-profile" data-tab="profile">
+          <div class="simple profile">
+            <header class="page-head">
+              <div><h1>Profil</h1><p class="sub"><svg class="ic pin"><use href="#i-pin"></use></svg>Yeşil Vadi Çiftliği</p></div>
+              <button class="round-btn" data-action="reports" aria-label="Raporlar"><svg class="ic"><use href="#i-chart"></use></svg></button>
+            </header>
+
+            <div class="card profile-card">
+              <div class="avatar-wrap big"><div class="avatar big"><svg viewBox="0 0 64 64"><use href="#avatarMan"></use></svg></div><span class="level-badge" id="profileLevel">1</span></div>
+              <div class="profile-main"><b>Çiftçi</b><small id="profileSub">İlkbahar · Gün 1</small><span class="xp-line"><span class="xpbar"><i id="profileXpBar"></i></span><small id="profileXpText">0 / 150 XP</small></span></div>
+              <span class="pill mint" id="profileRank">Acemi Çiftçi</span>
+            </div>
+
+            <div class="kpi-row three">
+              <div class="card kpi"><b id="profileMoney">2.500</b><small>Kasa ₺</small></div>
+              <div class="card kpi"><b id="profileHarvests">0</b><small>Hasat</small></div>
+              <div class="card kpi"><b id="profileDays">1</b><small>Gün</small></div>
+            </div>
+
+            <div class="home-section-head"><h2 class="section-h">Başarımlar</h2><span class="section-note" id="achCount">0 / 8</span></div>
+            <div class="card achievement-list" id="achievementList"></div>
+
+            <div class="card settings">
+              <button data-action="reports"><span class="tile lav"><svg class="ic"><use href="#i-chart"></use></svg></span><b>Çiftlik raporları</b><svg class="ic chev"><use href="#i-chev"></use></svg></button>
+              <button data-action="sound"><span class="tile mint"><svg class="ic"><use href="#i-sound"></use></svg></span><b>Ses efektleri</b><span class="switch on" id="soundSwitch"><i></i></span></button>
+              <button data-action="vibration"><span class="tile peach"><svg class="ic"><use href="#i-tap"></use></svg></span><b>Titreşim</b><span class="switch on" id="vibrationSwitch"><i></i></span></button>
+              <button data-action="help"><span class="tile wheat"><svg class="ic"><use href="#i-help"></use></svg></span><b>Nasıl oynanır?</b><svg class="ic chev"><use href="#i-chev"></use></svg></button>
+              <button data-action="menu"><span class="tile lav"><svg class="ic"><use href="#i-menu"></use></svg></span><b>Ana menü</b><svg class="ic chev"><use href="#i-chev"></use></svg></button>
+              <button data-action="reset"><span class="tile peach"><svg class="ic"><use href="#i-refresh"></use></svg></span><b class="danger-text">Oyunu sıfırla</b><svg class="ic chev"><use href="#i-chev"></use></svg></button>
+            </div>
+            <p class="profile-foot">Yeşil Vadi Çiftliği · Tycoon v2.0 · Çevrimdışı oyun</p>
+          </div>
+        </section>
+
+        <!-- ================= RAPORLAR ================= -->
+        <section class="screen" id="scr-analytics" data-tab="profile">
+          <div class="simple analytics">
+            <header class="subhead">
+              <button class="back-btn" data-back="profile" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"></use></svg></button>
+              <div class="subhead-title"><h1>Raporlar</h1><p>Son 7 günün özeti</p></div>
+              <span class="back-spacer"></span>
+            </header>
+            <div class="kpi-row">
+              <div class="card kpi"><small>Toplam kazanç</small><b id="reportEarned">0 <i>₺</i></b><span class="up" id="reportDays">0 gün</span></div>
+              <div class="card kpi"><small>Hasat</small><b id="reportHarvests">0</b><span class="up">ürün</span></div>
+            </div>
+            <div class="card chart-card"><div class="chart-head"><b>Günlük gelir</b><span class="pill mint" id="reportBest">En iyi: 0 ₺</span></div><div class="bars" id="barChart"></div><div class="bars-x" id="barLabels"></div></div>
+            <div class="home-section-head"><h2 class="section-h">Bölge performansı</h2></div>
+            <div class="card perf-list" id="perfList"></div>
+          </div>
+        </section>
+
+      </main>
+
+      <nav class="tabbar" id="tabbar">
+        <button data-nav="home" class="tab active"><svg class="ic"><use href="#i-home"></use></svg><span>Ana Sayfa</span></button>
+        <button data-nav="farm" class="tab"><svg class="ic"><use href="#i-sprout"></use></svg><span>Çiftlik</span></button>
+        <button data-nav="livestock" class="tab"><svg class="ic"><use href="#i-cow"></use></svg><span>Hayvanlar</span></button>
+        <button data-nav="market" class="tab"><svg class="ic"><use href="#i-tag"></use></svg><span>Pazar</span></button>
+        <button data-nav="profile" class="tab"><svg class="ic"><use href="#i-user"></use></svg><span>Profil</span></button>
+      </nav>
+
+      <div class="toast" id="toast" role="status"></div>
+
+      <div class="modal map-modal" id="mapModal" aria-hidden="true">
+        <div class="modal-head"><b id="modalTitle">Çiftlik haritası</b><button class="back-btn" id="closeMap" aria-label="Kapat"><svg class="ic"><use href="#i-close"></use></svg></button></div>
+        <svg class="farm-map" id="modalMap" viewBox="0 0 1000 1200" preserveAspectRatio="xMidYMid slice">
+          <use href="#mapBase"></use>
+          <use href="#mapZonesTop"></use>
+          <use href="#mapZonesBottom"></use>
+          <g class="dyn-farm" id="dynModal"><g transform="translate(700 1090) scale(0.66)"><use href="#mapStore"></use></g><g class="dyn-badge" transform="translate(408 374)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(908 374)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(408 798)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(908 798)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(590 1148)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(938 930)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-badge" transform="translate(938 1110)" filter="url(#pillShadow)">
+    <rect x="-27" y="-14" width="54" height="28" rx="14" fill="#FFFDF8" stroke="#E4D7B8" stroke-width="1.5"></rect>
+    <text x="0" y="5.5" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="15" font-weight="800" fill="#8A6420">Sv. 1</text>
+  </g><g class="dyn-ready" transform="translate(752 242)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-ready" transform="translate(248 688)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-ready" transform="translate(752 688)">
+        <circle class="dyn-ready-ring" r="33" fill="none" stroke="#F0B84B" stroke-width="3"></circle>
+        <circle r="24" fill="#FFF7DC" stroke="#E8A13A" stroke-width="3"></circle>
+        <use href="#i-check" x="-11" y="-11" width="22" height="22" color="#A06E18"></use>
+      </g><g class="dyn-bob" transform="translate(330 1006)">
+    <circle r="25" fill="#FFFDF8" opacity=".92"></circle>
+    <circle r="19" fill="#D99A2A"></circle>
+    <use href="#i-wheat" x="-10" y="-10" width="20" height="20" color="#FFFDF8"></use>
+  </g></g>
+          <g class="zone-hl"><rect class="hl-glow"></rect><rect class="hl-ring"></rect></g>
+          <use href="#mapLabels" class="map-labels"></use>
+        </svg>
+      </div>
+
+      <div class="sheet-scrim open" id="sheetScrim" aria-hidden="false">
+        <div class="bottom-sheet" id="sheetContent"><div class="drag"></div><div class="sheet-head"><div class="sh-main"><h2>Çiftçi Okulu</h2><p>Adım 1 / 3</p></div><button class="sheet-close" data-action="close-sheet"><svg class="ic"><use href="#i-close"></use></svg></button></div>
+    <div class="tutorial-card"><span class="tc-ic"><svg class="ic"><use href="#i-sprout"></use></svg></span><b>Tarlayı canlandır</b><small>Domates tarlasına dokun; suluysa hasat et. Kuruysa önce sula. Her hasat depoya ürün ve XP kazandırır.</small><div class="tut-dots"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+    <div class="sheet-actions"><button class="btn ghost" data-action="tutorial-skip">Atla</button><button class="btn primary" data-action="tutorial-next">Devam</button></div></div>
+      </div>
+
+      <div class="levelup-scrim" id="levelUp" aria-hidden="true">
+        <div class="levelup-card">
+          <div class="levelup-badge"><svg class="ic"><use href="#i-star"></use></svg></div>
+          <span class="eyebrow">Seviye atladın</span>
+          <h2 id="levelUpTitle">Seviye 2</h2>
+          <p id="levelUpText">Çiftliğin büyüyor. Yeni ödüller kazandın!</p>
+          <div class="levelup-rewards" id="levelUpRewards"></div>
+          <button class="btn primary wide" data-action="levelup-close">Devam Et</button>
+        </div>
+      </div>
+
+      <div class="confirm-scrim" id="confirm" aria-hidden="true">
+        <div class="confirm-card">
+          <span class="confirm-ic" id="confirmIcon"><svg class="ic"><use href="#i-refresh"></use></svg></span>
+          <h2 id="confirmTitle">Emin misin?</h2>
+          <p id="confirmText">Bu işlem geri alınamaz.</p>
+          <div class="confirm-actions">
+            <button class="btn ghost" data-confirm="no">Vazgeç</button>
+            <button class="btn primary" data-confirm="yes">Evet</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="start-screen hidden" id="startScreen" aria-hidden="true" data-phase="dawn" data-weather="sunny">
+        <div class="start-bg">
+          <svg viewBox="0 0 430 400" preserveAspectRatio="xMidYMid slice"><use href="#heroScene"></use></svg>
+          <div class="start-rays"></div>
+          <div class="start-time-tint"></div>
+          <div class="start-stars" id="startStars" style="display: none; opacity: 0;" data-done="1"><i style="left:33.7%;top:16.4%;animation-delay:2.2s;opacity:0.84"></i><i style="left:35.2%;top:7.4%;animation-delay:1.5s;opacity:0.66"></i><i style="left:67.6%;top:28.5%;animation-delay:1.1s;opacity:0.38"></i><i style="left:57.4%;top:30.7%;animation-delay:2.3s;opacity:0.36"></i><i style="left:76.6%;top:9.1%;animation-delay:0.8s;opacity:0.53"></i><i style="left:52.5%;top:43.9%;animation-delay:1.9s;opacity:0.37"></i><i style="left:32.3%;top:25.2%;animation-delay:0.8s;opacity:0.83"></i><i style="left:85.9%;top:2.4%;animation-delay:2.3s;opacity:0.97"></i><i style="left:60.6%;top:26.7%;animation-delay:2.8s;opacity:1.00"></i><i style="left:25.1%;top:16.5%;animation-delay:0.5s;opacity:0.35"></i><i style="left:0.2%;top:44.3%;animation-delay:2.1s;opacity:0.65"></i><i style="left:23.2%;top:15.7%;animation-delay:1.5s;opacity:0.34"></i><i style="left:78.4%;top:5.8%;animation-delay:1.6s;opacity:0.74"></i><i style="left:20.0%;top:14.9%;animation-delay:2.9s;opacity:0.61"></i><i style="left:12.5%;top:19.7%;animation-delay:2.1s;opacity:0.45"></i><i style="left:79.2%;top:2.9%;animation-delay:2.5s;opacity:0.77"></i><i style="left:31.6%;top:28.7%;animation-delay:3.0s;opacity:0.37"></i><i style="left:26.5%;top:47.7%;animation-delay:1.0s;opacity:0.52"></i><i style="left:44.4%;top:0.5%;animation-delay:0.2s;opacity:0.78"></i><i style="left:61.9%;top:33.3%;animation-delay:2.7s;opacity:0.77"></i><i style="left:75.4%;top:49.1%;animation-delay:1.4s;opacity:0.34"></i><i style="left:40.5%;top:26.0%;animation-delay:2.2s;opacity:0.39"></i><i style="left:5.7%;top:34.7%;animation-delay:2.9s;opacity:0.87"></i><i style="left:21.3%;top:29.8%;animation-delay:2.7s;opacity:0.75"></i><i style="left:80.2%;top:42.7%;animation-delay:0.2s;opacity:0.39"></i><i style="left:3.9%;top:48.9%;animation-delay:2.5s;opacity:0.53"></i><i style="left:39.4%;top:0.2%;animation-delay:0.3s;opacity:0.83"></i><i style="left:72.6%;top:31.7%;animation-delay:2.8s;opacity:0.96"></i><i style="left:88.5%;top:33.0%;animation-delay:0.3s;opacity:0.53"></i><i style="left:34.5%;top:23.0%;animation-delay:0.5s;opacity:0.87"></i><i style="left:11.2%;top:32.3%;animation-delay:0.2s;opacity:0.64"></i><i style="left:67.3%;top:12.1%;animation-delay:1.1s;opacity:0.86"></i></div>
+          <div class="start-shade"></div>
+        </div>
+        <div class="start-fx" id="startFx"><i class="sun-mote" style="left: 22.905%; top: 11.6411%; animation-duration: 7.9264s; animation-delay: 0.997632s;"></i><i class="sun-mote" style="left: 26.8979%; top: 55.633%; animation-duration: 5.75647s; animation-delay: 0.0680925s;"></i><i class="sun-mote" style="left: 36.6949%; top: 44.8574%; animation-duration: 4.39384s; animation-delay: 0.201028s;"></i><i class="sun-mote" style="left: 3.14301%; top: 66.0254%; animation-duration: 6.03497s; animation-delay: 2.89675s;"></i><i class="sun-mote" style="left: 74.2106%; top: 74.5172%; animation-duration: 7.60851s; animation-delay: 1.97847s;"></i><i class="sun-mote" style="left: 83.0547%; top: 40.0216%; animation-duration: 7.76733s; animation-delay: 2.68346s;"></i><i class="sun-mote" style="left: 8.49419%; top: 38.6963%; animation-duration: 7.80303s; animation-delay: 2.66545s;"></i><i class="sun-mote" style="left: 51.2722%; top: 8.72559%; animation-duration: 4.72404s; animation-delay: 0.191975s;"></i><i class="sun-mote" style="left: 26.1158%; top: 33.0409%; animation-duration: 5.95781s; animation-delay: 3.97461s;"></i><i class="sun-mote" style="left: 42.1899%; top: 13.5957%; animation-duration: 6.75154s; animation-delay: 3.17911s;"></i><i class="sun-mote" style="left: 69.8207%; top: 84.7687%; animation-duration: 6.0392s; animation-delay: 1.34611s;"></i><i class="leaf-drift" style="left: 44.1851%; top: -3.28913%; animation-duration: 6.06857s; animation-delay: 3.67752s; opacity: 0.475225;"></i><i class="leaf-drift" style="left: 12.6631%; top: 9.59357%; animation-duration: 10.1175s; animation-delay: 0.21578s; opacity: 0.25359;"></i><i class="leaf-drift" style="left: 55.9626%; top: 5.38034%; animation-duration: 10.1611s; animation-delay: 2.72741s; opacity: 0.460459;"></i><i class="leaf-drift" style="left: 14.7699%; top: 7.81342%; animation-duration: 8.36142s; animation-delay: 3.33376s; opacity: 0.452181;"></i></div>
+        <div class="start-float" id="startFloat" data-done="1"><i style="left:44.5%;top:51.0%;font-size:18px;animation-duration:9.6s;animation-delay:1.7s;opacity:0.70">🌿</i><i style="left:84.7%;top:59.4%;font-size:14px;animation-duration:9.1s;animation-delay:3.7s;opacity:0.66">🍃</i><i style="left:74.4%;top:36.7%;font-size:12px;animation-duration:6.2s;animation-delay:3.8s;opacity:0.43">✨</i><i style="left:46.4%;top:20.8%;font-size:14px;animation-duration:6.2s;animation-delay:1.2s;opacity:0.76">🌾</i><i style="left:39.5%;top:33.0%;font-size:18px;animation-duration:5.7s;animation-delay:0.5s;opacity:0.75">🍂</i><i style="left:89.6%;top:12.5%;font-size:13px;animation-duration:8.4s;animation-delay:3.0s;opacity:0.60">✨</i><i style="left:44.2%;top:15.3%;font-size:9px;animation-duration:6.6s;animation-delay:3.1s;opacity:0.51">🌱</i></div>
+        <div class="start-content">
+          <div class="start-brand">
+            <span class="start-badge"><svg class="ic"><use href="#i-sprout"></use></svg>TYCOON</span>
+            <h1>Yeşil Vadi<br><em>Çiftliği</em></h1>
+            <p>Kendi çiftliğini kur, büyüt ve zengin ol.</p>
+          </div>
+          <div class="start-actions">
+            <button class="start-btn" id="startContinue" data-action="start">
+              <span id="startContinueLabel">Devam Et</span>
+              <small id="startContinueSub">Gün 1 · Seviye 1 · 2.500 ₺</small>
+            </button>
+            <div class="start-row">
+              <button class="start-ghost" id="startNew" data-action="newgame">Yeni Oyun</button>
+              <button class="start-icon" data-action="daily" id="startDaily" aria-label="Günün ödülü"><svg class="ic"><use href="#i-gift"></use></svg><span class="dot" id="startDailyDot" style="display: block;"></span></button>
+              <button class="start-icon" data-action="help" aria-label="Nasıl oynanır"><svg class="ic"><use href="#i-help"></use></svg></button>
+              <button class="start-icon" data-action="sound" id="startSound" aria-label="Sesi kapat"><svg class="ic"><use href="#i-sound"></use></svg></button>
+            </div>
+            <p class="start-foot"><span id="startStats">Gün 1 · Seviye 1 · 2.500 ₺</span><span>v2.0 · Çevrimdışı</span></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- ============ SVG SYMBOLS ============ -->
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.6 12 4l8 6.6V20a1 1 0 0 1-1 1h-4.4v-6.2H9.4V21H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M12 21v-7.4M12 13.6c0-3.2-2.1-5-5.3-5C6.7 12 8.8 13.6 12 13.6ZM12 13.6c0-3.2 2.1-5 5.3-5C17.3 12 15.2 13.6 12 13.6ZM12 10.4c0-2.7 1.7-4.4 4.4-4.4 0 2.7-1.7 4.4-4.4 4.4Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 20V11M12 20V5M19 20v-6"></path></g></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="m12 3 8 4.2v9.3L12 21l-8-4.5V7.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="m4.3 7.4 7.7 4.2 7.7-4.2M12 11.6V21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M4.5 20.5c.7-3.8 3.6-5.7 7.5-5.7s6.8 1.9 7.5 5.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18.4 9.8c0-3.6-2.3-6-6.4-6s-6.4 2.4-6.4 6c0 3.4-.7 5-1.9 6.4h16.6c-1.2-1.4-1.9-3-1.9-6.4Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M10 19.2a2.1 2.1 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-5.4 6.5-10.3A6.5 6.5 0 0 0 5.5 10.7C5.5 15.6 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><circle cx="12" cy="10.4" r="2.3" fill="none" stroke="currentColor" stroke-width="1.7"></circle></symbol>
+  <symbol id="i-cloudsun" viewBox="0 0 24 24"><circle cx="9" cy="8.2" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 1.8v1.5M9 13.1v1.5M2.6 8.2h1.5M13.9 8.2h1.5M4.5 3.7 5.6 4.8M12.4 11.6l1.1 1.1M13.5 3.7l-1.1 1.1M5.6 11.6 4.5 12.7"></path></g><path d="M16.1 13.3c1.1-1.6 3.6-1.4 4.5.3.4.8.3 1.6-.2 2.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6.4 6-2.2 6 2.2 6-2.2v13.4l-6 2.2-6-2.2-6 2.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M9 4.2v13.4M15 6.4v13.4" fill="none" stroke="currentColor" stroke-width="1.7"></path></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M3.6 10.5 12 3.8l8.4 6.7V20a.9.9 0 0 1-.9.9h-5V15h-5v5.9h-5a.9.9 0 0 1-.9-.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-tomato" viewBox="0 0 24 24"><circle cx="12" cy="14.2" r="6.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M9 8.2c.5-1.4 1.5-2.4 3-3 .9 1.4.9 2.7 0 4M9.6 8.1c-1.4-.7-2.8-.7-4.1 0M14.4 8.1c1.4-.7 2.8-.7 4.1 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20.5 3.5C12 3.5 5 7.3 5 14.2c0 3 2 5.3 5 5.3 7 0 10.5-7 10.5-16Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M4 21c1.8-4.7 5.2-8.1 10-10.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></symbol>
+  <symbol id="i-corn" viewBox="0 0 24 24"><path d="M12 3c3.1 0 5.2 2.6 5.2 6.4 0 4.5-2.2 7.6-5.2 7.6s-5.2-3.1-5.2-7.6C6.8 5.6 8.9 3 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M9.3 6.1h5.4M8.9 9.2h6.2M9.1 12.3h5.8M10 15.2h4M12 17v4M12 18c-1.7-.1-3-.8-4-2M12 18c1.7-.1 3-.8 4-2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></symbol>
+  <symbol id="i-cow" viewBox="0 0 24 24"><path d="M4.2 5.2c0 1.8.8 2.9 2.3 3.4M19.8 5.2c0 1.8-.8 2.9-2.3 3.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><path d="M6.4 8.2h11.2c.6 0 1 .4 1 1v6.1a4.5 4.5 0 0 1-4.5 4.5H9.9a4.5 4.5 0 0 1-4.5-4.5V9.2c0-.6.4-1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M9 12.4h.01M15 12.4h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path><path d="M9 16.4c.9.7 1.9 1 3 1s2.1-.3 3-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.2c3.2 4.2 5.5 7.2 5.5 10.2A5.5 5.5 0 0 1 12 19a5.5 5.5 0 0 1-5.5-5.6c0-3 2.3-6 5.5-10.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8.5h10.2a2.7 2.7 0 1 0-2.7-2.7M3 12.2h14.4a2.5 2.5 0 1 1-2.5 2.5M3 15.9h6.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 5.5 6.4 6.5L9 18.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 7 2.7v5.5c0 4.4-2.7 7.5-7 9.8-4.3-2.3-7-5.4-7-9.8V5.7Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="m8.7 11.8 2.2 2.2 4.4-4.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-tap" viewBox="0 0 24 24"><path d="M9.2 11.4V6.3a1.6 1.6 0 0 1 3.2 0v4.4M12.4 10.2V4.9a1.6 1.6 0 0 1 3.2 0v5.6M15.6 10.8V7.6a1.6 1.6 0 0 1 3.2 0v6.3c0 4.2-2.5 6.6-6.4 6.6-2.6 0-4.2-1-5.6-3.1l-2.6-4.2a1.6 1.6 0 0 1 2.6-1.8l2.4 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M19.1 4.9l-1.6 1.6M6.5 17.5l-1.6 1.6"></path></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.6 4.4 4.3L19 6.9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-wheat" viewBox="0 0 24 24"><path d="M12 21V9M12 13c-2.8 0-4.5-1.6-4.5-4.5 2.8 0 4.5 1.6 4.5 4.5ZM12 13c2.8 0 4.5-1.6 4.5-4.5-2.8 0-4.5 1.6-4.5 4.5ZM12 8.6C9.2 8.6 7.5 7 7.5 4.1c2.8 0 4.5 1.6 4.5 4.5ZM12 8.6c2.8 0 4.5-1.6 4.5-4.5-2.8 0-4.5 1.6-4.5 4.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.2S4 15.1 4 9.6a4.1 4.1 0 0 1 8-1.5 4.1 4.1 0 0 1 8 1.5c0 5.5-8 10.6-8 10.6Z" fill="currentColor"></path></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M11 3.5H5a1.5 1.5 0 0 0-1.5 1.5v6a1.5 1.5 0 0 0 .4 1l8.6 8.6a1.5 1.5 0 0 0 2.1 0l6.3-6.3a1.5 1.5 0 0 0 0-2.1L12 3.9a1.5 1.5 0 0 0-1-.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><circle cx="8" cy="8" r="1.2" fill="currentColor"></circle></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.8v2.4M12 18.8v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.8 12h2.4M18.8 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+  <symbol id="i-bird" viewBox="0 0 24 24"><path d="M14.5 5.2c0-1.3 1-2.2 2.2-2.2.8 0 1.4.4 1.8 1M5 10.5c0-3.4 2.7-6 6-6 3.8 0 6.8 2.8 6.8 6.6 0 4.6-3.2 8-7.3 8-2.6 0-4.5-1.2-5.5-3.2M5 10.5H3.4v3.2H5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.8 5.2h3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></symbol>
+  <symbol id="i-sheep" viewBox="0 0 24 24"><path d="M7 8.3a3 3 0 0 1 5.4-1.6 3 3 0 0 1 4.6 2.3 3 3 0 0 1 1 5.2 3 3 0 0 1-3.7 3.4A3.2 3.2 0 0 1 9 17.2a3 3 0 0 1-3.6-3A3 3 0 0 1 7 8.3Z" fill="none" stroke="currentColor" stroke-width="1.6"></path><circle cx="9.5" cy="12" r=".9" fill="currentColor"></circle><path d="M8 16.5V20M15 16.5V20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+  <symbol id="i-goat" viewBox="0 0 24 24"><path d="M6 9.2c0-2 1.4-3.4 3.3-3.4 1 0 1.8.4 2.4 1l1.8-2.6M8.2 6c-1.4-1.3-2.9-1.4-4.1-.6M6 9.2c-1.2 1-2 2.6-2 4.6 0 3.2 2.2 5.4 5.5 5.4h5c3.3 0 5.5-2.2 5.5-5.4 0-2.4-1.1-4.2-2.8-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="m20.4 4.6-.6 3.2M18.2 5.6l-1.4 2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><circle cx="10" cy="11.5" r=".9" fill="currentColor"></circle><path d="M12.5 19v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M9 8.2h6M12 6.4v11.2M9.4 12h5.2M9 15.8h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 7.2V12l3.2 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.6" y="5.2" width="16.8" height="15.2" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M3.6 9.6h16.8M8 3.2v4M16 3.2v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><circle cx="8" cy="13.2" r="1" fill="currentColor"></circle><circle cx="12" cy="13.2" r="1" fill="currentColor"></circle><circle cx="16" cy="13.2" r="1" fill="currentColor"></circle></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.2 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z" fill="currentColor"></path></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.6" y="8.4" width="16.8" height="4.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M5.2 12.6V20a1 1 0 0 0 1 1h11.6a1 1 0 0 0 1-1v-7.4M12 8.4V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12 8.4C10.2 8.4 7.2 7.8 7.2 5.6c0-1.3 1-2.1 2.1-2.1 2 0 2.7 2.6 2.7 4.9ZM12 8.4c1.8 0 4.8-.6 4.8-2.8 0-1.3-1-2.1-2.1-2.1-2 0-2.7 2.6-2.7 4.9Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.6 2.6 5.4 13.2h5.5l-1.3 8.2 8.9-11.2h-5.8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.6a4.4 4.4 0 0 1-.6-8.8A5.8 5.8 0 0 1 17.5 11a3.9 3.9 0 0 1-.5 7.6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 14.6a4 4 0 0 1-.6-7.9A5.4 5.4 0 0 1 16.8 8a3.5 3.5 0 0 1-.4 6.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m8.4 17.2-1 3M13 17.2l-1 3M17.6 17.2l-1 3"></path></g></symbol>
+  <symbol id="i-storm" viewBox="0 0 24 24"><path d="M7 13.8a4 4 0 0 1-.6-7.9A5.4 5.4 0 0 1 16.8 7.2a3.5 3.5 0 0 1-.4 6.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="m12.6 13.4-3.6 5h2.8l-1 3.2 4.6-5.6h-2.9Z" fill="currentColor"></path></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M7 12.8a4 4 0 0 1-.6-7.9A5.4 5.4 0 0 1 16.8 6.2a3.5 3.5 0 0 1-.4 6.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 16v5M5.8 17.3l4.4 2.4M10.2 17.3l-4.4 2.4M16 16v5M13.8 17.3l4.4 2.4M18.2 17.3l-4.4 2.4"></path></g></symbol>
+  <symbol id="i-heat" viewBox="0 0 24 24"><circle cx="12" cy="9" r="4" fill="none" stroke="currentColor" stroke-width="1.6"></circle><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 1.8v1.6M12 14.6v1.6M4.8 9H3.2M20.8 9h-1.6M6.9 3.9 5.8 2.8M18.2 15.1l-1.1-1.1M17.1 3.9l1.1-1.1M5.8 15.1l1.1-1.1"></path></g><path d="M10.8 15.2v4.4a1.6 1.6 0 0 0 3.2 0v-4.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></symbol>
+  <symbol id="i-thermo" viewBox="0 0 24 24"><path d="M10 13.8V5.4a2 2 0 0 1 4 0v8.4a4 4 0 1 1-4 0Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12 9v6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><circle cx="12" cy="17.6" r="1.4" fill="currentColor"></circle></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.2" width="14" height="10.2" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.7"></rect><path d="M8.2 10.2V7.8a3.8 3.8 0 0 1 7.6 0v2.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><circle cx="12" cy="15.2" r="1.2" fill="currentColor"></circle></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8.2 4.8 19 12 8.2 19.2Z" fill="currentColor"></path></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4.4 9.4h3.2L12 5.6v12.8L7.6 14.6H4.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M15.4 9.2a4 4 0 0 1 0 5.6M17.8 6.6a7.4 7.4 0 0 1 0 10.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4.4 9.4h3.2L12 5.6v12.8L7.6 14.6H4.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="m15.4 9.6 5 4.8M20.4 9.6l-5 4.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.4 8.4A8 8 0 1 0 20 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path><path d="M19.8 3.6v5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.8" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M9.5 9.2c.2-1.6 1.2-2.6 2.7-2.6 1.5 0 2.6 1 2.6 2.4 0 1.3-.7 1.9-1.8 2.6-1 .6-1.4 1.2-1.4 2.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><circle cx="11.7" cy="17" r="1.1" fill="currentColor"></circle></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.8" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="m8 12.2 2.7 2.7 5.4-5.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4.4h2.4l2.2 10.4h9.8l2-7.6H6.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="9" cy="19" r="1.4" fill="currentColor"></circle><circle cx="17" cy="19" r="1.4" fill="currentColor"></circle></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.8 6.4h11.4v9.8H2.8zM14.2 9.4h3.6l3 3.2v3.6h-6.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><circle cx="7" cy="18" r="1.8" fill="none" stroke="currentColor" stroke-width="1.5"></circle><circle cx="17.4" cy="18" r="1.8" fill="none" stroke="currentColor" stroke-width="1.5"></circle></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12.2 2.6c.6 4.2-2.4 5.4-2.4 8.2 0 1.3.8 2.2 1.9 2.2 1.6 0 2.4-1.4 2.2-3.2 2 1.6 3.1 3.6 3.1 5.6 0 3.1-2.5 5.6-5.6 5.6a5.7 5.7 0 0 1-5.7-5.8c0-3.2 2-5.4 3.6-7.4 1.4-1.8 2.4-3.2 2.9-5.2Z" fill="currentColor"></path></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 3.6h10v4.6a5 5 0 0 1-10 0Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M7 5.4H4.2v2.2A3.2 3.2 0 0 0 7.4 10.8M17 5.4h2.8v2.2a3.2 3.2 0 0 1-3.2 3.2M12 13.2v3.4M8.4 20.4h7.2l-.8-3.8H9.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+  <symbol id="i-egg" viewBox="0 0 24 24"><path d="M12 3.2c3.1 0 6.2 6.2 6.2 10.4A6.2 6.2 0 0 1 12 20.8a6.2 6.2 0 0 1-6.2-7.2C5.8 9.4 8.9 3.2 12 3.2Z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M8.8 13.2c0 2.4 1.2 4 3.2 4.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".6"></path></symbol>
+  <symbol id="i-milk" viewBox="0 0 24 24"><path d="M9 3.2h6v3l2 3.2V20a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V9.4l2-3.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M7 10.2h10M9 3.2h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path><path d="M9.4 14.4c.6 1 1.4 1.5 2.6 1.5s2-.5 2.6-1.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".65"></path></symbol>
+  <symbol id="i-wool" viewBox="0 0 24 24"><path d="M7 8.2a3 3 0 0 1 5.2-1.5 3 3 0 0 1 4.8 2.2 3 3 0 0 1 1 5.3 3 3 0 0 1-3.8 3.5 3.2 3.2 0 0 1-5.4-1.2 3 3 0 0 1-3.8-3.2A3 3 0 0 1 7 8.2Z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M8.4 9.2c1.4-1.2 3.4-1.4 5-.4M9 13.2c1.6-1 3.8-1 5.2.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".6"></path></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 2.6c.8 4.4 2.9 6.5 7.4 7.4-4.5.8-6.6 2.9-7.4 7.4-.8-4.5-2.9-6.6-7.4-7.4 4.5-.9 6.6-3 7.4-7.4Z" fill="currentColor"></path><path d="M18.4 15.2c.4 2.2 1.4 3.2 3.6 3.6-2.2.4-3.2 1.4-3.6 3.6-.4-2.2-1.4-3.2-3.6-3.6 2.2-.4 3.2-1.4 3.6-3.6Z" fill="currentColor" opacity=".6"></path></symbol>
+</defs>
+</svg>
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+
+<symbol id="avatarMan" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="32" fill="#DCE8D6"></circle>
+  <circle cx="32" cy="32" r="26" fill="#EFE2CB"></circle>
+  <path d="M8 64c1.4-11.4 10-17.6 24-17.6S54.6 52.6 56 64Z" fill="#26323B"></path>
+  <path d="M25 42.5h14v9.2c0 4.6-3.1 7.5-7 7.5s-7-2.9-7-7.5Z" fill="#C68B62"></path>
+  <path d="M25 50c2 2.3 4.4 3.4 7 3.4s5-1.1 7-3.4v3.5c0 4.4-3.1 7.2-7 7.2s-7-2.8-7-7.2Z" fill="#B67C55"></path>
+  <ellipse cx="32" cy="30" rx="12.6" ry="14.2" fill="#D79B70"></ellipse>
+  <path d="M19 30.5c0-9.3 5.5-14.7 13-14.7s13 5.4 13 14.7c0 1.7-.1 3.2-.5 4.7-.9-5.2-2.9-7.7-6.6-7.7-2.5 0-4.4 1-5.9 3-1.5-2-3.4-3-5.9-3-2.8 0-4.6 1.3-5.6 3.7-.8.5-1.5.8-2.1.8.2-1.5.4-3 .6-4.5Z" fill="#2B211C"></path>
+  <path d="M22.5 37c.9 4.6 3.2 7.3 6.5 8.3 1.2.4 2.2.6 3 .6 3.7 0 6.4-2.2 8.2-6.6-2.4 1.4-4.8 2-7.3 2-3.6 0-6.4-1.4-8.4-4.2Z" fill="#3C2C23"></path>
+  <path d="M24 33.5c0 1.2.8 2 2 2s2-.8 2-2M36 33.5c0 1.2.8 2 2 2s2-.8 2-2" fill="none" stroke="#2A211C" stroke-width="1.4" stroke-linecap="round"></path>
+  <g fill="none" stroke="#2A211C" stroke-width="1.6">
+    <rect x="21.8" y="30.2" width="8.4" height="6.6" rx="3.2"></rect>
+    <rect x="33.8" y="30.2" width="8.4" height="6.6" rx="3.2"></rect>
+    <path d="M30.2 33.2h3.6M19.6 31.6l-2.5-.7M44.6 31.6l2.5-.7"></path>
+  </g>
+  <path d="M29.5 42.5c1.6 1 3.4 1 5 0" fill="none" stroke="#8F4E3E" stroke-width="1.4" stroke-linecap="round"></path>
+  <path d="M27.5 55.5 32 62l4.5-6.5-4.5 3z" fill="#F4EEE2"></path>
+</symbol>
+
+<symbol id="artCow" viewBox="0 0 64 64">
+  <ellipse cx="31" cy="57" rx="18" ry="3.4" fill="#3E6B45" opacity=".13"></ellipse>
+  <g stroke="#E8D9BE" stroke-width="2" stroke-linecap="round">
+    <path d="M12 48.5c1.6 0 2.6 1.2 2.9 3.4M17.5 17.8c.3-2 1.4-3.2 3.3-3.6"></path>
+    <path d="M19 30.8c-1.2-1.6-1.2-3.2.1-4.8M50 34.5c1.2-1.4 1.3-2.9.3-4.5"></path>
+  </g>
+  <g fill="#F3B6C4"><circle cx="13.6" cy="51.5" r="2.1"></circle><circle cx="17.5" cy="12.8" r="2"></circle><circle cx="9.8" cy="54.8" r="1.4"></circle><circle cx="51.5" cy="28.8" r="1.6"></circle></g>
+  <path d="M18 33c0-2 1.4-3.3 3.3-3.3h19c2.2 0 3.6 1.4 3.6 3.6v9.5c0 3.4-2.3 5.6-5.7 5.6H23.7c-3.4 0-5.7-2.2-5.7-5.6Z" fill="#FFFDF8"></path>
+  <path d="M34 30.2c3.2-.4 6.4.5 9.4 2.7v8.6c-3-1.6-6.2-2.2-9.4-1.7Z" fill="#2E2A26"></path>
+  <path d="M23 35.5c2.4 0 4.3.7 5.7 2.2v5.6c-1.7-.6-3.6-.6-5.7 0Z" fill="#2E2A26"></path>
+  <g stroke="#D8C7AE" stroke-width="5" stroke-linecap="round"><path d="M22 47.5v8M27.5 47.5v8M43 47.5v8M48.5 47.5v8"></path></g>
+  <path d="M49.5 37.5c2.6 0 4.4 1.5 4.9 4.1l1 5.2c.3 1.8-.9 3.2-2.7 3.2-1.6 0-2.8-1-3.1-2.6l-1-4.5Z" fill="#FFFDF8"></path>
+  <path d="M54 41.8c1.4-.3 2.5.4 2.9 1.9.4 1.4-.3 2.6-1.7 3.1l-2.3.8Z" fill="#F3B6C4"></path>
+  <circle cx="52.8" cy="39.4" r="1.1" fill="#2E2A26"></circle>
+  <path d="M50 38.2c-1.6-1.4-2.4-3-2.4-4.8M55.3 39.8c1.5-1 2.4-2.3 2.6-4" fill="none" stroke="#2E2A26" stroke-width="2.6" stroke-linecap="round"></path>
+  <path d="M19 34c-2.3-.4-3.9-1.6-4.6-3.7" fill="none" stroke="#2E2A26" stroke-width="2.4" stroke-linecap="round"></path>
+</symbol>
+
+<symbol id="artChicken" viewBox="0 0 64 64">
+  <ellipse cx="32" cy="57" rx="16" ry="3" fill="#3E6B45" opacity=".13"></ellipse>
+  <path d="M14 48c1.5 0 2.5 1.2 2.8 3.2M18 19c.2-2 1.3-3.2 3.2-3.4" stroke="#E8D9BE" stroke-width="2" fill="none" stroke-linecap="round"></path>
+  <path d="M15 50.5c-3.5 0-5.4-2-5.4-5.3 0-3.4 2.4-5.6 6-5.6" fill="#F2DCBB" stroke="#D9B98A" stroke-width="1.1"></path>
+  <ellipse cx="31" cy="38" rx="17" ry="13" fill="#F5DFC0" stroke="#D9B98A" stroke-width="1.2"></ellipse>
+  <path d="M22 40c2.4-4.4 6-6.3 11-6.3 2.6 0 4.8.6 6.7 2-1.6 4-4.4 6.8-8.4 8-3.6 1-6.7-.3-9.3-3.7Z" fill="#E8C99B"></path>
+  <circle cx="43" cy="24.5" r="10.5" fill="#F7E6CA" stroke="#D9B98A" stroke-width="1.2"></circle>
+  <path d="M33.5 17.5c.6-2.4 2-4.2 4.4-5.2 1.4-.6 2.7-.6 4.1-.1-.2 2.5-1.1 4.4-2.6 5.7M38.2 14.2c.6-2.2 1.8-3.7 3.8-4.5 1.2 1.3 1.8 2.8 1.7 4.5M43.5 13.6c.6-1.8 1.7-3 3.4-3.7 1 1.2 1.4 2.5 1.2 4" fill="#D9483A"></path>
+  <path d="M52.5 24.5c1.8-1.2 3.6-1.3 5.3-.3-1.2 2.2-2.8 3.3-4.8 3.3Z" fill="#E9A33C"></path>
+  <circle cx="46.5" cy="22.8" r="1.6" fill="#2E2A26"></circle>
+  <path d="M33 51.5v5M40 51.5v5" stroke="#E9A33C" stroke-width="2.6" stroke-linecap="round"></path>
+  <path d="M30 56.5h5M37 56.5h5" stroke="#E9A33C" stroke-width="2.4" stroke-linecap="round"></path>
+  <path d="M44.5 35.5c3.4-.8 6 .3 7.8 3.2" fill="none" stroke="#C9A675" stroke-width="2" stroke-linecap="round"></path>
+  <g fill="#F3B6C4"><circle cx="12" cy="50.5" r="2"></circle><circle cx="16.2" cy="12.8" r="1.9"></circle><circle cx="21" cy="48.5" r="1.2"></circle></g>
+</symbol>
+
+<symbol id="artSheep" viewBox="0 0 64 64">
+  <ellipse cx="31" cy="57" rx="17" ry="3.2" fill="#3E6B45" opacity=".13"></ellipse>
+  <path d="M14 47.5c1.4 0 2.4 1.2 2.7 3.2M18.5 16.8c.2-1.9 1.3-3.1 3.1-3.3" stroke="#E8D9BE" stroke-width="2" fill="none" stroke-linecap="round"></path>
+  <g fill="#FFFDF7">
+    <circle cx="22" cy="34" r="9"></circle><circle cx="31" cy="30.5" r="9.5"></circle><circle cx="40" cy="33" r="9"></circle><circle cx="45" cy="41" r="8.5"></circle><circle cx="36" cy="44" r="9"></circle><circle cx="25" cy="43" r="8.5"></circle><circle cx="17.5" cy="41" r="7.5"></circle>
+  </g>
+  <path d="M46 36.5c2.6-1.7 5.1-1.8 7.4-.2 1.7 1.2 2.5 3 2.4 5.3-.1 2.6-1.5 4.4-3.9 5.3l-3.8 1.4c-2.8 1-5.4-.4-6.2-3.2l-1-3.5c-.8-2.8.6-5.1 3.4-5.9Z" fill="#4A4038"></path>
+  <path d="M45.5 38.7c1.5 1.4 3.2 2 5.1 1.8M48 44.5c1.2.9 2.4 1.2 3.6.9" fill="none" stroke="#2E2721" stroke-width="1.4" stroke-linecap="round"></path>
+  <circle cx="49.2" cy="40.6" r="1.2" fill="#F7F1E5"></circle>
+  <path d="M56.5 37.5c2.3-.3 3.9.8 4.7 3.2M53.8 45.8c1.4 1.9 1.6 3.9.7 5.9" fill="none" stroke="#4A4038" stroke-width="2.4" stroke-linecap="round"></path>
+  <g stroke="#D8C7AE" stroke-width="4.4" stroke-linecap="round"><path d="M23 48.5v6.5M31 49.5v6M40 48v7"></path></g>
+  <g fill="#F3B6C4"><circle cx="12.5" cy="51" r="2"></circle><circle cx="19" cy="13.5" r="1.8"></circle><circle cx="51.5" cy="27.6" r="1.5"></circle></g>
+</symbol>
+
+<symbol id="artGoat" viewBox="0 0 64 64">
+  <ellipse cx="31" cy="57" rx="17" ry="3.2" fill="#3E6B45" opacity=".13"></ellipse>
+  <path d="M13.5 48c1.4 0 2.4 1.2 2.7 3.2M18 17.2c.2-1.9 1.2-3.1 3-3.3" stroke="#E8D9BE" stroke-width="2" fill="none" stroke-linecap="round"></path>
+  <path d="M17 39c0-2.2 1.6-3.7 3.9-3.7h19.4c2.5 0 4.1 1.5 4.1 3.9v5.6c0 3.6-2.5 5.9-6 5.9H23c-3.6 0-6-2.3-6-5.9Z" fill="#C9A27E"></path>
+  <path d="M34 35.5c3-.3 5.9.4 8.5 2.2v7.4c-2.8-1.2-5.6-1.6-8.5-1.1Z" fill="#B58A65"></path>
+  <g stroke="#A97D57" stroke-width="4.4" stroke-linecap="round"><path d="M22.5 49v7M28.5 49v6.5M42.5 49v7M48 48.5v7"></path></g>
+  <path d="M49.5 40.5c2.8 0 4.7 1.6 5.6 4.6l1.3 4.6c.5 1.8-.5 3.2-2.3 3.4-1.7.2-2.9-.7-3.4-2.4l-1.3-4.6Z" fill="#C9A27E"></path>
+  <circle cx="53.2" cy="43.8" r="1.1" fill="#2E2A26"></circle>
+  <path d="M48.5 37.2c-1.4-1.8-3.2-2.7-5.3-2.7-2.9 0-5.1 1.5-6.6 4.5-.7 1.5-.4 3 .9 4.1 1.3 1.1 2.8 1.1 4-.1l2.4-2.4" fill="none" stroke="#C9A27E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M41.5 46.5c.4 2.8-.2 5-1.8 6.6M44.6 46.7c.6 2.6.2 4.7-1.2 6.3M38.8 41.6c-1.9-.2-3.4-1.2-4.4-3" fill="none" stroke="#4A3B2E" stroke-width="1.6" stroke-linecap="round"></path>
+  <g stroke="#4A3B2E" stroke-width="2.4" stroke-linecap="round"><path d="M49.5 35.5c-.4-2.8.3-5.1 2.2-6.7M54.5 36.2c1.3-2.2 2.9-3.4 5-3.7"></path></g>
+  <g fill="#F3B6C4"><circle cx="12.5" cy="51" r="2"></circle><circle cx="19" cy="13" r="1.7"></circle><circle cx="51" cy="28.5" r="1.4"></circle></g>
+</symbol>
+
+</defs>
+</svg>
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<symbol id="heroScene" viewBox="0 0 430 400">
+  <rect width="430" height="400" fill="url(#skyGrad)"></rect>
+  <circle cx="322" cy="114" r="38" fill="#FBE7A2" opacity=".42"></circle>
+  <g stroke="#F6C34B" stroke-width="2.4" stroke-linecap="round" opacity=".95">
+    <path d="M322 64v10M322 154v10M272 114h10M362 114h10M287 79l7 7M350 142l7 7M357 79l-7 7M294 142l-7 7"></path>
+  </g>
+  <circle cx="322" cy="114" r="21" fill="#F7C64C"></circle>
+  <circle cx="319" cy="111" r="6" fill="#FBD77B" opacity=".7"></circle>
+  <g fill="#B9811B"><circle cx="317" cy="113" r="1.35"></circle><circle cx="327" cy="113" r="1.35"></circle></g>
+  <path d="M316 119c2.6 2.7 6.4 2.7 9 0" fill="none" stroke="#B9811B" stroke-width="1.6" stroke-linecap="round"></path>
+
+  <g fill="#FFFFFF" opacity=".95">
+    <ellipse cx="52" cy="82" rx="30" ry="15"></ellipse><ellipse cx="78" cy="73" rx="24" ry="18"></ellipse><ellipse cx="101" cy="84" rx="20" ry="12"></ellipse>
+    <ellipse cx="252" cy="46" rx="22" ry="11"></ellipse><ellipse cx="270" cy="39" rx="17" ry="13"></ellipse><ellipse cx="287" cy="47" rx="14" ry="8"></ellipse>
+    <ellipse cx="385" cy="62" rx="26" ry="12"></ellipse><ellipse cx="404" cy="54" rx="19" ry="15"></ellipse><ellipse cx="420" cy="63" rx="13" ry="8"></ellipse>
+  </g>
+  <path d="M300 63c8-9 18-11 27-6" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" opacity=".85"></path>
+
+  <path d="M0 176c46-31 92-37 141-21 44 14 82 20 126 4 50-18 96-20 163-3v118H0Z" fill="#D3EBBE"></path>
+  <path d="M0 196c55-21 105-20 150-2 56 23 99 16 141 2 46-15 91-13 139 4v102H0Z" fill="#B5DD9B"></path>
+  <path d="M0 216c62-12 112-8 163 8 53 17 102 8 145-4 42-12 81-10 122 3v90H0Z" fill="#9CD27D"></path>
+
+  <g opacity=".85">
+    <path d="M12 208c22-10 44-10 66 0v9H12Z" fill="#E7CD86"></path>
+    <path d="M18 211h52M22 215h48" stroke="#D2B46A" stroke-width="1.3"></path>
+    <path d="M296 196c20-8 42-7 62 2v8h-62Z" fill="#E3C97F"></path>
+    <path d="M302 200h50M306 204h46" stroke="#C9AC68" stroke-width="1.2"></path>
+  </g>
+
+  <g stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF" opacity=".92">
+    <path d="M104 137v73" stroke-width="4"></path>
+    <g transform="translate(104 137)"><path d="M0-2-4-32 0-36 4-32Z"></path><path d="M0-2 27 17 24 21 0 6Z"></path><path d="M0-2-23 21-27 18-5 2Z"></path></g>
+    <circle cx="104" cy="137" r="3.4" fill="#F5FBFD" stroke="none"></circle>
+    <path d="M382 154v56" stroke-width="3"></path>
+    <g transform="translate(382 154) scale(.8)"><path d="M0-2-4-32 0-36 4-32Z"></path><path d="M0-2 27 17 24 21 0 6Z"></path><path d="M0-2-23 21-27 18-5 2Z"></path></g>
+  </g>
+
+  <g>
+    <ellipse cx="44" cy="217" rx="26" ry="4" fill="#4E8F43" opacity=".25"></ellipse>
+    <path d="M43 220v-33" stroke="#7A5638" stroke-width="3.5"></path>
+    <circle cx="30" cy="182" r="16" fill="#63AB54"></circle><circle cx="48" cy="174" r="18" fill="#74B861"></circle><circle cx="58" cy="189" r="14" fill="#5CA34D"></circle>
+    <ellipse cx="150" cy="216" rx="18" ry="3" fill="#4E8F43" opacity=".22"></ellipse>
+    <path d="M150 219v-25" stroke="#7A5638" stroke-width="3"></path>
+    <circle cx="141" cy="190" r="12" fill="#6BB25A"></circle><circle cx="156" cy="185" r="13" fill="#7CBE69"></circle><circle cx="162" cy="197" r="10" fill="#5DA44E"></circle>
+    <ellipse cx="332" cy="209" rx="20" ry="3" fill="#4E8F43" opacity=".2"></ellipse>
+    <path d="M332 212v-26" stroke="#7A5638" stroke-width="3"></path>
+    <circle cx="322" cy="183" r="13" fill="#68AE57"></circle><circle cx="338" cy="178" r="14" fill="#79BC66"></circle><circle cx="345" cy="191" r="10" fill="#5AA04B"></circle>
+  </g>
+
+  <g>
+    <ellipse cx="238" cy="208" rx="52" ry="6" fill="#4E8F43" opacity=".18"></ellipse>
+    <path d="M206 152v54h70v-54Z" fill="#C0392E"></path>
+    <path d="M212 152h58v10h-58Z" fill="#A93228"></path>
+    <path d="M197 154 241 118l44 36Z" fill="#8E2A24"></path>
+    <path d="M203 152 241 122l38 30Z" fill="#A9352C"></path>
+    <path d="M241 122v30" stroke="#7E241F" stroke-width="2"></path>
+    <rect x="230" y="166" width="20" height="18" rx="1.5" fill="#F4EBD7"></rect>
+    <rect x="234" y="170" width="12" height="10" fill="#B9D9E8"></rect>
+    <path d="M211 206v-32h22v32M211 174l22 32M233 174l-22 32" fill="#F4EBD7" stroke="#D8CCB4" stroke-width="1"></path>
+    <path d="M211 206v-32M233 206v-32" stroke="#8E2A24" stroke-width="1.4"></path>
+    <path d="M211 190h22" stroke="#8E2A24" stroke-width="1.2"></path>
+    <path d="M204 206h34" stroke="#7E241F" stroke-width="2"></path>
+    <path d="M250 148h12v28h-12Z" fill="#C0392E"></path>
+    <g>
+      <rect x="269" y="139" width="22" height="67" rx="3" fill="#D7D3C9"></rect>
+      <path d="M269 145c0-8 22-8 22 0v10h-22Z" fill="#C3BFB5"></path>
+      <path d="M270 158h20M270 166h20M270 174h20" stroke="#B6B2A8" stroke-width="1.3"></path>
+    </g>
+    <g fill="#F8F1DE">
+      <rect x="164" y="200" width="3.4" height="22" rx="1.5"></rect>
+      <rect x="190" y="200" width="3.4" height="22" rx="1.5"></rect>
+      <rect x="288" y="200" width="3.4" height="22" rx="1.5"></rect>
+      <rect x="316" y="200" width="3.4" height="22" rx="1.5"></rect>
+      <rect x="342" y="200" width="3.4" height="22" rx="1.5"></rect>
+    </g>
+    <g stroke="#F8F1DE" stroke-width="3" stroke-linecap="round"><path d="M165 205h179M165 213h179"></path></g>
+    <g transform="translate(233 200)">
+      <ellipse cx="0" cy="6" rx="20" ry="2.6" fill="#4B7A3C" opacity=".25"></ellipse>
+      <path d="M-14 2c0-6 4-10 10-10h16c5 0 8 3 8 7v5Z" fill="#FFFDF7"></path>
+      <ellipse cx="3" cy="-3" rx="7" ry="4.6" fill="#2E2A26"></ellipse>
+      <path d="M18 0c1.2.4 1.6 1.3 1.2 2.7l-.6 1.6h-4" fill="#FFFDF7" stroke="#D9CFBD" stroke-width=".8"></path>
+      <path d="M-14 1h-3M-10 4v7M2 4v7M9 4v7" stroke="#D9CFBD" stroke-width="2.4" stroke-linecap="round"></path>
+      <circle cx="20.5" cy="1" r="1.2" fill="#2E2A26"></circle>
+    </g>
+    <g transform="translate(302 198) scale(.8)">
+      <ellipse cx="0" cy="6" rx="20" ry="2.6" fill="#4B7A3C" opacity=".22"></ellipse>
+      <path d="M-14 2c0-6 4-10 10-10h16c5 0 8 3 8 7v5Z" fill="#FFFDF7"></path>
+      <ellipse cx="3" cy="-3" rx="7" ry="4.6" fill="#2E2A26"></ellipse>
+      <path d="M-14 1h-3M-10 4v7M2 4v7M9 4v7" stroke="#D9CFBD" stroke-width="2.4" stroke-linecap="round"></path>
+    </g>
+  </g>
+
+  <path d="M0 258c82-17 160-13 233 8 56 16 126 18 197 2v132H0Z" fill="#8CCB69"></path>
+
+  <g>
+    <path d="M-10 298 190 262l14 138H-10Z" fill="#8A5A38"></path>
+    <path d="M-10 298 190 262l4 20L-10 320Z" fill="#96633D"></path>
+    <g stroke="#A07148" stroke-width="2" opacity=".9">
+      <path d="M0 330 184 292M0 350 181 310M0 372 178 328M5 393 176 348"></path>
+      <path d="M28 292 44 400M70 284 88 400M112 276 132 400M154 268 174 400"></path>
+    </g>
+    <g fill="#5FA94F">
+      <circle cx="34" cy="288" r="5"></circle><circle cx="54" cy="285" r="5"></circle><circle cx="76" cy="280" r="5"></circle><circle cx="98" cy="277" r="5"></circle><circle cx="120" cy="273" r="5"></circle><circle cx="142" cy="270" r="5"></circle><circle cx="164" cy="267" r="5"></circle>
+      <circle cx="30" cy="310" r="5.4"></circle><circle cx="55" cy="305" r="5.4"></circle><circle cx="80" cy="300" r="5.4"></circle><circle cx="105" cy="295" r="5.4"></circle><circle cx="130" cy="291" r="5.4"></circle><circle cx="155" cy="287" r="5.4"></circle>
+      <circle cx="24" cy="336" r="6"></circle><circle cx="54" cy="330" r="6"></circle><circle cx="84" cy="324" r="6"></circle><circle cx="114" cy="318" r="6"></circle><circle cx="144" cy="312" r="6"></circle>
+      <circle cx="16" cy="366" r="6.4"></circle><circle cx="50" cy="359" r="6.4"></circle><circle cx="84" cy="352" r="6.4"></circle><circle cx="118" cy="345" r="6.4"></circle><circle cx="152" cy="338" r="6.4"></circle>
+    </g>
+  </g>
+
+  <g transform="translate(0 -18)">
+    <ellipse cx="356" cy="388" rx="80" ry="13" fill="#3F7D36" opacity=".18"></ellipse>
+    <path d="M300 400c-3-52 15-88 57-94 42-6 69 28 71 94Z" fill="#D96C2F"></path>
+    <path d="M312 400c-1-33 8-59 27-76 9 19 13 44 13 76Z" fill="#C95D27" opacity=".65"></path>
+    <path d="M350 302v18" stroke="#B57C51" stroke-width="15" stroke-linecap="round"></path>
+    <circle cx="356" cy="288" r="19" fill="#C98B62"></circle>
+    <path d="M337 282c0-12 8-20 19-20s19 8 19 20" fill="#3B2A20"></path>
+    <g fill="#4A3324"><circle cx="349" cy="290" r="1.5"></circle><circle cx="363" cy="290" r="1.5"></circle></g>
+    <path d="M350 297c3.5 2.8 8.5 2.8 12 0" fill="none" stroke="#8B5B3A" stroke-width="1.7" stroke-linecap="round"></path>
+    <ellipse cx="356" cy="270" rx="56" ry="10" fill="#B97B33" opacity=".55"></ellipse>
+    <path d="M318 266c3-32 18-50 38-50s35 18 38 50c1 5-5 8-12 8h-52c-7 0-13-3-12-8Z" fill="#F0BE62"></path>
+    <path d="M322 256c17-6 51-6 68 0l1 10c-23-6-48-6-70 0Z" fill="#C98C39"></path>
+    <path d="M320 262c3-28 16-44 36-44 9 0 17 4 23 11-8 8-19 12-36 12-11 0-19 7-23 21Z" fill="#F6C97A"></path>
+    <ellipse cx="356" cy="266" rx="56" ry="11" fill="#E7B04E"></ellipse>
+    <path d="M300 268c21-6 91-6 112 0" fill="none" stroke="#C98C39" stroke-width="2" opacity=".7"></path>
+    <path d="M312 338c-16 2-24 14-26 30" fill="none" stroke="#D96C2F" stroke-width="18" stroke-linecap="round"></path>
+    <g transform="translate(286 357) rotate(-18)">
+      <rect x="-18" y="-29" width="38" height="52" rx="7" fill="#2E3E4E"></rect>
+      <rect x="-13" y="-24" width="28" height="38" rx="4" fill="#6FB6D8"></rect>
+      <path d="M-8-10h18M-8-3h18M-8 4h12" stroke="#DDF3FB" stroke-width="2" stroke-linecap="round" opacity=".8"></path>
+      <rect x="-18" y="-29" width="38" height="52" rx="7" fill="none" stroke="#22303E" stroke-width="2"></rect>
+    </g>
+    <circle cx="299" cy="371" r="8" fill="#C98B62"></circle>
+    <path d="M285 379c-5 6-5 13 0 19" fill="none" stroke="#C98B62" stroke-width="8" stroke-linecap="round"></path>
+    <path d="M282 386c5-2 9-2 13 1" fill="none" stroke="#B87B52" stroke-width="1.4" stroke-linecap="round" opacity=".7"></path>
+  </g>
+
+  <g fill="#6FB552" opacity=".9">
+    <path d="M196 386c2-9 6-14 12-17-1 9-5 15-12 17Z"></path><path d="M212 396c1-8 4-13 10-16-1 8-4 13-10 16Z"></path>
+    <path d="M420 348c-2-10-7-16-14-19 1 10 6 16 14 19Z"></path>
+  </g>
+  <g stroke="#79BC5C" stroke-width="1.6" stroke-linecap="round" opacity=".8">
+    <path d="M16 392c2-6 4-9 8-11M34 399c1-5 3-8 6-10M396 396c2-6 4-9 8-11M414 402c1-5 3-8 6-10"></path>
+  </g>
+</symbol>
+</defs>
+</svg>
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9ED8EE"></stop><stop offset=".55" stop-color="#C2E8F6"></stop><stop offset="1" stop-color="#E7F6F8"></stop>
+  </linearGradient>
+  <linearGradient id="tankGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#BFE3F2"></stop><stop offset=".45" stop-color="#7FC4E4"></stop><stop offset="1" stop-color="#3C9AC6"></stop>
+  </linearGradient>
+  <linearGradient id="pondGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#66C3E6"></stop><stop offset="1" stop-color="#2C93C4"></stop>
+  </linearGradient>
+  <pattern id="grassTex" width="82" height="72" patternUnits="userSpaceOnUse">
+    <g stroke="#6CAE51" stroke-width="1.6" stroke-linecap="round" opacity=".55">
+      <path d="M12 20c1-5 3-8 6-10M34 52c1-5 3-8 6-10M62 12c1-4 2-6 5-8M70 62c1-4 2-6 4-8M22 66c1-3 2-5 4-6"></path>
+    </g>
+    <circle cx="58" cy="33" r="1.3" fill="#6BAF50" opacity=".5"></circle>
+    <circle cx="6" cy="44" r="1.1" fill="#6BAF50" opacity=".4"></circle>
+  </pattern>
+  <pattern id="soilTex" width="52" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="8" cy="10" r="1.3" fill="#6A432A" opacity=".55"></circle>
+    <circle cx="32" cy="24" r="1" fill="#96653F" opacity=".7"></circle>
+    <circle cx="45" cy="6" r="1.4" fill="#6A432A" opacity=".4"></circle>
+    <path d="M18 32h7" stroke="#6A432A" stroke-width="1.2" opacity=".35"></path>
+  </pattern>
+  <pattern id="tomatoPlants" width="62" height="68" patternUnits="userSpaceOnUse">
+    <path d="M0 63h62" stroke="#684128" stroke-width="2" opacity=".5"></path>
+    <path d="M14 16v42M48 16v42" stroke="#CDB58C" stroke-width="2.2" opacity=".5"></path>
+    <path d="M31 62V40" stroke="#4E8B3F" stroke-width="4" stroke-linecap="round"></path>
+    <path d="M31 52c-10-1-16-6-18-14 9-1 16 4 18 12M31 48c10-1 16-6 18-14-9-1-16 4-18 12" fill="#5CA34A"></path>
+    <circle cx="31" cy="34" r="14" fill="#63AC50"></circle>
+    <circle cx="23" cy="29" r="8" fill="#75B95C"></circle>
+    <circle cx="39" cy="36" r="7" fill="#569B45"></circle>
+    <circle cx="22" cy="38" r="3.4" fill="#E4573E"></circle><circle cx="34" cy="28" r="3.6" fill="#E4573E"></circle><circle cx="41" cy="41" r="3" fill="#E4573E"></circle>
+    <circle cx="21" cy="37" r="1.1" fill="#F58C6E"></circle><circle cx="33" cy="27" r="1.1" fill="#F58C6E"></circle>
+  </pattern>
+  <pattern id="cornPlants" width="60" height="68" patternUnits="userSpaceOnUse">
+    <path d="M0 63h60" stroke="#6E492D" stroke-width="2" opacity=".4"></path>
+    <path d="M30 63V16" stroke="#5D9B43" stroke-width="4" stroke-linecap="round"></path>
+    <path d="M30 56C18 53 11 46 9 36c10 1 18 8 21 18M30 50c12-3 19-10 21-20-10 1-18 8-21 18M30 38c-8-2-12-7-13-15 8 0 12 5 13 12" fill="#79B955"></path>
+    <g fill="#E4C356"><circle cx="30" cy="11" r="2.1"></circle><path d="M30 16c-2-2-2-4.4 0-6.4 2 2 2 4.4 0 6.4Z"></path></g>
+    <path d="M33 32c6-2 10 2 9 8-1 5-4 8-8 8" fill="#7DBB58"></path><ellipse cx="38" cy="38" rx="2.2" ry="4" fill="#DDBB55"></ellipse>
+    <path d="M34 33c2.4-1.6 5-1.4 7 .4" fill="none" stroke="#C9A83E" stroke-width="1.4" stroke-linecap="round"></path>
+  </pattern>
+  <pattern id="lettuceRows" width="66" height="58" patternUnits="userSpaceOnUse">
+    <circle cx="33" cy="29" r="27" fill="#8FCB63"></circle>
+    <circle cx="33" cy="29" r="21" fill="#A5D979"></circle>
+    <circle cx="33" cy="29" r="14" fill="#B9E58F"></circle>
+    <path d="M33 16v26M20 29h26M24 20l18 18M42 20 24 38" stroke="#9BD06A" stroke-width="1.6" opacity=".55"></path>
+    <circle cx="24" cy="22" r="5" fill="#C6ED9C" opacity=".8"></circle>
+    <circle cx="33" cy="29" r="27" fill="none" stroke="#76B44F" stroke-width="1.6"></circle>
+  </pattern>
+  <pattern id="carrotRows" width="48" height="46" patternUnits="userSpaceOnUse">
+    <path d="M24 36V16" stroke="#4F903E" stroke-width="2.4"></path>
+    <path d="M24 20c-7-3-11-8-12-14 7 0 12 5 12 11M24 18c7-3 11-8 12-14-7 0-12 5-12 11M24 28c-6-2-9-6-10-11M24 26c6-2 9-6 10-11" fill="none" stroke="#6BB153" stroke-width="2.2" stroke-linecap="round"></path>
+    <path d="M20.5 36h7L24 44Z" fill="#E78A3C"></path>
+  </pattern>
+  <filter id="pillShadow" x="-30%" y="-60%" width="160%" height="240%">
+    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#27492B" flood-opacity=".28"></feDropShadow>
+  </filter>
+  <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#1F3B22" flood-opacity=".28"></feDropShadow>
+  </filter>
+
+  <g id="mapTree">
+    <ellipse cx="2" cy="20" rx="24" ry="7" fill="#3D7136" opacity=".28"></ellipse>
+    <path d="M0 16V2" stroke="#7D5737" stroke-width="5" stroke-linecap="round"></path>
+    <circle cx="-13" cy="-2" r="16" fill="#4D9645"></circle>
+    <circle cx="10" cy="-8" r="18" fill="#5FA851"></circle>
+    <circle cx="22" cy="4" r="13" fill="#478D40"></circle>
+    <circle cx="-6" cy="-12" r="11" fill="#6CB45A"></circle>
+  </g>
+
+  <g id="mapCowsmall">
+    <ellipse cx="0" cy="9" rx="19" ry="5" fill="#3E6B36" opacity=".22"></ellipse>
+    <path d="M-18 0c0-5 4-8 9-8h18c5 0 8 3 8 7v5h-35Z" fill="#FFFDF7"></path>
+    <ellipse cx="1" cy="-4" rx="7" ry="5" fill="#2E2A26"></ellipse>
+    <path d="M17-4c2.4-.4 3.9.6 4.4 2.9l.6 2.4c.3 1.4-.5 2.4-1.9 2.5-1.2.1-2.1-.6-2.4-1.9l-.7-2.8Z" fill="#FFFDF7"></path>
+    <path d="M-18-1h-3M-13 5v6M0 5v6M9 5v6M15 5v6" stroke="#D9CDBA" stroke-width="2.8" stroke-linecap="round"></path>
+    <circle cx="20" cy="1" r=".9" fill="#2E2A26"></circle>
+  </g>
+
+  <g id="mapBarn">
+    <ellipse cx="82" cy="112" rx="92" ry="13" fill="#2E5A2C" opacity=".18"></ellipse>
+    <path d="M6 54 34 12l98-2 26 44Z" fill="#9A2F27"></path>
+    <path d="M13 52 38 17l90-2 22 37Z" fill="#B43A2E"></path>
+    <path d="M72 14v38" stroke="#8C2A23" stroke-width="2"></path>
+    <rect x="18" y="50" width="138" height="62" fill="#BE4032"></rect>
+    <rect x="18" y="50" width="138" height="9" fill="#A9342A"></rect>
+    <path d="M58 112V76h30v36" fill="#F3E8D2"></path>
+    <path d="M58 76l30 36M88 76 58 112" stroke="#D8C9AF" stroke-width="2"></path>
+    <rect x="112" y="64" width="22" height="18" fill="#F3E8D2"></rect>
+    <rect x="116" y="68" width="14" height="10" fill="#A9D3E5"></rect>
+    <rect x="30" y="65" width="18" height="16" fill="#F3E8D2"></rect>
+    <rect x="33" y="68" width="12" height="10" fill="#A9D3E5"></rect>
+    <path d="M18 110h138" stroke="#8C2A23" stroke-width="3"></path>
+    <path d="M30 50v-9M138 50v-9" stroke="#E9DDC6" stroke-width="3"></path>
+  </g>
+
+  <g id="mapHay">
+    <circle cx="0" cy="0" r="17" fill="#DDB65E"></circle>
+    <circle cx="0" cy="0" r="17" fill="none" stroke="#C79E45" stroke-width="1.4"></circle>
+    <path d="M-9-8c6-4 13-2 17 4M-3-12c7-2 13 2 15 9M-13 0c1 7 7 11 14 10" fill="none" stroke="#C79E45" stroke-width="1.6" stroke-linecap="round"></path>
+  </g>
+
+  <g id="mapTankSmall">
+    <circle cx="0" cy="0" r="26" fill="#C9C3A9"></circle>
+    <circle cx="0" cy="0" r="20" fill="url(#tankGrad)"></circle>
+    <path d="M-14-3c4 4 9 6 14 6s10-2 14-6" fill="none" stroke="#DDF2FA" stroke-width="2" opacity=".7"></path>
+    <circle cx="0" cy="0" r="26" fill="none" stroke="#B3AC92" stroke-width="2"></circle>
+  </g>
+</defs>
+</svg>
+
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<g id="mapBase">
+  <rect width="1000" height="1200" fill="#7FBE63"></rect>
+  <rect width="1000" height="1250" fill="url(#grassTex)"></rect>
+  <path d="M0 398h1000M0 836h1000M0 1182h1000" stroke="#6CAE50" stroke-width="6" opacity=".35"></path>
+  <rect x="477" y="0" width="46" height="1200" fill="#DCC38C"></rect>
+  <rect x="0" y="414" width="1000" height="38" fill="#DCC38C"></rect>
+  <rect x="0" y="850" width="1000" height="38" fill="#DCC38C"></rect>
+  <g stroke="#CBB077" stroke-width="2" opacity=".8">
+    <path d="M479 0v1200M521 0v1200"></path><path d="M0 416h1000M0 450h1000"></path><path d="M0 852h1000M0 886h1000"></path>
+  </g>
+  <g stroke="#C8AB72" stroke-width="2" stroke-dasharray="7 15" opacity=".9">
+    <path d="M500 0v1200"></path><path d="M0 433h1000"></path><path d="M0 869h1000"></path>
+  </g>
+  <g fill="#C9B582" opacity=".6">
+    <circle cx="486" cy="80" r="2"></circle><circle cx="514" cy="150" r="1.6"></circle><circle cx="492" cy="940" r="1.8"></circle>
+    <circle cx="140" cy="424" r="1.7"></circle><circle cx="760" cy="444" r="1.8"></circle><circle cx="690" cy="858" r="1.6"></circle>
+  </g>
+  <g fill="none" stroke="#65B4D6" stroke-width="3" opacity=".8">
+    <path d="M0 402h462M538 402h462M0 840h462M538 840h462"></path>
+    <path d="M466 402v-20M534 402v-20M466 840v20M534 840v20"></path>
+  </g>
+  <g fill="#3E93B8">
+    <circle cx="240" cy="402" r="4"></circle><circle cx="760" cy="402" r="4"></circle><circle cx="240" cy="840" r="4"></circle><circle cx="760" cy="840" r="4"></circle>
+  </g>
+  <g opacity=".18" fill="#2F5B2B">
+    <ellipse cx="500" cy="20" rx="260" ry="14"></ellipse><ellipse cx="500" cy="1180" rx="300" ry="16"></ellipse>
+  </g>
+</g>
+
+  <g id="mapSolar">
+    <ellipse cx="30" cy="34" rx="34" ry="6" fill="#2E5A2C" opacity=".18"></ellipse>
+    <path d="M4 28 44 6l14 10L18 38Z" fill="#E8F2F6" stroke="#7E9AA8" stroke-width="1.4"></path>
+    <path d="M10 28 46 9l4 3L14 31ZM17 32 53 13l4 3L21 35Z" fill="#3C7FA2"></path>
+    <path d="M14 24 50 5M20 30 56 11M4 28 18 38M20 20 34 30M36 12 50 22" stroke="#B9D7E4" stroke-width="1.1" opacity=".7"></path>
+    <path d="M27 31v10M43 22v10" stroke="#8A7B63" stroke-width="2.6" stroke-linecap="round"></path>
+  </g>
+  <g id="mapSilo">
+    <ellipse cx="0" cy="54" rx="30" ry="7" fill="#2E5A2C" opacity=".2"></ellipse>
+    <rect x="-24" y="0" width="48" height="54" rx="5" fill="#D7D2C4"></rect>
+    <path d="M-24 0h48v10h-48Z" fill="#BEB8A8"></path>
+    <path d="M-24 14h48M-24 28h48M-24 42h48" stroke="#B8B1A0" stroke-width="1.3" opacity=".8"></path>
+    <path d="M-24 0a24 24 0 0 1 48 0Z" fill="#A7B6A0"></path>
+    <rect x="-7" y="38" width="14" height="16" rx="2" fill="#8C7A5E"></rect>
+    <path d="M-18 5h36" stroke="#F4EFE4" stroke-width="1.4" opacity=".6"></path>
+  </g>
+  <g id="mapScarecrow">
+    <ellipse cx="0" cy="56" rx="20" ry="5" fill="#2E5A2C" opacity=".2"></ellipse>
+    <path d="M0 14v42" stroke="#7A5638" stroke-width="4" stroke-linecap="round"></path>
+    <path d="M-20 24h40" stroke="#7A5638" stroke-width="3.4" stroke-linecap="round"></path>
+    <path d="M-12 20 0 12l12 8-3 12H-9Z" fill="#C95C43"></path>
+    <circle cx="0" cy="10" r="8" fill="#E8C89A"></circle>
+    <path d="M-12 6 0 0l12 6-3 3H-9Z" fill="#D9B25E"></path>
+    <path d="M-3 12h.1M4 12h.1" stroke="#5D4A32" stroke-width="1.6" stroke-linecap="round"></path>
+    <path d="M-3 15c2 1 4 1 6 0" fill="none" stroke="#8A5D42" stroke-width="1.2" stroke-linecap="round"></path>
+    <path d="M-12 28 0 34l12-6M0 34v10M-8 44h16" fill="none" stroke="#B68B4A" stroke-width="1.6" stroke-linecap="round"></path>
+  </g>
+  <g id="mapWindmill">
+    <ellipse cx="0" cy="80" rx="30" ry="7" fill="#2E5A2C" opacity=".2"></ellipse>
+    <path d="M-12 80 0 16l12 64Z" fill="#E8DDC7"></path>
+    <path d="M-6 52h12M-8 66h16" stroke="#CBB99D" stroke-width="1.4"></path>
+    <circle cx="0" cy="16" r="4" fill="#8A7B63"></circle>
+    <g class="mill-blades" style="transform-box:fill-box;transform-origin:center">
+      <path d="M0 16 6-18 0-30-6-18Z" fill="#F6F0E2" stroke="#C9BFAE" stroke-width="1.2"></path>
+      <path d="M0 16 34 10 46 16 34 22Z" fill="#F6F0E2" stroke="#C9BFAE" stroke-width="1.2"></path>
+      <path d="M0 16-6 50 0 62 6 50Z" fill="#F6F0E2" stroke="#C9BFAE" stroke-width="1.2"></path>
+      <path d="M0 16-34 10-46 16-34 22Z" fill="#F6F0E2" stroke="#C9BFAE" stroke-width="1.2"></path>
+    </g>
+  </g>
+  <g id="mapGreenhouse">
+    <ellipse cx="0" cy="62" rx="62" ry="8" fill="#2E5A2C" opacity=".16"></ellipse>
+    <path d="M-60 56V26A60 40 0 0 1 60 26v30Z" fill="#CFE8DC" opacity=".5"></path>
+    <path d="M-60 56V26A60 40 0 0 1 60 26v30" fill="none" stroke="#F7F3E8" stroke-width="3"></path>
+    <path d="M-60 26h120M-40 26V56M-14 20v36M14 20v36M40 26V56" fill="none" stroke="#F7F3E8" stroke-width="2" opacity=".85"></path>
+    <path d="M-60 56h120" stroke="#8B7A5F" stroke-width="3"></path>
+    <g fill="#6CAF50" opacity=".8"><circle cx="-38" cy="49" r="7"></circle><circle cx="-12" cy="48" r="8"></circle><circle cx="16" cy="49" r="7"></circle><circle cx="40" cy="48" r="6"></circle></g>
+    <path d="M-60 20 0 2l60 18" fill="none" stroke="#B7D8C9" stroke-width="1.2" opacity=".6"></path>
+  </g>
+  <g id="mapStore">
+    <ellipse cx="0" cy="54" rx="66" ry="9" fill="#2E5A2C" opacity=".2"></ellipse>
+    <path d="M-58 22 0 0l58 22v32h-116Z" fill="#C5B58F"></path>
+    <path d="M-58 22 0 0l58 22Z" fill="#8E7A57"></path>
+    <path d="M-52 22 0 4l52 18v28h-104Z" fill="#DCCFAF"></path>
+    <rect x="-18" y="30" width="36" height="24" rx="2" fill="#7A5B3A"></rect>
+    <path d="M-12 36h24M-12 44h24" stroke="#BFA57A" stroke-width="1.6"></path>
+    <rect x="-48" y="28" width="14" height="12" rx="2" fill="#A9C6CF"></rect>
+    <rect x="34" y="28" width="14" height="12" rx="2" fill="#A9C6CF"></rect>
+    <path d="M-58 54h116" stroke="#7A6548" stroke-width="2"></path>
+  </g>
+  <g id="mapCrate">
+    <rect x="-14" y="-10" width="28" height="20" rx="2" fill="#B68B55"></rect>
+    <path d="M-14-2h28M-6-10v20M4-10v20" stroke="#8C663C" stroke-width="1.6"></path>
+  </g>
+  <g id="mapTrough">
+    <ellipse cx="0" cy="12" rx="26" ry="5" fill="#2E5A2C" opacity=".18"></ellipse>
+    <path d="M-24 0h48v12a4 4 0 0 1-4 4H-20a4 4 0 0 1-4-4Z" fill="#A97D4C"></path>
+    <path d="M-20 2h40v7h-40Z" fill="#6FB4CF"></path>
+    <path d="M-24 0v14M24 0v14" stroke="#7C5A36" stroke-width="2.4" stroke-linecap="round"></path>
+  </g>
+</defs>
+</svg>
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<g id="mapZonesTop">
+
+  <g id="zoneHouse">
+    <rect x="24" y="20" width="446" height="392" rx="26" fill="#8BCB6D"></rect>
+    <rect x="24" y="20" width="446" height="392" rx="26" fill="url(#grassTex)" opacity=".7"></rect>
+    <rect x="29" y="25" width="436" height="382" rx="23" fill="none" stroke="#FAF6EB" stroke-width="5" opacity=".95"></rect>
+    <path d="M232 300h54l16 110h-86Z" fill="#E7D5AC"></path>
+    <path d="M238 306h42M234 330h50M230 354h58M226 378h66" stroke="#D8C398" stroke-width="3"></path>
+    <path d="M250 318h10M268 340h10M258 366h12M274 388h10" fill="#F4E9D2"></path>
+    <g transform="translate(112 72) scale(1.08)">
+      <use href="#mapBarn"></use>
+    </g>
+    <g transform="translate(62 300)">
+      <rect x="0" y="0" width="112" height="66" rx="9" fill="#7C4B2E"></rect>
+      <rect x="5" y="5" width="102" height="56" rx="6" fill="#8D5A37"></rect>
+      <g fill="url(#lettuceRows)"><rect x="8" y="8" width="96" height="50" rx="4"></rect></g>
+    </g>
+    <g transform="translate(388 292)">
+      <ellipse cx="16" cy="32" rx="20" ry="30" fill="#2E5A2C" opacity=".2"></ellipse>
+      <rect x="0" y="4" width="31" height="55" rx="9" fill="#3F7FB8"></rect>
+      <rect x="3" y="8" width="25" height="14" rx="5" fill="#9CCDE4"></rect>
+      <rect x="3" y="42" width="25" height="12" rx="4" fill="#9CCDE4"></rect>
+      <rect x="4" y="26" width="23" height="12" rx="3" fill="#2F6A9C"></rect>
+      <g fill="#23323A"><rect x="-2" y="10" width="4" height="12" rx="2"></rect><rect x="29" y="10" width="4" height="12" rx="2"></rect><rect x="-2" y="38" width="4" height="12" rx="2"></rect><rect x="29" y="38" width="4" height="12" rx="2"></rect></g>
+    </g>
+    <use href="#mapTree" x="58" y="70" transform="scale(1.05)"></use>
+    <use href="#mapTree" x="404" y="52" transform="scale(.9)"></use>
+    <use href="#mapTree" x="418" y="382" transform="scale(.78)"></use>
+    <g fill="#E7DCC3">
+      <ellipse cx="300" cy="288" rx="7" ry="4"></ellipse><ellipse cx="316" cy="300" rx="6" ry="3.6"></ellipse><ellipse cx="305" cy="314" rx="6.4" ry="3.6"></ellipse>
+    </g>
+    <path d="M20 410h446" stroke="#6DAF51" stroke-width="4" opacity=".5"></path>
+  </g>
+
+  <g id="zoneTomato">
+    <rect x="530" y="20" width="446" height="392" rx="26" fill="#7E5236"></rect>
+    <rect x="530" y="20" width="446" height="392" rx="26" fill="url(#soilTex)"></rect>
+    <rect x="535" y="25" width="436" height="382" rx="23" fill="none" stroke="#FAF6EB" stroke-width="5" opacity=".95"></rect>
+    <g opacity=".9">
+      <rect x="548" y="36" width="410" height="360" rx="8" fill="url(#tomatoPlants)"></rect>
+      <g stroke="#5F3B24" stroke-width="2" opacity=".28">
+        <path d="M548 100h410M548 162h410M548 224h410M548 286h410M548 348h410"></path>
+      </g>
+    </g>
+    <g fill="#F2EAD8" opacity=".55">
+      <rect x="552" y="30" width="4" height="14"></rect><rect x="700" y="30" width="4" height="14"></rect><rect x="854" y="30" width="4" height="14"></rect>
+      <rect x="552" y="390" width="4" height="14"></rect><rect x="700" y="390" width="4" height="14"></rect><rect x="854" y="390" width="4" height="14"></rect>
+    </g>
+  </g>
+
+  <g id="zoneVegetable">
+    <rect x="24" y="460" width="446" height="376" rx="26" fill="#7E5236"></rect>
+    <rect x="24" y="460" width="446" height="376" rx="26" fill="url(#soilTex)"></rect>
+    <rect x="29" y="465" width="436" height="366" rx="23" fill="none" stroke="#FAF6EB" stroke-width="5" opacity=".95"></rect>
+    <rect x="42" y="478" width="410" height="156" rx="10" fill="#8A5B3D"></rect>
+    <rect x="42" y="650" width="410" height="168" rx="10" fill="#8A5B3D"></rect>
+    <rect x="46" y="482" width="402" height="148" rx="8" fill="url(#lettuceRows)"></rect>
+    <rect x="46" y="654" width="402" height="160" rx="8" fill="url(#carrotRows)"></rect>
+    <g stroke="#5F3B24" stroke-width="1.6" opacity=".25"><path d="M42 530h410M42 570h410M42 610h410M42 690h410M42 730h410M42 770h410"></path></g>
+    <g transform="translate(80 444)">
+      <rect x="0" y="0" width="310" height="7" rx="3.5" fill="#63B1D2"></rect>
+      <circle cx="20" cy="3.5" r="5" fill="#3F8FB3"></circle><circle cx="150" cy="3.5" r="5" fill="#3F8FB3"></circle><circle cx="290" cy="3.5" r="5" fill="#3F8FB3"></circle>
+    </g>
+  </g>
+
+  <g id="zoneCorn">
+    <rect x="530" y="460" width="446" height="376" rx="26" fill="#7E5236"></rect>
+    <rect x="530" y="460" width="446" height="376" rx="26" fill="url(#soilTex)"></rect>
+    <rect x="535" y="465" width="436" height="366" rx="23" fill="none" stroke="#FAF6EB" stroke-width="5" opacity=".95"></rect>
+    <rect x="548" y="476" width="410" height="344" rx="8" fill="url(#cornPlants)"></rect>
+    <g stroke="#5F3B24" stroke-width="2" opacity=".22">
+      <path d="M548 530h410M548 586h410M548 642h410M548 698h410M548 754h410"></path>
+    </g>
+    <g transform="translate(892 452)">
+      <ellipse cx="18" cy="26" rx="30" ry="10" fill="#2E5A2C" opacity=".2"></ellipse>
+      <g transform="rotate(-8 18 16)">
+        <rect x="0" y="10" width="38" height="18" rx="3" fill="#C23B2E"></rect>
+        <rect x="10" y="2" width="18" height="14" rx="3" fill="#2F3E3A"></rect>
+        <rect x="12" y="4" width="14" height="9" rx="2" fill="#8FC6D8"></rect>
+        <circle cx="4" cy="32" r="10" fill="#2E2B27"></circle><circle cx="4" cy="32" r="4" fill="#7B756C"></circle>
+        <circle cx="32" cy="32" r="10" fill="#2E2B27"></circle><circle cx="32" cy="32" r="4" fill="#7B756C"></circle>
+        <circle cx="6" cy="12" r="6" fill="#2E2B27"></circle><circle cx="34" cy="12" r="6" fill="#2E2B27"></circle>
+        <rect x="36" y="0" width="3" height="8" fill="#4C4A44"></rect>
+      </g>
+    </g>
+  </g>
+
+</g>
+</defs>
+</svg>
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <g id="mapSheep">
+    <ellipse cx="2" cy="12" rx="16" ry="4" fill="#3E6B36" opacity=".2"></ellipse>
+    <g fill="#FFFDF6"><circle cx="-9" cy="-1" r="8"></circle><circle cx="0" cy="-5" r="9"></circle><circle cx="10" cy="-1" r="8"></circle><circle cx="6" cy="7" r="8"></circle><circle cx="-4" cy="8" r="7"></circle><circle cx="-13" cy="6" r="6"></circle></g>
+    <circle cx="17" cy="1" r="6" fill="#453C34"></circle>
+    <circle cx="19.5" cy="-1" r="1" fill="#F7F1E5"></circle>
+    <path d="M22 3c3 .4 4.6 1.8 4.8 4.2" fill="none" stroke="#453C34" stroke-width="2" stroke-linecap="round"></path>
+    <path d="M-8 10v7M0 11v6M8 10v7" stroke="#D6C6AC" stroke-width="2" stroke-linecap="round"></path>
+  </g>
+  <g id="mapChicken">
+    <ellipse cx="0" cy="7" rx="8" ry="2.6" fill="#3E6B36" opacity=".2"></ellipse>
+    <ellipse cx="0" cy="0" rx="8" ry="6" fill="#FFF9EE"></ellipse>
+    <circle cx="6" cy="-5" r="4.4" fill="#FFF9EE"></circle>
+    <path d="M4-8c.4-2 1.4-3 3-3.4.5 1.6.3 2.9-.5 3.9Z" fill="#D9483A"></path>
+    <path d="M10-4l3-1-3 2Z" fill="#E9A33C"></path>
+    <circle cx="7.6" cy="-6" r=".7" fill="#2E2A26"></circle>
+    <path d="M-3 5v4M2 5v4" stroke="#E9A33C" stroke-width="1.6" stroke-linecap="round"></path>
+  </g>
+
+<g id="mapZonesBottom">
+
+  <g id="zoneAnimal">
+    <rect x="24" y="888" width="608" height="292" rx="26" fill="#96D478"></rect>
+    <rect x="24" y="888" width="608" height="292" rx="26" fill="url(#grassTex)" opacity=".55"></rect>
+    <rect x="29" y="893" width="598" height="282" rx="23" fill="none" stroke="#FAF6EB" stroke-width="5" opacity=".95"></rect>
+    <g stroke="#9B7B4E" stroke-width="2.4" fill="none" opacity=".85">
+      <path d="M40 898h576" stroke-dasharray="2 20"></path>
+      <path d="M40 1172h576" stroke-dasharray="2 20"></path>
+      <path d="M36 896v278" stroke-dasharray="2 20"></path>
+    </g>
+    <g transform="translate(52 902) scale(.66)"><use href="#mapBarn"></use></g>
+    <g transform="translate(46 1074)">
+      <ellipse cx="46" cy="54" rx="58" ry="9" fill="#2E5A2C" opacity=".2"></ellipse>
+      <path d="M0 22 46 0l46 22v46a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6Z" fill="#9C6A42"></path>
+      <path d="M0 22 46 0l46 22Z" fill="#7C5232"></path>
+      <rect x="34" y="38" width="24" height="36" rx="2" fill="#5F3E26"></rect>
+      <path d="M40 44h12M40 52h12" stroke="#C9A071" stroke-width="2"></path>
+      <path d="M12 40h12v14H12zM68 40h12v14H68z" fill="#5F3E26" opacity=".6"></path>
+    </g>
+    <use href="#mapHay" x="304" y="1018" transform="scale(1.25)"></use>
+    <use href="#mapHay" x="350" y="1080" transform="scale(.8)"></use>
+    <g transform="translate(238 960) scale(1.05)"><use href="#mapCowsmall"></use></g>
+    <g transform="translate(300 1082) scale(1.1)"><use href="#mapCowsmall"></use></g>
+    <g transform="translate(452 984) scale(1.05)"><use href="#mapCowsmall"></use></g>
+    <g transform="translate(546 1070) scale(1)"><use href="#mapCowsmall"></use></g>
+    <g transform="translate(500 1130) scale(.92)"><use href="#mapCowsmall"></use></g>
+    <g transform="translate(420 1120) scale(.9)"><use href="#mapCowsmall"></use></g>
+    <use href="#mapSheep" x="170" y="1120" transform="scale(1.05)"></use>
+    <use href="#mapSheep" x="580" y="1010" transform="scale(.9)"></use>
+    <use href="#mapChicken" x="190" y="960"></use><use href="#mapChicken" x="212" y="976" transform="scale(.85)"></use><use href="#mapChicken" x="462" y="1060" transform="scale(.9)"></use>
+    <g transform="translate(356 900)">
+      <rect x="0" y="0" width="54" height="16" rx="4" fill="#6FA9C1"></rect>
+      <rect x="4" y="3" width="46" height="8" rx="2" fill="#8FD0E4"></rect>
+    </g>
+    <use href="#mapTree" x="596" y="932" transform="scale(.9)"></use>
+    <use href="#mapTree" x="604" y="1160" transform="scale(.65)"></use>
+    <g fill="#C9A15C" opacity=".9"><circle cx="118" cy="1034" r="2.2"></circle><circle cx="128" cy="1040" r="1.8"></circle><circle cx="122" cy="1048" r="1.6"></circle></g>
+  </g>
+
+  <g id="zoneWater">
+    <rect x="668" y="888" width="308" height="188" rx="22" fill="#A8D78A"></rect>
+    <rect x="668" y="888" width="308" height="188" rx="22" fill="url(#grassTex)" opacity=".4"></rect>
+    <rect x="668" y="888" width="308" height="188" rx="22" fill="none" stroke="#8BC46F" stroke-width="3"></rect>
+    <rect x="673" y="893" width="298" height="178" rx="19" fill="none" stroke="#FAF6EB" stroke-width="5" opacity=".95"></rect>
+    <rect x="668" y="1080" width="308" height="135" rx="22" fill="#A8D78A"></rect>
+    <rect x="668" y="1080" width="308" height="135" rx="22" fill="url(#grassTex)" opacity=".4"></rect>
+    <rect x="668" y="1080" width="308" height="135" rx="22" fill="none" stroke="#8BC46F" stroke-width="3"></rect>
+    <rect x="673" y="1085" width="298" height="120" rx="19" fill="none" stroke="#FAF6EB" stroke-width="5" opacity=".95"></rect>
+    <g transform="translate(748 968)">
+      <ellipse cx="0" cy="8" rx="72" ry="68" fill="#3B6B37" opacity=".18"></ellipse>
+      <circle cx="0" cy="0" r="66" fill="#CFC8AC"></circle>
+      <circle cx="0" cy="0" r="58" fill="#BFB89C"></circle>
+      <circle cx="0" cy="0" r="52" fill="url(#tankGrad)"></circle>
+      <ellipse cx="0" cy="-14" rx="44" ry="10" fill="#7FC7E4" opacity=".6"></ellipse>
+      <path d="M-44-14c0 6 20 11 44 11s44-5 44-11" fill="none" stroke="#E4F5FC" stroke-width="3" opacity=".75"></path>
+      <circle cx="0" cy="0" r="66" fill="none" stroke="#B7AF93" stroke-width="3"></circle>
+      <circle cx="0" cy="0" r="52" fill="none" stroke="#F8F3E6" stroke-width="2" opacity=".5"></circle>
+      <g stroke="#8D886F" stroke-width="3"><path d="M-20-60v-12M20-60v-12M-20-72h40"></path><path d="M-58 30h-14M58 30h14"></path></g>
+      <rect x="-6" y="-78" width="12" height="26" rx="2" fill="#A9A389"></rect>
+    </g>
+    <g transform="translate(812 968)">
+      <rect x="0" y="0" width="24" height="18" rx="3" fill="#9A9682"></rect>
+      <rect x="3" y="3" width="18" height="12" rx="2" fill="#6FB4CF"></rect>
+      <path d="M0 9h-12M24 9h12" stroke="#7A7564" stroke-width="2.4"></path>
+    </g>
+    <g transform="translate(884 1010)">
+      <path d="M0-58c30-6 58 10 62 38 4 30-16 54-48 56-30 2-52-18-54-46-2-25 13-43 40-48Z" fill="#4FB1D6"></path>
+      <path d="M-16-30c14-8 30-9 44-2M-40 4c8 10 20 16 34 17M6 30c12-2 22-8 28-18" fill="none" stroke="#8AD1E8" stroke-width="3" opacity=".6" stroke-linecap="round"></path>
+      <g fill="#4F9144"><ellipse cx="-24" cy="-14" rx="12" ry="7"></ellipse><ellipse cx="26" cy="18" rx="10" ry="6"></ellipse></g>
+      <g fill="#F3B6C4"><circle cx="-20" cy="-16" r="2"></circle><circle cx="28" cy="16" r="1.8"></circle></g>
+      <g stroke="#4E8B3F" stroke-width="2.4" stroke-linecap="round"><path d="M48-34c4-10 9-15 16-17M54-42c6 0 11 2 14 6M-44 34c-2-10 0-17 6-22"></path></g>
+    </g>
+    <g transform="translate(736 1146) scale(.72)">
+      <ellipse cx="90" cy="88" rx="96" ry="12" fill="#3B6B37" opacity=".18"></ellipse>
+      <rect x="0" y="10" width="180" height="72" rx="4" fill="#9DA3A0"></rect>
+      <path d="M-8 12 0 0h180l8 12Z" fill="#B7BCB8"></path>
+      <rect x="8" y="18" width="164" height="56" fill="#8B918E"></rect>
+      <g fill="#C6D8DA"><rect x="28" y="26" width="34" height="24" rx="2"></rect><rect x="118" y="26" width="34" height="24" rx="2"></rect></g>
+      <g fill="#7E8582"><circle cx="56" cy="78" r="16"></circle><circle cx="124" cy="78" r="16"></circle></g>
+      <g stroke="#5E6562" stroke-width="2"><path d="M56 66v24M44 78h24M124 66v24M112 78h24"></path></g>
+      <path d="M0 82h180" stroke="#6E7471" stroke-width="2"></path>
+      <rect x="24" y="88" width="24" height="12" fill="#8A6B45"></rect><rect x="132" y="88" width="24" height="12" fill="#8A6B45"></rect>
+    </g>
+    <g transform="translate(634 926) scale(.72)">
+      <ellipse cx="18" cy="30" rx="34" ry="9" fill="#2E5A2C" opacity=".25"></ellipse>
+      <g transform="rotate(8 18 18)">
+        <rect x="0" y="8" width="42" height="22" rx="3" fill="#C23B2E"></rect>
+        <rect x="12" y="0" width="20" height="15" rx="3" fill="#2F3E3A"></rect>
+        <rect x="14" y="2" width="16" height="10" rx="2" fill="#9FCBD9"></rect>
+        <circle cx="6" cy="34" r="12" fill="#2E2B27"></circle><circle cx="6" cy="34" r="5" fill="#7B756C"></circle>
+        <circle cx="36" cy="34" r="12" fill="#2E2B27"></circle><circle cx="36" cy="34" r="5" fill="#7B756C"></circle>
+        <circle cx="9" cy="8" r="7" fill="#2E2B27"></circle><circle cx="37" cy="8" r="7" fill="#2E2B27"></circle>
+        <rect x="39" y="-4" width="3" height="9" fill="#4C4A44"></rect>
+      </g>
+    </g>
+    <use href="#mapTree" x="952" y="906" transform="scale(.7)"></use>
+    <g stroke="#4E8B3F" stroke-width="2.4" stroke-linecap="round"><path d="M690 1150c0-12 3-20 9-25M700 1152c2-10 6-16 12-20M918 1130c1-12 5-19 12-24M930 1132c3-9 7-15 13-19"></path></g>
+  </g>
+
+
+</g>
+</defs>
+</svg>
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<symbol id="mapLabels" viewBox="0 0 1000 1200">
+  <g font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="700" fill="#1D241E" text-anchor="middle">
+    <g transform="translate(250 76)" filter="url(#pillShadow)" color="#1D241E">
+      <rect x="-52" y="-32" width="104" height="64" rx="32" fill="#FFFDF9"></rect>
+      <svg x="-38" y="-14" width="28" height="28" viewBox="0 0 24 24" fill="none"><use href="#i-house"></use></svg>
+      <text x="17" y="10">Ev</text>
+    </g>
+    <g transform="translate(752 76)" filter="url(#pillShadow)" color="#1D241E">
+      <rect x="-96" y="-32" width="192" height="64" rx="32" fill="#FFFDF9"></rect>
+      <svg x="-82" y="-14" width="28" height="28" viewBox="0 0 24 24" fill="none"><use href="#i-tomato"></use></svg>
+      <text x="18" y="10">Domates</text>
+    </g>
+    <g transform="translate(250 506)" filter="url(#pillShadow)" color="#1D241E">
+      <rect x="-80" y="-32" width="160" height="64" rx="32" fill="#FFFDF9"></rect>
+      <svg x="-66" y="-14" width="28" height="28" viewBox="0 0 24 24" fill="none"><use href="#i-leaf"></use></svg>
+      <text x="16" y="10">Sebze</text>
+    </g>
+    <g transform="translate(752 506)" filter="url(#pillShadow)" color="#1D241E">
+      <rect x="-74" y="-32" width="148" height="64" rx="32" fill="#FFFDF9"></rect>
+      <svg x="-60" y="-14" width="28" height="28" viewBox="0 0 24 24" fill="none"><use href="#i-corn"></use></svg>
+      <text x="15" y="10">Mısır</text>
+    </g>
+    <g transform="translate(340 930)" filter="url(#pillShadow)" color="#1D241E">
+      <rect x="-105" y="-32" width="210" height="64" rx="32" fill="#FFFDF9"></rect>
+      <svg x="-91" y="-14" width="28" height="28" viewBox="0 0 24 24" fill="none"><use href="#i-cow"></use></svg>
+      <text x="18" y="10">Hayvanlar</text>
+    </g>
+    <g transform="translate(822 916)" filter="url(#pillShadow)" color="#1D241E">
+      <rect x="-52" y="-32" width="104" height="64" rx="32" fill="#FFFDF9"></rect>
+      <svg x="-38" y="-14" width="28" height="28" viewBox="0 0 24 24" fill="none"><use href="#i-drop"></use></svg>
+      <text x="17" y="10">Su</text>
+    </g>
+    <g transform="translate(822 1112)" filter="url(#pillShadow)" color="#1D241E">
+      <rect x="-70" y="-32" width="140" height="64" rx="32" fill="#FFFDF9"></rect>
+      <svg x="-56" y="-14" width="28" height="28" viewBox="0 0 24 24" fill="none"><use href="#i-box"></use></svg>
+      <text x="16" y="10">Depo</text>
+    </g>
+  </g>
+</symbol>
+</defs>
+</svg>
+
+<script src="app.js"></script>
+
+
+</body></html>

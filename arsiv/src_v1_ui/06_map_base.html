@@ -1,0 +1,145 @@
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9ED8EE"/><stop offset=".55" stop-color="#C2E8F6"/><stop offset="1" stop-color="#E7F6F8"/>
+  </linearGradient>
+  <linearGradient id="tankGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#BFE3F2"/><stop offset=".45" stop-color="#7FC4E4"/><stop offset="1" stop-color="#3C9AC6"/>
+  </linearGradient>
+  <linearGradient id="pondGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#66C3E6"/><stop offset="1" stop-color="#2C93C4"/>
+  </linearGradient>
+  <pattern id="grassTex" width="82" height="72" patternUnits="userSpaceOnUse">
+    <g stroke="#6CAE51" stroke-width="1.6" stroke-linecap="round" opacity=".55">
+      <path d="M12 20c1-5 3-8 6-10M34 52c1-5 3-8 6-10M62 12c1-4 2-6 5-8M70 62c1-4 2-6 4-8M22 66c1-3 2-5 4-6"/>
+    </g>
+    <circle cx="58" cy="33" r="1.3" fill="#6BAF50" opacity=".5"/>
+    <circle cx="6" cy="44" r="1.1" fill="#6BAF50" opacity=".4"/>
+  </pattern>
+  <pattern id="soilTex" width="52" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="8" cy="10" r="1.3" fill="#6A432A" opacity=".55"/>
+    <circle cx="32" cy="24" r="1" fill="#96653F" opacity=".7"/>
+    <circle cx="45" cy="6" r="1.4" fill="#6A432A" opacity=".4"/>
+    <path d="M18 32h7" stroke="#6A432A" stroke-width="1.2" opacity=".35"/>
+  </pattern>
+  <pattern id="tomatoPlants" width="62" height="68" patternUnits="userSpaceOnUse">
+    <path d="M0 63h62" stroke="#684128" stroke-width="2" opacity=".5"/>
+    <path d="M14 16v42M48 16v42" stroke="#CDB58C" stroke-width="2.2" opacity=".5"/>
+    <path d="M31 62V40" stroke="#4E8B3F" stroke-width="4" stroke-linecap="round"/>
+    <path d="M31 52c-10-1-16-6-18-14 9-1 16 4 18 12M31 48c10-1 16-6 18-14-9-1-16 4-18 12" fill="#5CA34A"/>
+    <circle cx="31" cy="34" r="14" fill="#63AC50"/>
+    <circle cx="23" cy="29" r="8" fill="#75B95C"/>
+    <circle cx="39" cy="36" r="7" fill="#569B45"/>
+    <circle cx="22" cy="38" r="3.4" fill="#E4573E"/><circle cx="34" cy="28" r="3.6" fill="#E4573E"/><circle cx="41" cy="41" r="3" fill="#E4573E"/>
+    <circle cx="21" cy="37" r="1.1" fill="#F58C6E"/><circle cx="33" cy="27" r="1.1" fill="#F58C6E"/>
+  </pattern>
+  <pattern id="cornPlants" width="60" height="68" patternUnits="userSpaceOnUse">
+    <path d="M0 63h60" stroke="#6E492D" stroke-width="2" opacity=".4"/>
+    <path d="M30 63V16" stroke="#5D9B43" stroke-width="4" stroke-linecap="round"/>
+    <path d="M30 56C18 53 11 46 9 36c10 1 18 8 21 18M30 50c12-3 19-10 21-20-10 1-18 8-21 18M30 38c-8-2-12-7-13-15 8 0 12 5 13 12" fill="#79B955"/>
+    <g fill="#E4C356"><circle cx="30" cy="11" r="2.1"/><path d="M30 16c-2-2-2-4.4 0-6.4 2 2 2 4.4 0 6.4Z"/></g>
+    <path d="M33 32c6-2 10 2 9 8-1 5-4 8-8 8" fill="#7DBB58"/><ellipse cx="38" cy="38" rx="2.2" ry="4" fill="#DDBB55"/>
+    <path d="M34 33c2.4-1.6 5-1.4 7 .4" fill="none" stroke="#C9A83E" stroke-width="1.4" stroke-linecap="round"/>
+  </pattern>
+  <pattern id="lettuceRows" width="66" height="58" patternUnits="userSpaceOnUse">
+    <circle cx="33" cy="29" r="27" fill="#8FCB63"/>
+    <circle cx="33" cy="29" r="21" fill="#A5D979"/>
+    <circle cx="33" cy="29" r="14" fill="#B9E58F"/>
+    <path d="M33 16v26M20 29h26M24 20l18 18M42 20 24 38" stroke="#9BD06A" stroke-width="1.6" opacity=".55"/>
+    <circle cx="24" cy="22" r="5" fill="#C6ED9C" opacity=".8"/>
+    <circle cx="33" cy="29" r="27" fill="none" stroke="#76B44F" stroke-width="1.6"/>
+  </pattern>
+  <pattern id="carrotRows" width="48" height="46" patternUnits="userSpaceOnUse">
+    <path d="M24 36V16" stroke="#4F903E" stroke-width="2.4"/>
+    <path d="M24 20c-7-3-11-8-12-14 7 0 12 5 12 11M24 18c7-3 11-8 12-14-7 0-12 5-12 11M24 28c-6-2-9-6-10-11M24 26c6-2 9-6 10-11" fill="none" stroke="#6BB153" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M20.5 36h7L24 44Z" fill="#E78A3C"/>
+  </pattern>
+  <filter id="pillShadow" x="-30%" y="-60%" width="160%" height="240%">
+    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#27492B" flood-opacity=".28"/>
+  </filter>
+  <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#1F3B22" flood-opacity=".28"/>
+  </filter>
+
+  <g id="mapTree">
+    <ellipse cx="2" cy="20" rx="24" ry="7" fill="#3D7136" opacity=".28"/>
+    <path d="M0 16V2" stroke="#7D5737" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="-13" cy="-2" r="16" fill="#4D9645"/>
+    <circle cx="10" cy="-8" r="18" fill="#5FA851"/>
+    <circle cx="22" cy="4" r="13" fill="#478D40"/>
+    <circle cx="-6" cy="-12" r="11" fill="#6CB45A"/>
+  </g>
+
+  <g id="mapCowsmall">
+    <ellipse cx="0" cy="9" rx="19" ry="5" fill="#3E6B36" opacity=".22"/>
+    <path d="M-18 0c0-5 4-8 9-8h18c5 0 8 3 8 7v5h-35Z" fill="#FFFDF7"/>
+    <ellipse cx="1" cy="-4" rx="7" ry="5" fill="#2E2A26"/>
+    <path d="M17-4c2.4-.4 3.9.6 4.4 2.9l.6 2.4c.3 1.4-.5 2.4-1.9 2.5-1.2.1-2.1-.6-2.4-1.9l-.7-2.8Z" fill="#FFFDF7"/>
+    <path d="M-18-1h-3M-13 5v6M0 5v6M9 5v6M15 5v6" stroke="#D9CDBA" stroke-width="2.8" stroke-linecap="round"/>
+    <circle cx="20" cy="1" r=".9" fill="#2E2A26"/>
+  </g>
+
+  <g id="mapBarn">
+    <ellipse cx="82" cy="112" rx="92" ry="13" fill="#2E5A2C" opacity=".18"/>
+    <path d="M6 54 34 12l98-2 26 44Z" fill="#9A2F27"/>
+    <path d="M13 52 38 17l90-2 22 37Z" fill="#B43A2E"/>
+    <path d="M72 14v38" stroke="#8C2A23" stroke-width="2"/>
+    <rect x="18" y="50" width="138" height="62" fill="#BE4032"/>
+    <rect x="18" y="50" width="138" height="9" fill="#A9342A"/>
+    <path d="M58 112V76h30v36" fill="#F3E8D2"/>
+    <path d="M58 76l30 36M88 76 58 112" stroke="#D8C9AF" stroke-width="2"/>
+    <rect x="112" y="64" width="22" height="18" fill="#F3E8D2"/>
+    <rect x="116" y="68" width="14" height="10" fill="#A9D3E5"/>
+    <rect x="30" y="65" width="18" height="16" fill="#F3E8D2"/>
+    <rect x="33" y="68" width="12" height="10" fill="#A9D3E5"/>
+    <path d="M18 110h138" stroke="#8C2A23" stroke-width="3"/>
+    <path d="M30 50v-9M138 50v-9" stroke="#E9DDC6" stroke-width="3"/>
+  </g>
+
+  <g id="mapHay">
+    <circle cx="0" cy="0" r="17" fill="#DDB65E"/>
+    <circle cx="0" cy="0" r="17" fill="none" stroke="#C79E45" stroke-width="1.4"/>
+    <path d="M-9-8c6-4 13-2 17 4M-3-12c7-2 13 2 15 9M-13 0c1 7 7 11 14 10" fill="none" stroke="#C79E45" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+
+  <g id="mapTankSmall">
+    <circle cx="0" cy="0" r="26" fill="#C9C3A9"/>
+    <circle cx="0" cy="0" r="20" fill="url(#tankGrad)"/>
+    <path d="M-14-3c4 4 9 6 14 6s10-2 14-6" fill="none" stroke="#DDF2FA" stroke-width="2" opacity=".7"/>
+    <circle cx="0" cy="0" r="26" fill="none" stroke="#B3AC92" stroke-width="2"/>
+  </g>
+</defs>
+</svg>
+
+<svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<g id="mapBase">
+  <rect width="1000" height="1200" fill="#7FBE63"/>
+  <rect width="1000" height="1250" fill="url(#grassTex)"/>
+  <path d="M0 398h1000M0 836h1000M0 1182h1000" stroke="#6CAE50" stroke-width="6" opacity=".35"/>
+  <rect x="477" y="0" width="46" height="1200" fill="#DCC38C"/>
+  <rect x="0" y="414" width="1000" height="38" fill="#DCC38C"/>
+  <rect x="0" y="850" width="1000" height="38" fill="#DCC38C"/>
+  <g stroke="#CBB077" stroke-width="2" opacity=".8">
+    <path d="M479 0v1200M521 0v1200"/><path d="M0 416h1000M0 450h1000"/><path d="M0 852h1000M0 886h1000"/>
+  </g>
+  <g stroke="#C8AB72" stroke-width="2" stroke-dasharray="7 15" opacity=".9">
+    <path d="M500 0v1200"/><path d="M0 433h1000"/><path d="M0 869h1000"/>
+  </g>
+  <g fill="#C9B582" opacity=".6">
+    <circle cx="486" cy="80" r="2"/><circle cx="514" cy="150" r="1.6"/><circle cx="492" cy="940" r="1.8"/>
+    <circle cx="140" cy="424" r="1.7"/><circle cx="760" cy="444" r="1.8"/><circle cx="690" cy="858" r="1.6"/>
+  </g>
+  <g fill="none" stroke="#65B4D6" stroke-width="3" opacity=".8">
+    <path d="M0 402h462M538 402h462M0 840h462M538 840h462"/>
+    <path d="M466 402v-20M534 402v-20M466 840v20M534 840v20"/>
+  </g>
+  <g fill="#3E93B8">
+    <circle cx="240" cy="402" r="4"/><circle cx="760" cy="402" r="4"/><circle cx="240" cy="840" r="4"/><circle cx="760" cy="840" r="4"/>
+  </g>
+  <g opacity=".18" fill="#2F5B2B">
+    <ellipse cx="500" cy="20" rx="260" ry="14"/><ellipse cx="500" cy="1180" rx="300" ry="16"/>
+  </g>
+</g>
+</defs>
+</svg>

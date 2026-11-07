@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#F5F1E8">
+<title>Green Valley Farm</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="stage">
+  <div class="device">
+    <div class="app" id="app">
+
+      <div class="statusbar">
+        <span class="sb-time">5:15</span>
+        <div class="island" aria-hidden="true"></div>
+        <div class="sb-icons">
+          <svg viewBox="0 0 18 12" class="sb-signal"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+          <svg viewBox="0 0 16 12" class="sb-wifi"><path d="M1 4.2C3 2.4 5.4 1.5 8 1.5s5 .9 7 2.7M3.4 6.7C4.8 5.4 6.3 4.8 8 4.8s3.2.6 4.6 1.9M5.9 9.1C6.5 8.5 7.2 8.2 8 8.2s1.5.3 2.1.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8" cy="10.8" r="1.15" fill="currentColor"/></svg>
+          <span class="sb-battery"><i></i></span>
+        </div>
+      </div>
+
+      <main class="screens" id="screens">
+
+        <!-- ================= HOME ================= -->
+        <section class="screen active" id="scr-home" data-tab="home">
+          <div class="home">
+            <div class="hero" aria-hidden="true">
+              <svg viewBox="0 0 430 400" preserveAspectRatio="xMidYMid slice"><use href="#heroScene"/></svg>
+            </div>
+
+            <header class="home-head">
+              <div class="avatar">
+                <svg viewBox="0 0 64 64"><use href="#avatarMan"/></svg>
+              </div>
+              <div class="home-greet">
+                <p>Good afternoon, Guest</p>
+                <h1>Green Valley Farm</h1>
+              </div>
+              <button class="bell" aria-label="Notifications">
+                <svg viewBox="0 0 24 24"><use href="#i-bell"/></svg>
+                <span class="bell-dot">1</span>
+              </button>
+            </header>
+
+            <div class="home-panels">
+              <div class="card health-card">
+                <div class="mini-ring" data-ring="92">
+                  <svg viewBox="0 0 60 60"><circle class="ring-track" cx="30" cy="30" r="25"/><circle class="ring-fill" cx="30" cy="30" r="25"/></svg>
+                  <b>92%</b>
+                </div>
+                <div class="health-copy">
+                  <span class="lbl">Farm Health</span>
+                  <strong>Healthy</strong>
+                  <span class="ok"><i></i>All good</span>
+                </div>
+              </div>
+              <div class="card weather-card">
+                <div class="weather-main">
+                  <svg class="weather-sun" viewBox="0 0 34 34"><circle cx="17" cy="17" r="7.4" fill="#F5C34B"/><g stroke="#F5C34B" stroke-width="2" stroke-linecap="round"><path d="M17 2.5v4M17 27.5v4M2.5 17h4M27.5 17h4M6.7 6.7l2.8 2.8M24.5 24.5l2.8 2.8M27.3 6.7l-2.8 2.8M9.5 24.5l-2.8 2.8"/></g></svg>
+                  <div><div class="temp">28°C</div><div class="sunny">Sunny</div></div>
+                </div>
+                <div class="weather-meta">
+                  <span><svg class="ic"><use href="#i-drop"/></svg>15%</span>
+                  <span><svg class="ic"><use href="#i-wind"/></svg>68%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="home-body">
+              <h2 class="section-h">Quick Stats</h2>
+              <div class="quick-grid">
+                <button class="card quick-card" data-goto="farm" data-zone="tomato">
+                  <span class="qc-top"><span class="tile mint"><svg class="ic"><use href="#i-leaf"/></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+                  <span class="qc-num">12</span><span class="qc-lbl">Crops</span>
+                </button>
+                <button class="card quick-card" data-goto="farm" data-zone="animal">
+                  <span class="qc-top"><span class="tile peach"><svg class="ic"><use href="#i-cow"/></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+                  <span class="qc-num">48</span><span class="qc-lbl">Animals</span>
+                </button>
+                <button class="card quick-card" data-goto="farm" data-zone="corn">
+                  <span class="qc-top"><span class="tile lav"><svg class="ic"><use href="#i-drop"/></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+                  <span class="qc-num">72%</span><span class="qc-lbl">Soil Moisture</span>
+                </button>
+                <button class="card quick-card" data-goto="farm" data-zone="overview">
+                  <span class="qc-top"><span class="tile wheat"><svg class="ic"><use href="#i-box"/></svg></span><span class="mini-arrow"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+                  <span class="qc-num">1,280 <small>kg</small></span><span class="qc-lbl">Harvest</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>

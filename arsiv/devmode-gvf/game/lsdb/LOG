@@ -1,0 +1,43 @@
+2026/10/24-19:50:51.930 519f Recovering log #8
+2026/10/24-19:50:51.931 519f Level-0 table #10: started
+2026/10/24-19:50:51.934 519f Level-0 table #10: 11832 bytes OK
+2026/10/24-19:50:51.953 519f Delete type=0 #8
+2026/10/24-19:50:51.953 519f Delete type=3 #6
+2026/10/24-19:51:47.017 519e Level-0 table #13: started
+2026/10/24-19:51:47.020 519e Level-0 table #13: 23891 bytes OK
+2026/10/24-19:51:47.031 519e Delete type=0 #11
+2026/10/24-19:53:44.280 519b Level-0 table #15: started
+2026/10/24-19:53:44.287 519b Level-0 table #15: 24186 bytes OK
+2026/10/24-19:53:44.308 519b Delete type=0 #12
+2026/10/24-19:53:44.309 519b Compacting 4@0 + 0@1 files
+2026/10/24-19:53:44.313 519b Generated table #16@0: 3 keys, 4266 bytes
+2026/10/24-19:53:44.313 519b Compacted 4@0 + 0@1 files => 4266 bytes
+2026/10/24-19:53:44.319 519b compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/10/24-19:53:44.319 519b Delete type=2 #10
+2026/10/24-19:53:44.320 519b Delete type=2 #7
+2026/10/24-19:53:44.320 519b Delete type=2 #13
+2026/10/24-19:53:44.320 519b Delete type=2 #15
+2026/10/24-19:54:36.036 519e Level-0 table #18: started
+2026/10/24-19:54:36.047 519e Level-0 table #18: 24950 bytes OK
+2026/10/24-19:54:36.109 519e Delete type=0 #14
+2026/10/24-19:55:28.302 519e Level-0 table #20: started
+2026/10/24-19:55:28.311 519e Level-0 table #20: 24968 bytes OK
+2026/10/24-19:55:28.368 519e Delete type=0 #17
+2026/10/24-19:56:23.280 519e Level-0 table #22: started
+2026/10/24-19:56:23.287 519e Level-0 table #22: 24956 bytes OK
+2026/10/24-19:56:23.294 519e Delete type=0 #19
+2026/10/24-19:57:18.778 519e Level-0 table #24: started
+2026/10/24-19:57:18.787 519e Level-0 table #24: 24968 bytes OK
+2026/10/24-19:57:18.831 519e Delete type=0 #21
+2026/10/24-19:57:18.831 519e Compacting 4@0 + 1@1 files
+2026/10/24-19:57:18.839 519e Generated table #25@0: 3 keys, 4266 bytes
+2026/10/24-19:57:18.839 519e Compacted 4@0 + 1@1 files => 4266 bytes
+2026/10/24-19:57:18.845 519e compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/10/24-19:57:18.845 519e Delete type=2 #18
+2026/10/24-19:57:18.845 519e Delete type=2 #16
+2026/10/24-19:57:18.846 519e Delete type=2 #20
+2026/10/24-19:57:18.846 519e Delete type=2 #22
+2026/10/24-19:57:18.846 519e Delete type=2 #24
+2026/10/24-19:58:14.282 519e Level-0 table #27: started
+2026/10/24-19:58:14.286 519e Level-0 table #27: 24983 bytes OK
+2026/10/24-19:58:14.343 519e Delete type=0 #23

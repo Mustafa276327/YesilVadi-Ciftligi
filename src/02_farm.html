@@ -1,0 +1,363 @@
+
+        <!-- ================= ÇİFTLİK ================= -->
+        <section class="screen" id="scr-farm" data-tab="farm">
+          <div class="farm">
+            <header class="page-head">
+              <div>
+                <h1>Çiftliğim</h1>
+                <p class="sub"><svg class="ic pin"><use href="#i-pin"/></svg><span id="farmHectares">12,5</span> hektar · <span id="farmSeason">İlkbahar</span> · <span id="farmWeatherText">Güneşli 24°</span></p>
+              </div>
+              <button class="round-btn weather-btn" data-action="weather" aria-label="Hava durumu"><span id="farmWeatherIcon"><svg class="ic"><use href="#i-cloudsun"/></svg></span></button>
+            </header>
+
+            <div class="farm-hud">
+              <button class="fh-item" data-goto="market">
+                <small>Kasa</small>
+                <b id="farmMoney">2.500 ₺</b>
+                <span class="fh-sub" id="farmIncome">Bugün 0 ₺</span>
+              </button>
+              <button class="fh-item fh-level" data-goto="profile">
+                <small id="farmLevelText">Seviye 1</small>
+                <b id="farmXpText">0 / 150 XP</b>
+                <span class="xpbar"><i id="farmXpBar"></i></span>
+              </button>
+              <button class="fh-item" data-action="weather">
+                <small>Hava</small>
+                <b id="farmTemp">24°</b>
+                <span class="fh-sub"><span id="farmDay">Gün 1</span> · <span id="farmForecast">Yarın: Bulutlu</span></span>
+              </button>
+            </div>
+
+            <div class="chips" id="farmChips" role="tablist">
+              <button class="chip active" data-zone="overview" role="tab"><svg class="ic"><use href="#i-map"/></svg>Genel Bakış</button>
+              <button class="chip" data-zone="house" role="tab"><svg class="ic"><use href="#i-house"/></svg>Ev</button>
+              <button class="chip" data-zone="tomato" role="tab"><svg class="ic"><use href="#i-tomato"/></svg>Domates</button>
+              <button class="chip" data-zone="vegetable" role="tab"><svg class="ic"><use href="#i-leaf"/></svg>Sebze</button>
+              <button class="chip" data-zone="corn" role="tab"><svg class="ic"><use href="#i-corn"/></svg>Mısır</button>
+              <button class="chip" data-zone="animal" role="tab"><svg class="ic"><use href="#i-cow"/></svg>Hayvanlar</button>
+              <button class="chip" data-zone="water" role="tab"><svg class="ic"><use href="#i-drop"/></svg>Su</button>
+            </div>
+
+            <div class="map-card" id="farmMapCard">
+              <svg class="farm-map" id="farmMap" viewBox="0 0 1000 1250" preserveAspectRatio="xMidYMid slice">
+                <use href="#mapBase"/>
+                <use href="#mapZonesTop"/>
+                <use href="#mapZonesBottom"/>
+                <g class="dyn-farm" id="dynFarm"></g>
+                <g class="zone-hl" aria-hidden="true">
+                  <rect class="hl-glow"/><rect class="hl-ring"/>
+                </g>
+                <use href="#mapLabels" class="map-labels"/>
+              </svg>
+              <div class="map-time-tint"></div>
+              <div class="map-fx" id="farmMapFx"></div>
+              <button class="map-expand" id="expandFarm" aria-label="Haritayı büyüt"><svg class="ic"><use href="#i-expand"/></svg></button>
+              <div class="map-tip" id="mapTip"><span class="tap-ic"><svg class="ic"><use href="#i-tap"/></svg></span><span><b>Bir alana dokun</b><small id="mapTipSub">7 bölge · 4 ürün · 48 hayvan</small></span></div>
+            </div>
+
+            <div id="farmInfo" class="farm-info"></div>
+
+            <section class="explore" id="farmExplore">
+              <div class="home-section-head"><h2 class="section-h">Keşfet</h2><span class="section-note" id="exploreNote">4 ürün büyüyor</span></div>
+              <div class="explore-grid">
+                <button class="explore-card" data-goto="farm" data-zone="vegetable"><span class="ex-ic mint"><svg class="ic"><use href="#i-leaf"/></svg></span><span><b>Tarlalarım</b><small id="exploreCrops">3 tarla</small></span></button>
+                <button class="explore-card" data-goto="livestock"><span class="ex-ic peach"><svg class="ic"><use href="#i-cow"/></svg></span><span><b>Hayvanlar</b><small id="exploreAnimals">48 hayvan</small></span></button>
+                <button class="explore-card" data-goto="farm" data-zone="water"><span class="ex-ic lav"><svg class="ic"><use href="#i-drop"/></svg></span><span><b>Sulama</b><small id="exploreWater">Su: %82</small></span></button>
+                <button class="explore-card" data-action="weather"><span class="ex-ic wheat"><svg class="ic"><use href="#i-sun"/></svg></span><span><b>Hava Durumu</b><small id="exploreWeather">Güneşli · 24°</small></span></button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ================= HAYVANLAR ================= -->
+        <section class="screen" id="scr-livestock" data-tab="livestock">
+          <div class="livestock">
+            <header class="subhead">
+              <button class="back-btn" data-back="farm" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Hayvanlar</h1><p id="livestockSub">Yeşil Vadi Çiftliği · 48 hayvan</p></div>
+              <button class="back-btn" data-action="scroll-upgrade" aria-label="Ahır yükseltme kartına git"><svg class="ic"><use href="#i-arrow-up"/></svg></button>
+            </header>
+
+            <div class="card herd-card">
+              <div class="herd-top">
+                <span class="eyebrow">Toplam sürü</span>
+                <span class="pill mint" id="herdStatus"><svg class="ic"><use href="#i-shield"/></svg>Sağlıklı</span>
+              </div>
+              <div class="herd-number"><b class="count" id="herdCount">48</b><span>hayvan</span></div>
+              <div class="hairline"></div>
+              <div class="gauges">
+                <div class="gauge">
+                  <div class="ring" id="ringHealth" data-ring="96" data-color="#3E8B55"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"/><circle class="ring-fill" cx="38" cy="38" r="32"/></svg><b>96%</b></div>
+                  <strong>Sağlık</strong><small id="gaugeHealthNote">Mükemmel</small>
+                </div>
+                <div class="gauge">
+                  <div class="ring" id="ringFeed" data-ring="60" data-color="#E8A13A"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"/><circle class="ring-fill" cx="38" cy="38" r="32"/></svg><b>60%</b></div>
+                  <strong>Yem</strong><small id="gaugeFeedNote">120 kg stok</small>
+                </div>
+                <div class="gauge">
+                  <div class="ring" id="ringProd" data-ring="91" data-color="#55A9DC"><svg viewBox="0 0 76 76"><circle class="ring-track" cx="38" cy="38" r="32"/><circle class="ring-fill" cx="38" cy="38" r="32"/></svg><b>91%</b></div>
+                  <strong>Üretim</strong><small id="gaugeProdNote">Hedefte</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="card feed-card">
+              <div class="feed-head">
+                <span class="tile wheat"><svg class="ic"><use href="#i-wheat"/></svg></span>
+                <b>Bugünkü besleme</b>
+                <span class="pill plain" id="feedCount">0 / 3</span>
+              </div>
+              <div class="steps" id="feedSteps"></div>
+              <div class="feed-action">
+                <button class="btn primary feed-btn" id="feedBtn" data-action="feed"><svg class="ic"><use href="#i-wheat"/></svg><span id="feedBtnLabel">Yem Ver</span><small id="feedBtnCost">14 kg</small></button>
+                <div class="feed-stock"><small>Yem stoğu</small><b id="feedStock">120 kg</b><span class="mini-bar"><i id="feedStockBar"></i></span></div>
+              </div>
+            </div>
+
+            <div class="card production-card">
+              <div class="production-head">
+                <span class="tile mint"><svg class="ic"><use href="#i-box"/></svg></span>
+                <div><b>Ürünler</b><small id="productionSub">Sağmal ürünleri topla</small></div>
+                <button class="btn soft small" id="collectBtn" data-action="collect">Topla</button>
+              </div>
+              <div class="production-list" id="productionList"></div>
+            </div>
+
+            <div class="card animal-upgrade" id="animalUpgradeCard"></div>
+
+            <section class="cat-section">
+              <div class="home-section-head"><h2 class="section-h">Kategoriler</h2><span class="section-note">Bir gruba dokun</span></div>
+              <div class="cat-grid" id="catGrid"></div>
+            </section>
+
+            <section class="cow-section">
+              <div class="cow-head"><h2 class="section-h" id="herdTitle">İneklerin</h2><p class="section-sub" id="herdSub">18 sürüde · detay için dokun</p></div>
+              <div class="cow-list" id="cowList"></div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ================= DETAY ================= -->
+        <section class="screen" id="scr-detail" data-tab="farm">
+          <div class="detail">
+            <div class="detail-hero" id="detailHero">
+              <button class="back-btn detail-back" data-back="farm" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <svg class="farm-map" id="detailMap" viewBox="0 0 520 630" preserveAspectRatio="xMidYMid slice">
+                <use href="#mapBase"/><use href="#mapZonesTop"/><use href="#mapZonesBottom"/>
+                <g class="dyn-farm" id="dynDetail"></g>
+                <g class="zone-hl"><rect class="hl-glow"/><rect class="hl-ring"/></g>
+              </svg>
+              <div class="map-time-tint"></div>
+              <div class="map-fx" id="detailFx"></div>
+              <button class="map-expand" id="expandDetail" aria-label="Haritayı büyüt"><svg class="ic"><use href="#i-expand"/></svg></button>
+            </div>
+            <div class="detail-body">
+              <div class="sheet" id="detailSheet"></div>
+              <section class="explore">
+                <div class="home-section-head"><h2 class="section-h">Keşfet</h2></div>
+                <div class="explore-grid">
+                  <button class="explore-card" data-goto="farm" data-zone="vegetable"><span class="ex-ic mint"><svg class="ic"><use href="#i-leaf"/></svg></span><span><b>Tarlalarım</b><small id="detailExploreCrops">3 tarla</small></span></button>
+                  <button class="explore-card" data-goto="livestock"><span class="ex-ic peach"><svg class="ic"><use href="#i-cow"/></svg></span><span><b>Hayvanlar</b><small id="detailExploreAnimals">48 hayvan</small></span></button>
+                  <button class="explore-card" data-goto="market"><span class="ex-ic wheat"><svg class="ic"><use href="#i-tag"/></svg></span><span><b>Pazar</b><small>Ürünleri sat</small></span></button>
+                  <button class="explore-card" data-action="weather"><span class="ex-ic lav"><svg class="ic"><use href="#i-cloudsun"/></svg></span><span><b>Hava</b><small id="detailExploreWeather">Güneşli</small></span></button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PAZAR ================= -->
+        <section class="screen" id="scr-market" data-tab="market">
+          <div class="simple market">
+            <header class="page-head">
+              <div><h1>Pazar</h1><p class="sub"><svg class="ic pin"><use href="#i-pin"/></svg>Gün <span id="marketDay">1</span> · <span id="marketWeather">Güneşli</span> · <span id="marketSeason">İlkbahar</span></p></div>
+              <button class="round-btn" data-action="sellAll" aria-label="Tümünü sat"><svg class="ic"><use href="#i-tag"/></svg></button>
+            </header>
+
+            <div class="card market-summary">
+              <div class="ms-main">
+                <small>Kasa</small>
+                <b id="marketMoney">2.500 ₺</b>
+                <span class="ms-trend" id="marketTrend">Fiyatlar güncel</span>
+              </div>
+              <div class="ms-side">
+                <div><small>Depo</small><b id="marketCapacity">0 / 2600</b></div>
+                <div><small>Bugünkü satış</small><b id="marketToday">0 ₺</b></div>
+              </div>
+            </div>
+
+            <div class="market-tabs" id="marketTabs">
+              <button class="mtab active" data-mtab="sell">Ürünler</button>
+              <button class="mtab" data-mtab="supply">Tedarik</button>
+              <button class="mtab" data-mtab="orders">Siparişler</button>
+            </div>
+            <div id="marketContent" class="market-content"></div>
+          </div>
+        </section>
+
+        <!-- ================= FABRİKALAR ================= -->
+        <section class="screen" id="scr-factory" data-tab="factory">
+          <div class="simple factory-screen">
+            <header class="page-head">
+              <div><h1>Fabrikalarım</h1><p class="sub"><svg class="ic pin"><use href="#i-pin"/></svg>Hammaddeyi işle · daha çok kazan</p></div>
+              <button class="round-btn" data-goto="market" aria-label="Pazara git"><svg class="ic"><use href="#i-tag"/></svg></button>
+            </header>
+            <div id="factoryContent" class="factory-content"></div>
+          </div>
+        </section>
+
+        <!-- ================= PROFİL ================= -->
+        <section class="screen" id="scr-profile" data-tab="profile">
+          <div class="simple profile">
+            <header class="page-head">
+              <div><h1>Profil</h1><p class="sub"><svg class="ic pin"><use href="#i-pin"/></svg><span id="profileFarmName">Yeşil Vadi Çiftliği</span></p></div>
+              <button class="round-btn" data-action="reports" aria-label="Raporlar"><svg class="ic"><use href="#i-chart"/></svg></button>
+            </header>
+
+            <div class="card profile-card">
+              <div class="avatar-wrap big"><div class="avatar big"><svg viewBox="0 0 64 64"><use href="#avatarMan"/></svg></div><span class="level-badge" id="profileLevel">1</span></div>
+              <div class="profile-main"><b id="profileName">Çiftçi</b><small id="profileSub">İlkbahar · Gün 1</small><span class="xp-line"><span class="xpbar"><i id="profileXpBar"></i></span><small id="profileXpText">0 / 150 XP</small></span></div>
+              <span class="pill mint" id="profileRank">Acemi Çiftçi</span>
+            </div>
+
+            <div class="kpi-row three">
+              <div class="card kpi"><b id="profileMoney">2.500</b><small>Kasa ₺</small></div>
+              <div class="card kpi"><b id="profileHarvests">0</b><small>Hasat</small></div>
+              <div class="card kpi"><b id="profileDays">1</b><small>Gün</small></div>
+            </div>
+
+            <div class="home-section-head"><h2 class="section-h">Başarımlar</h2><span class="section-note" id="achCount">0 / 8</span></div>
+            <div class="card achievement-list" id="achievementList"></div>
+
+            <div class="card settings">
+              <button data-action="reports"><span class="tile lav"><svg class="ic"><use href="#i-chart"/></svg></span><b>Çiftlik raporları</b><svg class="ic chev"><use href="#i-chev"/></svg></button>
+              <button data-action="edit-profile"><span class="tile mint"><svg class="ic"><use href="#i-user"/></svg></span><b>Çiftlik profilim</b><svg class="ic chev"><use href="#i-chev"/></svg></button>
+              <button data-action="notifications-toggle"><span class="tile lav"><svg class="ic"><use href="#i-bell"/></svg></span><b>Çiftlik bildirimleri</b><span class="switch on" id="notifSwitch"><i></i></span></button>
+              <button data-action="sound"><span class="tile mint"><svg class="ic"><use href="#i-sound"/></svg></span><b>Ses efektleri</b><span class="switch on" id="soundSwitch"><i></i></span></button>
+              <button data-action="vibration"><span class="tile peach"><svg class="ic"><use href="#i-tap"/></svg></span><b>Titreşim</b><span class="switch on" id="vibrationSwitch"><i></i></span></button>
+              <button data-action="help"><span class="tile wheat"><svg class="ic"><use href="#i-help"/></svg></span><b>Nasıl oynanır?</b><svg class="ic chev"><use href="#i-chev"/></svg></button>
+              <button data-action="menu"><span class="tile lav"><svg class="ic"><use href="#i-menu"/></svg></span><b>Ana menü</b><svg class="ic chev"><use href="#i-chev"/></svg></button>
+              <button data-action="reset"><span class="tile peach"><svg class="ic"><use href="#i-refresh"/></svg></span><b class="danger-text">Oyunu sıfırla</b><svg class="ic chev"><use href="#i-chev"/></svg></button>
+            </div>
+            <p class="profile-foot">Yeşil Vadi Çiftliği · Tycoon v2.1 · Çevrimdışı oyun</p>
+          </div>
+        </section>
+
+        <!-- ================= RAPORLAR ================= -->
+        <section class="screen" id="scr-analytics" data-tab="profile">
+          <div class="simple analytics">
+            <header class="subhead">
+              <button class="back-btn" data-back="profile" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Raporlar</h1><p>Son 7 günün özeti</p></div>
+              <span class="back-spacer"></span>
+            </header>
+            <div class="kpi-row">
+              <div class="card kpi"><small>Toplam kazanç</small><b id="reportEarned">0 <i>₺</i></b><span class="up" id="reportDays">0 gün</span></div>
+              <div class="card kpi"><small>Hasat</small><b id="reportHarvests">0</b><span class="up">ürün</span></div>
+            </div>
+            <div class="card chart-card"><div class="chart-head"><b>Günlük gelir</b><span class="pill mint" id="reportBest">En iyi: 0 ₺</span></div><div class="bars" id="barChart"></div><div class="bars-x" id="barLabels"></div></div>
+            <div class="home-section-head"><h2 class="section-h">Bölge performansı</h2></div>
+            <div class="card perf-list" id="perfList"></div>
+          </div>
+        </section>
+
+      </main>
+
+      <nav class="tabbar" id="tabbar">
+        <button data-nav="home" class="tab active"><svg class="ic"><use href="#i-home"/></svg><span>Ana</span></button>
+        <button data-nav="farm" class="tab"><svg class="ic"><use href="#i-sprout"/></svg><span>Çiftlik</span></button>
+        <button data-nav="livestock" class="tab"><svg class="ic"><use href="#i-cow"/></svg><span>Hayvan</span></button>
+        <button data-nav="factory" class="tab"><svg class="ic"><use href="#i-factory"/></svg><span>Fabrikalar</span></button>
+        <button data-nav="market" class="tab"><svg class="ic"><use href="#i-tag"/></svg><span>Pazar</span></button>
+        <button data-nav="profile" class="tab"><svg class="ic"><use href="#i-user"/></svg><span>Profil</span></button>
+      </nav>
+
+      <div class="toast" id="toast" role="status"></div>
+
+      <div class="modal map-modal" id="mapModal" aria-hidden="true">
+        <div class="modal-head"><b id="modalTitle">Çiftlik haritası</b><button class="back-btn" id="closeMap" aria-label="Kapat"><svg class="ic"><use href="#i-close"/></svg></button></div>
+        <svg class="farm-map" id="modalMap" viewBox="0 0 1000 1200" preserveAspectRatio="xMidYMid slice">
+          <use href="#mapBase"/>
+          <use href="#mapZonesTop"/>
+          <use href="#mapZonesBottom"/>
+          <g class="dyn-farm" id="dynModal"></g>
+          <g class="zone-hl"><rect class="hl-glow"/><rect class="hl-ring"/></g>
+          <use href="#mapLabels" class="map-labels"/>
+        </svg>
+      </div>
+
+      <div class="sheet-scrim" id="sheetScrim" aria-hidden="true">
+        <div class="bottom-sheet" id="sheetContent"></div>
+      </div>
+
+      <div class="levelup-scrim" id="levelUp" aria-hidden="true">
+        <div class="levelup-card">
+          <div class="levelup-badge"><svg class="ic"><use href="#i-star"/></svg></div>
+          <span class="eyebrow">Seviye atladın</span>
+          <h2 id="levelUpTitle">Seviye 2</h2>
+          <p id="levelUpText">Çiftliğin büyüyor. Yeni ödüller kazandın!</p>
+          <div class="levelup-rewards" id="levelUpRewards"></div>
+          <button class="btn primary wide" data-action="levelup-close">Devam Et</button>
+        </div>
+      </div>
+
+      <div class="confirm-scrim" id="confirm" aria-hidden="true">
+        <div class="confirm-card">
+          <span class="confirm-ic" id="confirmIcon"><svg class="ic"><use href="#i-refresh"/></svg></span>
+          <h2 id="confirmTitle">Emin misin?</h2>
+          <p id="confirmText">Bu işlem geri alınamaz.</p>
+          <div class="confirm-actions">
+            <button class="btn ghost" data-confirm="no">Vazgeç</button>
+            <button class="btn primary" data-confirm="yes">Evet</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-scrim" id="setupScreen" aria-hidden="true">
+        <div class="setup-card">
+          <div class="setup-art"><span class="setup-icon"><svg class="ic"><use href="#i-house"/></svg></span><span class="setup-sun"><svg class="ic"><use href="#i-sun"/></svg></span></div>
+          <h2 id="setupTitle">Çiftliğine isim ver</h2>
+          <p id="setupDesc">İlk girişte çiftliğini kendin adlandır. İsmin üst çubukta ve profilinde görünür.</p>
+          <label class="setup-field"><span>Çiftçi adın</span><input id="setupPlayer" maxlength="18" placeholder="Örn. Mustafa" autocomplete="off" autocapitalize="words"></label>
+          <label class="setup-field"><span>Çiftlik adın</span><input id="setupFarm" maxlength="30" placeholder="Örn. Güneşli Vadi Çiftliği" autocomplete="off" autocapitalize="words"></label>
+          <button class="btn primary wide setup-save" data-action="setup-save"><svg class="ic"><use href="#i-sprout"/></svg> <span id="setupSaveLabel">Çiftliği Kur</span></button>
+          <button class="setup-skip" id="setupSkip" data-action="setup-skip">Varsayılan isimlerle devam et</button>
+          <small class="setup-note"><svg class="ic"><use href="#i-bell"/></svg> Bildirimlere izin verirsen hasat, besleme ve fabrika haberleri telefonuna gelir.</small>
+        </div>
+      </div>
+
+      <div class="start-screen" id="startScreen" aria-hidden="false">
+        <div class="start-bg">
+          <svg viewBox="0 0 430 400" preserveAspectRatio="xMidYMid slice"><use href="#heroScene"/></svg>
+          <div class="start-rays"></div>
+          <div class="start-time-tint"></div>
+          <div class="start-stars" id="startStars"></div>
+          <div class="start-shade"></div>
+        </div>
+        <div class="start-fx" id="startFx"></div>
+        <div class="start-float" id="startFloat"></div>
+        <div class="start-content">
+          <div class="start-brand">
+            <span class="start-badge"><svg class="ic"><use href="#i-sprout"/></svg>TYCOON</span>
+            <h1>Yeşil Vadi<br><em>Çiftliği</em></h1>
+            <p>Kendi çiftliğini kur, büyüt ve zengin ol.</p>
+          </div>
+          <div class="start-actions">
+            <button class="start-btn" id="startContinue" data-action="start">
+              <span id="startContinueLabel">Oyna</span>
+              <small id="startContinueSub">Yeni bir çiftlik seni bekliyor</small>
+            </button>
+            <div class="start-row">
+              <button class="start-ghost" id="startNew" data-action="newgame">Yeni Oyun</button>
+              <button class="start-icon" data-action="daily" id="startDaily" aria-label="Günün ödülü"><svg class="ic"><use href="#i-gift"/></svg><span class="dot" id="startDailyDot"></span></button>
+              <button class="start-icon" data-action="help" aria-label="Nasıl oynanır"><svg class="ic"><use href="#i-help"/></svg></button>
+              <button class="start-icon" data-action="sound" id="startSound" aria-label="Ses"><svg class="ic"><use href="#i-sound"/></svg></button>
+            </div>
+            <p class="start-foot"><span id="startStats">Gün 1 · Seviye 1 · 2.500 ₺</span><span>v2.1 · Çevrimdışı</span></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

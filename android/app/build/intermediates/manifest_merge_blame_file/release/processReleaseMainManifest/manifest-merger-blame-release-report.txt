@@ -1,0 +1,96 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.greenvalley.farm"
+4    android:versionCode="3"
+5    android:versionName="2.1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+11-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:4:5-77
+11-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:4:22-74
+12    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+12-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:5:5-81
+12-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:5:22-78
+13    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+13-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:6:5-79
+13-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:6:22-76
+14    <uses-permission android:name="android.permission.VIBRATE" />
+14-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:7:5-66
+14-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:7:22-63
+15
+16    <application
+16-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:9:5-46:19
+17        android:allowBackup="true"
+17-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:10:9-35
+18        android:extractNativeLibs="false"
+19        android:hardwareAccelerated="true"
+19-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:11:9-43
+20        android:icon="@mipmap/ic_launcher"
+20-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:12:9-43
+21        android:label="@string/app_name"
+21-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:13:9-41
+22        android:roundIcon="@mipmap/ic_launcher"
+22-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:14:9-48
+23        android:supportsRtl="true"
+23-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:15:9-35
+24        android:theme="@style/Theme.GreenValleyFarm" >
+24-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:16:9-53
+25        <activity
+25-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:18:9-29:20
+26            android:name="com.greenvalley.farm.MainActivity"
+26-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:19:13-41
+27            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout|smallestScreenSize"
+27-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:20:13-106
+28            android:exported="true"
+28-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:21:13-36
+29            android:launchMode="singleTop"
+29-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:22:13-43
+30            android:screenOrientation="portrait"
+30-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:23:13-49
+31            android:windowSoftInputMode="adjustResize" >
+31-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:24:13-55
+32            <intent-filter>
+32-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:25:13-28:29
+33                <action android:name="android.intent.action.MAIN" />
+33-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:26:17-69
+33-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:26:25-66
+34
+35                <category android:name="android.intent.category.LAUNCHER" />
+35-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:27:17-77
+35-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:27:27-74
+36            </intent-filter>
+37        </activity>
+38
+39        <receiver
+39-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:31:9-33:40
+40            android:name="com.greenvalley.farm.FarmAlarmReceiver"
+40-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:32:13-46
+41            android:exported="false" />
+41-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:33:13-37
+42        <receiver
+42-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:35:9-44:20
+43            android:name="com.greenvalley.farm.BootReceiver"
+43-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:36:13-41
+44            android:enabled="true"
+44-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:37:13-35
+45            android:exported="true" >
+45-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:38:13-36
+46            <intent-filter>
+46-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:39:13-43:29
+47                <action android:name="android.intent.action.BOOT_COMPLETED" />
+47-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:40:17-79
+47-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:40:25-76
+48                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+48-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:41:17-84
+48-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:41:25-81
+49                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+49-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:42:17-82
+49-->/data/data/com.termux/files/home/green_valley_farm_android/app/src/main/AndroidManifest.xml:42:25-79
+50            </intent-filter>
+51        </receiver>
+52    </application>
+53
+54</manifest>
