@@ -850,6 +850,8 @@ function showScreen(id, tab, opts){
   if (id === 'scr-market') renderMarket();
   if (id === 'scr-profile') renderProfile();
   if (id === 'scr-analytics') renderReports();
+  if (id === 'scr-community') renderCommunity();
+  if (id === 'scr-bank') renderBankScreen();
   renderStatus();
   syncTopbarScrim();
 }
@@ -867,6 +869,8 @@ function showTab(key){
   if (key === 'market'){ showScreen('scr-market','market'); return; }
   if (key === 'profile'){ showScreen('scr-profile','profile'); return; }
   if (key === 'reports'){ showScreen('scr-analytics','profile'); return; }
+  if (key === 'bank'){ showScreen('scr-bank','bank'); return; }
+  if (key === 'community'){ showScreen('scr-community','community'); return; }
 }
 function centerChip(zone){
   const chips = $('#farmChips'), chip = $('#farmChips .chip[data-zone="' + zone + '"]');
@@ -1257,6 +1261,25 @@ function renderHome(live){
   updateBell();
 }
 function renderHomeLive(){ renderHome(true); }
+
+function renderCommunity(){
+  const content = $('#communityContent');
+  if (!content) return;
+  const activeBtn = $('.com-tab-btn.active');
+  const tab = activeBtn ? activeBtn.dataset.comTab : 'friends';
+  if (tab === 'friends') content.innerHTML = G.renderFriends(S);
+  else if (tab === 'leaderboard') content.innerHTML = G.renderLeaderboard(S);
+  else if (tab === 'events') content.innerHTML = G.renderEvents(S);
+  else if (tab === 'features') content.innerHTML = G.renderOnlineFeatures(S);
+}
+function renderCommunityLive(){ renderCommunity(); }
+
+function renderBankScreen(){
+  const c = $('#bankContent');
+  if (!c) return;
+  c.innerHTML = G.renderBank(S);
+}
+function renderBankScreenLive(){ renderBankScreen(); }
 
 /* ---------------- başlangıç ekranı ---------------- */
 function renderStart(){
@@ -1956,6 +1979,176 @@ function autoWater(){
   toast(dry.length + ' tarla sulandı · ' + G.fmt(need) + ' L');
   feedback('water');
 }
+
+/* ================= BANK ACTIONS ================= */
+function actOpenBank(){
+  showScreen('scr-bank', 'bank');
+  feedback('tap');
+}
+function actTakeLoan(){
+  const amount = Number($('#loanAmount')?.value || 0);
+  const maxLoan = Math.max(1000, Math.floor(S.money * 5));
+  if (amount < 1000 || amount > maxLoan){
+    toast('Miktar 1.000 - ' + G.money(maxLoan) + ' aralığında olmalı.');
+    feedback('error');
+    return;
+  }
+  const principal = Math.floor(amount);
+  const dailyInterest = Math.floor(principal * 0.02);
+  const dueDay = S.day + 30;
+  S.credit = { active:true, principal, interest:0, dueDay, totalPaid:0, lastInterestDay:S.day };
+  S.money += principal;
+  S.stats.earned += principal;
+  saveState(); renderAll(true);
+  toast('Kredi onaylandı! ' + G.money(principal) + ' hesabınıza eklendi.');
+  feedback('success');
+}
+function repayLoan(amount){
+  const c = S.credit;
+  const remaining = c.principal + c.interest - c.totalPaid;
+  const payAmount = Math.min(amount || remaining, remaining, S.money);
+  if (payAmount <= 0){ toast('Ödenecek tutar yok.'); feedback('error'); return; }
+  S.money -= payAmount;
+  c.totalPaid += payAmount;
+  if (c.totalPaid >= c.principal + c.interest){
+    c.active = false; c.principal = 0; c.interest = 0; c.dueDay = 0; c.totalPaid = 0; c.lastInterestDay = 0;
+    toast('Kredi tamamen ödendi! Tebrikler.');
+    feedback('success');
+  } else {
+    toast('Kredi ödemesi yapıldı: ' + G.money(payAmount));
+    feedback('success');
+  }
+  saveState(); renderAll(true);
+}
+function actRepayLoan(){
+  const c = S.credit;
+  if (!c.active){ toast('Aktif kredi yok.'); feedback('error'); return; }
+  const remaining = c.principal + c.interest - c.totalPaid;
+  const amount = Number($('#loanAmount')?.value || remaining);
+  repayLoan(amount);
+}
+function actRepayAll(){
+  const c = S.credit;
+  if (!c.active){ toast('Aktif kredi yok.'); feedback('error'); return; }
+  const remaining = c.principal + c.interest - c.totalPaid;
+  if (S.money < remaining){
+    toast('Tüm borcu ödemek için yeterli bakiyeniz yok. (Gereken: ' + G.money(remaining) + ')');
+    feedback('error');
+    return;
+  }
+  repayLoan(remaining);
+}
+
+/* ================= SOCIAL ACTIONS ================= */
+function actFriendVisit(friendId){
+  const friend = G.FRIENDS.find(f => f.id === friendId);
+  if (!friend) return;
+  if (!friend.online){
+    toast(friend.name + ' çevrimiçi değil. Hediye gönderebilirsiniz.');
+    feedback('error');
+    return;
+  }
+  const reward = G.FRIEND_INTERACTIONS.visit;
+  S.xp += reward.xp;
+  S.money += reward.money;
+  toast(friend.name + ' çiftliğini ziyaret ettiniz! +' + reward.xp + ' XP, +' + G.money(reward.money));
+  feedback('success');
+  G.renderFriends(S);
+}
+function actFriendGift(friendId){
+  const friend = G.FRIENDS.find(f => f.id === friendId);
+  if (!friend) return;
+  const reward = G.FRIEND_INTERACTIONS.gift;
+  S.xp += reward.xp;
+  S.money += reward.money;
+  toast('Hediye gönderildi: ' + friend.name + ' · +' + reward.xp + ' XP, +' + G.money(reward.money));
+  feedback('success');
+  G.renderFriends(S);
+}
+function actFriendHelp(friendId){
+  const friend = G.FRIENDS.find(f => f.id === friendId);
+  if (!friend) return;
+  if (!friend.online){
+    toast(friend.name + ' çevrimiçi değil, yardım edemezsiniz.');
+    feedback('error');
+    return;
+  }
+  const reward = G.FRIEND_INTERACTIONS.help;
+  S.xp += reward.xp;
+  S.money += reward.money;
+  toast(friend.name + ' çiftliğinde yardım ettiniz! +' + reward.xp + ' XP, +' + G.money(reward.money));
+  feedback('success');
+  G.renderFriends(S);
+}
+function actFriendTrade(friendId){
+  const friend = G.FRIENDS.find(f => f.id === friendId);
+  if (!friend) return;
+  if (!friend.online){
+    toast(friend.name + ' çevrimiçi değil, ticaret yapamazsınız.');
+    feedback('error');
+    return;
+  }
+  const reward = G.FRIEND_INTERACTIONS.trade;
+  S.xp += reward.xp;
+  S.money += reward.money;
+  toast(friend.name + ' ile ticaret yaptınız! +' + reward.xp + ' XP, +' + G.money(reward.money));
+  feedback('success');
+  G.renderFriends(S);
+}
+function actAddFriend(){
+  const code = prompt('Arkadaş kodunu girin (örn: FRIEND_12345):');
+  if (!code) return;
+  const newFriend = {
+    id: 'friend_' + Date.now(),
+    name: 'Yeni Arkadaş',
+    level: Math.floor(Math.random() * 20) + 5,
+    farm: 'Yeni Çiftlik',
+    avatar: ['👨‍🌾','👩‍🌾','🧑‍🌾'][Math.floor(Math.random()*3)],
+    lastVisit: 'Az önce',
+    online: true,
+    gifts: ['seed','fertilizer','water'][Math.floor(Math.random()*3)]
+  };
+  G.FRIENDS.push(newFriend);
+  S.social.friends.push({id: newFriend.id, lastInteraction: 0});
+  toast('Yeni arkadaş eklendi: ' + newFriend.name + ' (Seviye ' + newFriend.level + ')');
+  feedback('success');
+  if (currentScreen === 'scr-community'){
+    const content = $('#communityContent');
+    const activeBtn = $('.com-tab-btn.active');
+    if (activeBtn && activeBtn.dataset.comTab === 'friends' && content){
+      content.innerHTML = G.renderFriends(S);
+    }
+  }
+}
+function switchOnlineTab(tab){
+  $$('.online-tabs .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.onlineTab === tab));
+  const content = $('#onlineContent');
+  if (!content) return;
+  if (tab === 'leaderboard') content.innerHTML = G.renderLeaderboard(S);
+  else if (tab === 'friends') content.innerHTML = G.renderFriends(S);
+  else if (tab === 'events') content.innerHTML = G.renderEvents(S);
+  else if (tab === 'features') content.innerHTML = G.renderOnlineFeatures(S);
+  feedback('tap');
+}
+function actOnlineFeature(feature){
+  const f = G.ONLINE_FEATURES[feature];
+  if (!f || f.unlocked){
+    toast(f ? f.name + ' zaten açık.' : 'Özellik bulunamadı.');
+    return;
+  }
+  if (S.level < f.reqLevel){
+    toast(f.name + ' için seviye ' + f.reqLevel + ' gerekli. (Siz: ' + S.level + ')');
+    feedback('error');
+    return;
+  }
+  f.unlocked = true;
+  toast(f.name + ' özelliği açıldı!');
+  feedback('success');
+  if (currentScreen === 'scr-online'){
+    const content = $('#onlineContent');
+    if (content) content.innerHTML = G.renderOnlineFeatures(S);
+  }
+}
 function selectCat(cat){
   if (!ANIMALS[cat]) return;
   S.selectedCat = cat;
@@ -1976,6 +2169,8 @@ function routeFromHash(){
   if (h === 'market'){ showTab('market'); return; }
   if (h === 'profile'){ showTab('profile'); return; }
   if (h === 'reports' || h === 'analytics'){ showTab('reports'); return; }
+  if (h === 'bank'){ showTab('bank'); return; }
+  if (h === 'community'){ showTab('community'); return; }
   if (h.indexOf('farm-') === 0){ showTab('farm'); selectZone(h.slice(5), { animate:false, silent:true }); return; }
   if (h.indexOf('detail-') === 0){ showTab('farm'); openDetail(h.slice(7)); return; }
   if (h.indexOf('map-') === 0){ showTab('farm'); openMap(h.slice(4)); return; }
@@ -1994,6 +2189,8 @@ function renderAll(force){
   else if (currentScreen === 'scr-market') renderMarket();
   else if (currentScreen === 'scr-profile') renderProfile();
   else if (currentScreen === 'scr-analytics') renderReports();
+  else if (currentScreen === 'scr-community') renderCommunity();
+  else if (currentScreen === 'scr-bank') renderBankScreen();
   renderMapOverlay(force);
 }
 function tickUI(){
@@ -2006,6 +2203,8 @@ function tickUI(){
   else if (currentScreen === 'scr-factory') renderFactoryLive();
   else if (currentScreen === 'scr-market') renderMarketLive();
   else if (currentScreen === 'scr-profile') renderProfileLive();
+  else if (currentScreen === 'scr-community') renderCommunityLive();
+  else if (currentScreen === 'scr-bank') renderBankScreenLive();
   updateBell();
 }
 function tick(){
@@ -2094,6 +2293,22 @@ function bind(){
     feedback('tap');
     e.stopPropagation();
   });
+  const communityTabsContainer = $('#communityContent')?.parentElement?.querySelector('.community-tabs');
+  if (communityTabsContainer) {
+    communityTabsContainer.addEventListener('click', e => {
+      const btn = e.target.closest('.com-tab-btn');
+      if (btn) {
+        const tab = btn.dataset.comTab;
+        const content = $('#communityContent');
+        $$('.com-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.comTab === tab));
+        if (tab === 'friends') content.innerHTML = G.renderFriends(S);
+        else if (tab === 'leaderboard') content.innerHTML = G.renderLeaderboard(S);
+        else if (tab === 'events') content.innerHTML = G.renderEvents(S);
+        else if (tab === 'features') content.innerHTML = G.renderOnlineFeatures(S);
+        feedback('tap');
+      }
+    });
+  }
   const scrim = $('#sheetScrim');
   if (scrim) scrim.addEventListener('click', e => { if (e.target === scrim) closeSheet(); });
   const confirm = $('#confirm');
@@ -2172,6 +2387,16 @@ function bind(){
         case 'claim-quest': claimQuest(actionEl.dataset.quest); break;
         case 'claim-daily': claimDaily(); break;
         case 'mark-read': markAllRead(); break;
+        case 'friend-visit': actFriendVisit(actionEl.dataset.friend); break;
+        case 'friend-gift': actFriendGift(actionEl.dataset.friend); break;
+        case 'friend-help': actFriendHelp(actionEl.dataset.friend); break;
+        case 'friend-trade': actFriendTrade(actionEl.dataset.friend); break;
+        case 'add-friend': actAddFriend(); break;
+        case 'take-loan': actTakeLoan(); break;
+        case 'repay-loan': actRepayLoan(); break;
+        case 'repay-all': actRepayAll(); break;
+        case 'online-tab': switchOnlineTab(actionEl.dataset.onlineTab); break;
+        case 'online-feature': actOnlineFeature(actionEl.dataset.onlineFeature); break;
       }
       return;
     }
@@ -2231,7 +2456,7 @@ function runSelftest(){
   const bad = html => /undefined|NaN/.test(html);
   const t = G.makeDefaultState();
   try {
-    add('varsayılan durum', t.version === 2 && t.money === 2500 && t.day === 1);
+    add('varsayılan durum', t.version === 3 && t.money === 2500 && t.day === 1, 'v' + t.version);
     add('görev üretimi', G.makeQuests(3).length === 3);
     add('sipariş üretimi', G.makeOrders(2).length === 2);
     add('yükseltme maliyeti', G.zoneUpgradeCost('house',1) === 1500, G.zoneUpgradeCost('house',1));
@@ -2325,6 +2550,28 @@ function runSelftest(){
     add('fabrika üretimi tamamlandı', !!job && job.done && (S.inventory.packagedMilk || 0) > craftedBefore, 'süt=' + S.inventory.packagedMilk);
     const np = buildNativePlan(), nowNp = Date.now();
     add('bildirim planı', np.length > 0 && np.every(e => e.id && e.title && e.text && e.icon && e.at > nowNp && e.at <= nowNp + 72*3600*1000), np.length + ' bildirim');
+
+    // Social features tests
+    add('friends data loaded', G.FRIENDS.length === 5);
+    add('leaderboard data loaded', G.LEADERBOARD.length === 10);
+    add('events data loaded', G.EVENTS.length === 5);
+    add('online features data loaded', Object.keys(G.ONLINE_FEATURES).length === 6);
+    add('friend interactions defined', Object.keys(G.FRIEND_INTERACTIONS).length === 4);
+    const friendsHtml = G.renderFriends(S);
+    add('friends render', friendsHtml && friendsHtml.includes('Arkadaşlar'));
+    const lbHtml = G.renderLeaderboard(S);
+    add('leaderboard render', lbHtml && lbHtml.includes('Liderlik'));
+    const eventsHtml = G.renderEvents(S);
+    add('events render', eventsHtml && eventsHtml.includes('Etkinlikler'));
+    const onlineHtml = G.renderOnline(S);
+    add('online render', onlineHtml && onlineHtml.includes('leaderboard-list'));
+    const featHtml = G.renderOnlineFeatures(S);
+    add('online özellikler render', featHtml && featHtml.includes('feature-card'));
+    const bankHtml = G.renderBank(S);
+    add('banka render', bankHtml && (bankHtml.includes('Kredi Başvurusu') || bankHtml.includes('Aktif Kredi')));
+    const comHtml = G.renderFriends(S);
+    add('arkadaş ekle kartı', comHtml && comHtml.includes('Arkadaş Ekle'));
+
     S = backup;
     add('durum geri yüklendi', S === backup);
   } catch(err){

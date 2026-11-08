@@ -790,3 +790,156 @@ body.app-paused .rain-drop,body.app-paused .snow-flake,body.app-paused .sun-mote
   .setup-card{animation:none}
 }
 
+/* ================= BANK STYLES ================= */
+.bank{padding-bottom:126px}
+.bank .subhead{padding-bottom:8px}
+.bank-status{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:#EAF3E3;color:#3E7048;font-size:9px;font-weight:600;line-height:1.45}
+.bank-status .ic{width:15px;height:15px;flex:0 0 auto;margin-top:1px}
+.bank-content{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+.bank-card{padding:16px;border-radius:20px;background:var(--card);box-shadow:var(--shadow)}
+.bank-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.bank-card-header h3{font-size:15px;font-weight:800;color:#1B1D19}
+.bank-card-header .badge{font-size:10px;padding:4px 8px;border-radius:999px;font-weight:700}
+.bank-card-header .badge.active{background:#E9F3E4;color:#3F7C4D}
+.bank-card-header .badge.warning{background:#FBF0DA;color:#A06E18}
+.bank-card-header .badge.danger{background:#FBE8E3;color:#B64B35}
+.bank-info-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F2EDE2}
+.bank-info-row:last-child{border-bottom:none}
+.bank-info-label{font-size:12px;color:#7A786F}
+.bank-info-value{font-size:14px;font-weight:800;color:#1B1D19}
+.bank-info-value.positive{color:#3F8B52}
+.bank-info-value.negative{color:#B64B35}
+.bank-progress{height:6px;border-radius:3px;background:#EDE8DC;margin-top:8px;overflow:hidden}
+.bank-progress i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#7DBD61,#3E8B55);transition:width .6s var(--ease)}
+.bank-actions{display:flex;gap:8px;margin-top:12px}
+.bank-actions .btn{flex:1}
+.bank-actions .btn.small{flex:0 0 auto}
+.bank-loan-form{display:flex;flex-direction:column;gap:12px}
+.bank-loan-form .input-group{display:flex;flex-direction:column;gap:4px}
+.bank-loan-form label{font-size:11px;font-weight:700;color:#7A786F}
+.bank-loan-form input{height:44px;border-radius:12px;border:1.5px solid #EAE3D5;background:#FAF7F0;padding:0 12px;font-family:inherit;font-size:14px;font-weight:600;color:#242820;outline:0}
+.bank-loan-form input:focus{border-color:#78A87A;box-shadow:0 0 0 3px rgba(115,164,114,.14);background:#FFFDF8}
+.bank-loan-form .hint{font-size:10px;color:#8B8981}
+.bank-repay-btn{margin-top:8px}
+
+/* ================= SOCIAL/ONLINE STYLES ================= */
+.friends-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.friends-header h3{font-size:16px;font-weight:800;color:#1B1D19;margin:0}
+.friends-header .badge{font-size:10px;padding:3px 8px;border-radius:999px;font-weight:700}
+.friends-header .badge.online{background:#E9F3E4;color:#3F7C4D}
+.friends-content{display:flex;flex-direction:column;gap:10px}
+.friend-card{
+  display:flex;align-items:center;gap:12px;padding:14px;border-radius:18px;
+  background:var(--card);box-shadow:var(--shadow);position:relative
+}
+.friend-card.online::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:4px;height:4px;background:#3F8B52;border-radius:50%;
+  animation:pulse 2s infinite
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.friend-avatar{width:48px;height:48px;border-radius:14px;background:#EAF4E7;display:grid;place-items:center;font-size:24px;flex:0 0 auto}
+.friend-info{flex:1;min-width:0}
+.friend-name{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:800;letter-spacing:-.2px}
+.level-badge{font-size:10px;font-weight:700;color:#6D8A5C;background:#E9F3E4;padding:2px 6px;border-radius:999px}
+.friend-farm{font-size:11px;color:#8B8981;margin-top:2px;font-weight:500}
+.friend-status{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:10px;color:#7A786F}
+.status-dot{width:7px;height:7px;border-radius:50%}
+.status-dot.online{background:#3F8B52;box-shadow:0 0 6px #3F8B52}
+.status-dot.offline{background:#C4C2B9}
+.friend-actions{display:flex;gap:6px;flex-wrap:wrap}
+.friend-actions .btn{font-size:11px;padding:6px 10px}
+
+.leaderboard-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.leaderboard-header h3{font-size:16px;font-weight:800;color:#1B1D19;margin:0}
+.player-rank-card{background:#F5F1E8;padding:10px 14px;border-radius:14px;display:flex;align-items:center;gap:8px}
+.rank-label{font-size:10.5px;color:#7A786F;font-weight:600}
+.player-rank-card b{font-size:18px;font-weight:800;color:#2C6B42}
+.leaderboard-content{display:flex;flex-direction:column;gap:8px}
+.leaderboard-row{
+  display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;
+  background:var(--card);box-shadow:var(--shadow);transition:transform .18s var(--ease)
+}
+.leaderboard-row:active{transform:scale(.985)}
+.leaderboard-row.you{background:#FCFEF9;border:1.5px solid #3F8350}
+.rank-badge{width:30px;height:30px;border-radius:50%;background:#F5F1E8;display:grid;place-items:center;font-size:12px;font-weight:800;color:#7A786F;flex:0 0 auto}
+.leaderboard-row.you .rank-badge{background:#E9F3E4;color:#3F7C4D}
+.player-avatar{width:36px;height:36px;border-radius:50%;background:#EAF4E7;display:grid;place-items:center;font-size:18px;flex:0 0 auto}
+.player-info{flex:1;min-width:0}
+.player-name{display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:800;letter-spacing:-.2px}
+.you-badge{font-size:9px;font-weight:700;color:#3F7C4D;background:#E9F3E4;padding:1px 6px;border-radius:999px}
+.player-farm{font-size:10px;color:#8B8981;margin-top:1px;font-weight:500}
+.player-stats{display:flex;gap:16px;text-align:right;flex:0 0 auto}
+.player-stats .stat{display:flex;flex-direction:column;gap:1px}
+.player-stats b{font-size:12.5px;font-weight:800;color:#1B1D19}
+.player-stats small{font-size:8.5px;color:#8B8981;font-weight:600;letter-spacing:.3px;text-transform:uppercase}
+
+.events-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.events-header h3{font-size:16px;font-weight:800;color:#1B1D19;margin:0}
+.events-header .badge{font-size:10px;padding:3px 8px;border-radius:999px;font-weight:700;background:#E9F3E4;color:#3F7C4D}
+.events-content{display:flex;flex-direction:column;gap:16px}
+.events-active h4,.events-upcoming h4{font-size:12px;font-weight:700;color:#7A786F;margin:0 0 10px;display:flex;align-items:center;gap:6px}
+.event-card{
+  display:flex;align-items:center;gap:12px;padding:14px;border-radius:18px;
+  background:var(--card);box-shadow:var(--shadow)
+}
+.event-card.active{border-left:4px solid #F5C34B;background:#FFFDF8}
+.event-card.upcoming{border-left:4px solid #7DBD61}
+.event-icon{width:42px;height:42px;border-radius:12px;background:#F5F1E8;display:grid;place-items:center;font-size:20px;flex:0 0 auto}
+.event-info{flex:1;min-width:0}
+.event-info h4{font-size:13.5px;font-weight:800;letter-spacing:-.2px;margin:0 0 3px}
+.event-info p{font-size:11px;color:#7A786F;margin:0 0 6px;line-height:1.4}
+.event-reward{font-size:10px;font-weight:700;color:#C08A32}
+.event-time{font-size:10.5px;font-weight:700;color:#F5C34B;flex:0 0 auto;white-space:nowrap}
+
+.online-tabs{display:flex;gap:6px;margin:16px 0;padding:0 2px;overflow-x:auto}
+.tab-btn{
+  flex:0 0 auto;padding:8px 14px;border-radius:999px;font-size:11px;font-weight:700;color:#7A786F;
+  background:#F5F1E8;white-space:nowrap;display:flex;align-items:center;gap:6px;
+  transition:all .25s var(--ease)
+}
+.tab-btn:active{transform:scale(.96)}
+.tab-btn.active{background:#3F8350;color:#FFFDF8}
+.tab-btn .ic{width:16px;height:16px}
+.online-content{display:flex;flex-direction:column;gap:12px}
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feature-card{
+  padding:14px;border-radius:18px;background:var(--card);box-shadow:var(--shadow);
+  text-align:center;transition:transform .18s var(--ease)
+}
+.feature-card:active{transform:scale(.98)}
+.feature-card.locked{opacity:.65;background:#FAF7F0}
+.feature-icon{font-size:28px;margin-bottom:8px;display:block}
+.feature-card h4{font-size:13px;font-weight:800;letter-spacing:-.2px;margin:0 0 6px}
+.feature-card p{font-size:10px;color:#7A786F;margin:0 0 10px;line-height:1.4}
+.lock-badge{font-size:9px;font-weight:700;color:#A06E18;background:#FBF0DA;padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:8px}
+.feature-card .btn{width:100%}
+
+.friends-count{font-size:11px;color:#7A786F;font-weight:600}
+.friends-count b{color:#3F8350}
+.player-rank-card b{font-size:18px;font-weight:800;color:#2C6B42}
+.events-badge{font-size:11px;color:#F5C34B;font-weight:700}
+.events-badge b{color:#F5C34B}
+
+/* ================= COMMUNITY TAB STYLES ================= */
+.community-tabs{display:flex;gap:4px;margin:16px 0;padding:0 2px;overflow-x:auto;background:#F5F1E8;border-radius:14px;padding:4px}
+.com-tab-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 6px;
+  border-radius:10px;font-size:9.5px;font-weight:700;color:#7A786F;
+  background:transparent;white-space:nowrap;transition:all .25s var(--ease);min-width:0;
+}
+.com-tab-btn .ic{width:18px;height:18px;transition:transform .2s var(--ease)}
+.com-tab-btn span{font-size:8.5px;letter-spacing:.1px}
+.com-tab-btn:active{transform:scale(.95)}
+.com-tab-btn.active{background:#3F8350;color:#FFFDF8}
+.com-tab-btn.active .ic{transform:translateY(-1px)}
+.community-content{display:flex;flex-direction:column;gap:12px}
+
+/* Bank icon fix */
+.bank-card-header h3{display:flex;align-items:center;gap:8px}
+.bank-card-header h3::before{content:'';width:20px;height:20px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232C6B42' stroke-width='1.6'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M9 9h6M9 13h6M9 17h6' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;flex:0 0 auto}
+
+/* Bank screen improvements */
+.bank .subhead{padding-bottom:8px}
+.bank-content{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+

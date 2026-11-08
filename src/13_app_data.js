@@ -491,7 +491,7 @@ function makeDefaultState() {
   const factories = {};
   FACTORY_KEYS.forEach(id => { factories[id] = { unlocked:false, slots:1, jobs:[] }; });
   return {
-    version: 2,
+    version: 3,
     money: 2500,
     level: 1,
     xp: 0,
@@ -556,7 +556,7 @@ function makeDefaultState() {
 }
 function mergeState(raw) {
   const base = makeDefaultState();
-  if (!raw || typeof raw !== 'object' || raw.version !== 2) return base;
+  if (!raw || typeof raw !== 'object' || raw.version !== 3) return base;
   const S = Object.assign(base, raw);
   S.profile = Object.assign(base.profile, raw.profile || {});
   if (!raw.profile || typeof raw.profile.onboarded !== 'boolean') S.profile.onboarded = false;
@@ -600,6 +600,8 @@ function mergeState(raw) {
   S.day = Math.max(1, S.day || 1);
   if (!S.weather || !WEATHER[S.weather]) S.weather = 'sunny';
   if (!S.forecast || !WEATHER[S.forecast]) S.forecast = 'cloudy';
+  S.credit = Object.assign({ active:false, principal:0, interest:0, dueDay:0, totalPaid:0, lastInterestDay:0 }, raw.credit || {});
+  S.social = Object.assign(base.social, raw.social || {});
   return S;
 }
 
@@ -1180,6 +1182,244 @@ function achievementRows(S) {
   }).join('');
 }
 
+/* ================= ONLINE/SOCIAL FEATURES ================= */
+const FRIENDS = [
+  {id:'friend_1', name:'Ahmet Çiftçi', level:12, farm:'Güneşli Çiftlik', avatar:'👨‍🌾', lastVisit:'2 saat önce', online:true, gifts:['seed','fertilizer']},
+  {id:'friend_2', name:'Ayşe Yıldız', level:8, farm:'Yeşil Bahçe', avatar:'👩‍🌾', lastVisit:'5 saat önce', online:false, gifts:['water']},
+  {id:'friend_3', name:'Mehmet Demir', level:15, farm:'Demir Çiftliği', avatar:'👨‍🌾', lastVisit:'1 gün önce', online:true, gifts:['fertilizer','seed']},
+  {id:'friend_4', name:'Fatma Kaya', level:10, farm:'Kaya Çiftliği', avatar:'👩‍🌾', lastVisit:'3 saat önce', online:true, gifts:['water','fertilizer']},
+  {id:'friend_5', name:'Ali Vural', level:22, farm:'Vural Farm', avatar:'👨‍🌾', lastVisit:'30 dk önce', online:true, gifts:['seed','water','fertilizer']},
+];
+
+const LEADERBOARD = [
+  {rank:1, name:'MasterFarmer', level:50, money:1250000, farm:'Altın Vadisi', avatar:'🏆'},
+  {rank:2, name:'GreenThumb', level:45, money:980000, farm:'Yeşil Vadi', avatar:'🥈'},
+  {rank:3, name:'FarmMaster', level:42, money:875000, farm:'Yeşil Vadisi', avatar:'🥉'},
+  {rank:4, name:'CropKing', level:38, money:720000, farm:'Mahsul Krallığı', avatar:'👑'},
+  {rank:5, name:'FarmPro', level:35, money:650000, farm:'Pro Çiftlik', avatar:'⭐'},
+  {rank:6, name:'HarvestHero', level:32, money:580000, farm:'Hasat Kahramanı', avatar:'🌾'},
+  {rank:7, name:'CropMaster', level:30, money:520000, farm:'Mahsul Ustası', avatar:'🌱'},
+  {rank:8, name:'GreenFarmer', level:28, money:480000, farm:'Yeşil Çiftçi', avatar:'🌿'},
+  {rank:9, name:'SeedSower', level:25, money:410000, farm:'Tohum Ekimci', avatar:'🌱'},
+  {rank:10, name:'FarmRookie', level:22, money:350000, farm:'Yeni Çiftlik', avatar:'🌿'},
+];
+
+const EVENTS = [
+  {id:'harvest_festival', name:'Hasat Festivali', desc:'Tüm hasatlar %50 daha fazla verir!', duration:3, reward:{money:5000, xp:1000}, icon:'🎉', active:false},
+  {id:'rain_week', name:'Yağmurlu Hafta', desc:'Su kullanımı %50 azalır, hasat %20 artar', duration:7, reward:{water:5000, xp:500}, icon:'🌧️', active:false},
+  {id:'double_xp', name:'Çift XP Haftası', desc:'Tüm aktivitelerden çift XP kazanırsınız', duration:3, reward:{xp:2000}, icon:'⚡', active:false},
+  {id:'market_boom', name:'Pazar Boom', desc:'Tüm satış fiyatları %30 artar', duration:2, reward:{money:10000}, icon:'📈', active:false},
+  {id:'animal_joy', name:'Hayvan Şenliği', desc:'Hayvan sağlığı %20 artar, üretim %25 artar', duration:4, reward:{feed:1000, xp:800}, icon:'🐄', active:false},
+];
+
+const SOCIAL_ACTIONS = [
+  {id:'visit', name:'Ziyaret Et', desc:'Arkadaş çiftliğini ziyaret et', reward:{xp:50, money:200}, icon:'👋'},
+  {id:'gift', name:'Hediye Gönder', desc:'Arkadaşına hediye gönder', reward:{xp:30, money:100}, icon:'🎁'},
+  {id:'help', name:'Yardım Et', desc:'Arkadaşının çiftliğinde yardım et', reward:{xp:100, money:500}, icon:'🤝'},
+  {id:'trade', name:'Ticaret Yap', desc:'Arkadaşınla ürün ticareti yap', reward:{xp:50, money:300}, icon:'🤝'},
+];
+
+const ONLINE_FEATURES = {
+  leaderboard:{name:'Liderlik Tablosu', desc:'Dünya sıralamasında yerinizi görün', icon:'🏆', unlocked:true},
+  friends:{name:'Arkadaşlar', desc:'Arkadaşlarınızı ziyaret edin, hediye gönderin', icon:'👥', unlocked:true},
+  events:{name:'Etkinlikler', desc:'Aktif etkinliklere katılın, ödül kazanın', icon:'🎪', unlocked:true},
+  coop:{name:'Kooperatif', desc:'Arkadaşlarınızla kooperatif kurun', icon:'🤝', unlocked:false, reqLevel:15},
+  trade:{name:'Global Pazar', desc:'Dünya çapında ticaret yapın', icon:'🌍', unlocked:false, reqLevel:20},
+  chat:{name:'Sohbet', desc:'Arkadaşlarınızla sohbet edin', icon:'💬', unlocked:false, reqLevel:10},
+};
+
+const FRIEND_INTERACTIONS = {
+  visit:{xp:50, money:200, cooldown:3600},
+  gift:{xp:30, money:100, cooldown:7200},
+  help:{xp:100, money:500, cooldown:14400},
+  trade:{xp:50, money:300, cooldown:10800},
+};
+
+function renderFriends(S){
+  const onlineCount = FRIENDS.filter(f => f.online).length;
+  return `
+    <div class="friends-header">
+      <h3>${icon('i-users')} Arkadaşlar <span class="badge">${FRIENDS.length}</span><span class="badge online">${onlineCount} çevrimiçi</span></h3>
+    </div>
+    <div class="friends-list">
+      ${FRIENDS.map(f => `
+        <div class="friend-card ${f.online ? 'online' : 'offline'}" data-friend="${f.id}">
+          <span class="friend-avatar">${f.avatar}</span>
+          <div class="friend-info">
+            <div class="friend-name">${f.name} <span class="level-badge">Seviye ${f.level}</span></div>
+            <div class="friend-farm">${f.farm}</div>
+            <div class="friend-status">
+              <span class="status-dot ${f.online ? 'online' : 'offline'}"></span>
+              <span>${f.online ? 'Çevrimiçi' : 'Son giriş: ' + f.lastVisit}</span>
+            </div>
+          </div>
+          <div class="friend-actions">
+            ${SOCIAL_ACTIONS.map(a => `
+              <button class="btn small ${a.id === 'visit' ? 'primary' : 'ghost'}" 
+                data-action="friend-${a.id}" data-friend="${f.id}" 
+                ${f.online ? '' : a.id !== 'gift' ? 'disabled' : ''}>
+                ${icon(a.id === 'visit' ? 'i-user' : a.id === 'gift' ? 'i-gift' : a.id === 'help' ? 'i-help' : 'i-trade')}
+                ${a.name}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `).join('')}
+      <div class="friend-card add-friend-card">
+        <span class="friend-avatar add-avatar">+</span>
+        <div class="friend-info">
+          <div class="friend-name">Arkadaş Ekle</div>
+          <div class="friend-farm">Kod veya ID ile arkadaş ekle</div>
+        </div>
+        <button class="btn small primary" data-action="add-friend">${icon('i-plus')} Ekle</button>
+      </div>
+    </div>
+  `;
+}
+function renderLeaderboard(S){
+  return `
+    <div class="leaderboard-header">
+      <h3>${icon('i-trophy')} Liderlik Tablosu</h3>
+      <div class="player-rank">Sizin Sıralamanız: #${Math.max(1, Math.floor(1000 / Math.max(1, S.level * 10)))}</div>
+    </div>
+    <div class="leaderboard-list">
+      ${LEADERBOARD.map(p => `
+        <div class="leaderboard-row ${S.profile.name === p.name ? 'you' : ''}" data-rank="${p.rank}">
+          <span class="rank-badge">${p.rank <= 3 ? '🥇🥈🥉'.charAt(p.rank-1) : '#' + p.rank}</span>
+          <span class="player-avatar">${p.avatar}</span>
+          <div class="player-info">
+            <div class="player-name">${p.name} ${p.name === S.profile.name ? '<span class="you-badge">Siz</span>' : ''}</div>
+            <div class="player-farm">${p.farm}</div>
+          </div>
+          <div class="player-stats">
+            <span class="stat"><b>${p.level}</b> seviye</span>
+            <span class="stat"><b>${fmt(p.money)}</b> ₺</span>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+function renderEvents(S){
+  const activeEvents = EVENTS.filter(e => e.active);
+  const upcomingEvents = EVENTS.filter(e => !e.active);
+  return `
+    <div class="events-header">
+      <h3>${icon('i-calendar')} Etkinlikler</h3>
+      <span class="badge">${activeEvents.length} aktif</span>
+    </div>
+    ${activeEvents.length ? `
+      <div class="events-active">
+        <h4>${icon('i-fire')} Aktif Etkinlikler</h4>
+        ${activeEvents.map(e => `
+          <div class="event-card active" data-event="${e.id}">
+            <span class="event-icon">${e.icon}</span>
+            <div class="event-info">
+              <h4>${e.name}</h4>
+              <p>${e.desc}</p>
+              <div class="event-reward">${e.reward.money ? money(e.reward.money) + ' ₺' : ''} ${e.reward.xp ? e.reward.xp + ' XP' : ''} ${e.reward.water ? e.reward.water + ' L su' : ''} ${e.reward.feed ? e.reward.feed + ' kg yem' : ''}</div>
+            </div>
+            <span class="event-time">${e.duration} gün kaldı</span>
+          </div>
+        `).join('')}
+      </div>
+    ` : ''}
+    ${upcomingEvents.length ? `
+      <div class="events-upcoming">
+        <h4>${icon('i-clock')} Yaklaşan Etkinlikler</h4>
+        ${upcomingEvents.map(e => `
+          <div class="event-card upcoming" data-event="${e.id}">
+            <span class="event-icon">${e.icon}</span>
+            <div class="event-info">
+              <h4>${e.name}</h4>
+              <p>${e.desc}</p>
+              <div class="event-reward">${e.reward.money ? money(e.reward.money) + ' ₺' : ''} ${e.reward.xp ? e.reward.xp + ' XP' : ''}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    ` : ''}
+  `;
+}
+function renderOnline(S){
+  return `
+    <div class="online-tabs">
+      <button class="tab-btn active" data-action="online-tab" data-online-tab="leaderboard">${icon('i-trophy')} Liderlik</button>
+      <button class="tab-btn" data-action="online-tab" data-online-tab="friends">${icon('i-users')} Arkadaşlar</button>
+      <button class="tab-btn" data-action="online-tab" data-online-tab="events">${icon('i-calendar')} Etkinlikler</button>
+      <button class="tab-btn" data-action="online-tab" data-online-tab="features">${icon('i-globe')} Özellikler</button>
+    </div>
+    <div class="online-content" id="onlineContent">
+      ${renderLeaderboard(S)}
+    </div>
+  `;
+}
+function renderOnlineFeatures(S){
+  return `
+    <div class="features-grid">
+      ${Object.entries(ONLINE_FEATURES).map(([key, f]) => `
+        <div class="feature-card ${f.unlocked ? '' : 'locked'}" data-feature="${key}">
+          <span class="feature-icon">${f.icon}</span>
+          <h4>${f.name}</h4>
+          <p>${f.desc}</p>
+          ${!f.unlocked ? `<span class="lock-badge">Seviye ${f.reqLevel} gerekli</span>` : `<button class="btn small primary" data-action="online-feature" data-online-feature="${key}">${icon('i-play')} Aç</button>`}
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ================= BANK FUNCTIONS ================= */
+function renderBank(S){
+  const c = S.credit || { active:false, principal:0, interest:0, dueDay:0, totalPaid:0, lastInterestDay:0 };
+  const maxLoan = Math.max(1000, Math.floor(S.money * 5));
+  const interestRate = 0.02;
+  if (!c.active){
+    return `
+      <div class="bank-card">
+        <div class="bank-card-header"><h3>Kredi Başvurusu</h3><span class="badge">Yeni</span></div>
+        <div class="bank-info-row"><span class="bank-info-label">Maksimum Kredi</span><span class="bank-info-value">${money(maxLoan)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Faiz Oranı</span><span class="bank-info-value">%${Math.round(interestRate*100)} / gün</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Vade</span><span class="bank-info-value">30 gün</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Günlük Faiz</span><span class="bank-info-value negative">${money(Math.floor(maxLoan * interestRate))} / gün</span></div>
+      <div class="bank-loan-form">
+        <div class="input-group"><label>Kredi Miktarı (₺)</label><input type="number" id="loanAmount" min="1000" max="${maxLoan}" step="100" placeholder="Örn: 10000"></div>
+        <div class="hint">En fazla ${money(maxLoan)} kredi çekebilirsiniz. Günlük faiz %2. Vade 30 gün.</div>
+      </div>
+      <div class="bank-actions"><button class="btn primary" data-action="take-loan">${icon('i-bank')} Kredi Çek</button></div>
+    </div>
+    `;
+  }
+  const remaining = c.principal + c.interest - c.totalPaid;
+  const daysLeft = Math.max(0, c.dueDay - S.day);
+  const progress = c.principal > 0 ? Math.min(100, (c.totalPaid / (c.principal + c.interest)) * 100) : 0;
+  const dailyInterest = Math.floor(c.principal * 0.02);
+  return `
+    <div class="bank-card">
+      <div class="bank-card-header"><h3>Aktif Kredi</h3><span class="badge ${daysLeft > 0 ? 'active' : 'danger'}">${daysLeft > 0 ? 'Aktif' : 'Gecikmiş'}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Ana Para</span><span class="bank-info-value">${money(c.principal)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Biriken Faiz</span><span class="bank-info-value negative">${money(c.interest)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Toplam Borç</span><span class="bank-info-value negative">${money(c.principal + c.interest)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Ödenen</span><span class="bank-info-value positive">${money(c.totalPaid)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Kalan</span><span class="bank-info-value">${money(remaining)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Vade</span><span class="bank-info-value">${daysLeft > 0 ? daysLeft + ' gün' : 'Geçti'}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Günlük Faiz</span><span class="bank-info-value negative">${money(dailyInterest)} / gün</span></div>
+      <div class="bank-progress"><i style="width:${progress}%"></i></div>
+      <div class="bank-actions">
+        <button class="btn primary" data-action="repay-loan">${icon('i-coin')} Öde (${money(Math.min(remaining, S.money))})</button>
+        <button class="btn ghost small" data-action="repay-all">${icon('i-coin')} Tümünü Öde</button>
+      </div>
+    </div>
+    <div class="bank-card">
+      <div class="bank-card-header"><h3>Kredi Hesaplayıcı</h3></div>
+      <div class="bank-info-row"><span class="bank-info-label">Miktar</span><span class="bank-info-value">${money(maxLoan)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Günlük Faiz</span><span class="bank-info-value">${money(Math.floor(maxLoan * 0.02))}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">30 Gün Toplam Faiz</span><span class="bank-info-value">${money(Math.floor(maxLoan * 0.02 * 30))}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Toplam Geri Ödeme</span><span class="bank-info-value">${money(maxLoan + Math.floor(maxLoan * 0.02 * 30))}</span></div>
+    </div>
+  `;
+}
+
 /* ---------- bildirim / hava / yardım ---------- */
 function notificationRows(S) {
   const list = (S.notifications || []).slice(0, 30);
@@ -1257,6 +1497,8 @@ window.GVF = {
   animalUpgradeCard, cowSheet, trendText, marketRows, supplyRows, orderRows, marketContent,
   factoryCard, factoryContent, factoryRecipeRow, factoryJobRow,
   questRow, questSheet, dailyCard, dailySheet, achievementRows,
-  notificationRows, notificationsSheet, weatherSheet, helpSheet, tutorialSheet
+  notificationRows, notificationsSheet, weatherSheet, helpSheet, tutorialSheet,
+  FRIENDS, LEADERBOARD, EVENTS, SOCIAL_ACTIONS, ONLINE_FEATURES, FRIEND_INTERACTIONS,
+  renderFriends, renderLeaderboard, renderEvents, renderOnline, renderOnlineFeatures, renderBank
 };
 })();

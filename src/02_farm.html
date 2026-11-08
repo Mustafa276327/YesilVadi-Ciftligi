@@ -206,6 +206,36 @@
           </div>
         </section>
 
+        <!-- ================= BANKA ================= -->
+        <section class="screen" id="scr-bank" data-tab="bank">
+          <div class="simple bank">
+            <header class="subhead">
+              <button class="back-btn" data-back="farm" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Banka</h1><p>Kredi ve bankacılık işlemleri</p></div>
+            </header>
+            <div id="bankContent" class="bank-content"></div>
+          </div>
+        </section>
+
+        <!-- ================= TOPLULUK ================= -->
+        <section class="screen" id="scr-community" data-tab="community">
+          <div class="simple community">
+            <header class="subhead">
+              <button class="back-btn" data-back="home" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Topluluk</h1><p>Arkadaşlar, liderlik ve etkinlikler</p></div>
+            </header>
+            <div class="community-tabs">
+              <button class="com-tab-btn active" data-com-tab="friends"><svg class="ic"><use href="#i-users"/></svg><span>Arkadaşlar</span></button>
+              <button class="com-tab-btn" data-com-tab="leaderboard"><svg class="ic"><use href="#i-trophy"/></svg><span>Liderlik</span></button>
+              <button class="com-tab-btn" data-com-tab="events"><svg class="ic"><use href="#i-calendar"/></svg><span>Etkinlikler</span></button>
+              <button class="com-tab-btn" data-com-tab="features"><svg class="ic"><use href="#i-globe"/></svg><span>Özellikler</span></button>
+            </div>
+            <div class="community-content" id="communityContent">
+              <!-- Dynamically rendered -->
+            </div>
+          </div>
+        </section>
+
         <!-- ================= PROFİL ================= -->
         <section class="screen" id="scr-profile" data-tab="profile">
           <div class="simple profile">
@@ -269,6 +299,8 @@
         <button data-nav="livestock" class="tab"><svg class="ic"><use href="#i-cow"/></svg><span>Hayvan</span></button>
         <button data-nav="factory" class="tab"><svg class="ic"><use href="#i-factory"/></svg><span>Fabrikalar</span></button>
         <button data-nav="market" class="tab"><svg class="ic"><use href="#i-tag"/></svg><span>Pazar</span></button>
+        <button data-nav="bank" class="tab"><svg class="ic"><use href="#i-bank"/></svg><span>Banka</span></button>
+        <button data-nav="community" class="tab"><svg class="ic"><use href="#i-users"/></svg><span>Topluluk</span></button>
         <button data-nav="profile" class="tab"><svg class="ic"><use href="#i-user"/></svg><span>Profil</span></button>
       </nav>
 

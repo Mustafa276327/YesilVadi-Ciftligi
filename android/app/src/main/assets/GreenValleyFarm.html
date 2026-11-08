@@ -1438,6 +1438,159 @@ body.app-paused .rain-drop,body.app-paused .snow-flake,body.app-paused .sun-mote
   .setup-card{animation:none}
 }
 
+/* ================= BANK STYLES ================= */
+.bank{padding-bottom:126px}
+.bank .subhead{padding-bottom:8px}
+.bank-status{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:#EAF3E3;color:#3E7048;font-size:9px;font-weight:600;line-height:1.45}
+.bank-status .ic{width:15px;height:15px;flex:0 0 auto;margin-top:1px}
+.bank-content{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+.bank-card{padding:16px;border-radius:20px;background:var(--card);box-shadow:var(--shadow)}
+.bank-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.bank-card-header h3{font-size:15px;font-weight:800;color:#1B1D19}
+.bank-card-header .badge{font-size:10px;padding:4px 8px;border-radius:999px;font-weight:700}
+.bank-card-header .badge.active{background:#E9F3E4;color:#3F7C4D}
+.bank-card-header .badge.warning{background:#FBF0DA;color:#A06E18}
+.bank-card-header .badge.danger{background:#FBE8E3;color:#B64B35}
+.bank-info-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F2EDE2}
+.bank-info-row:last-child{border-bottom:none}
+.bank-info-label{font-size:12px;color:#7A786F}
+.bank-info-value{font-size:14px;font-weight:800;color:#1B1D19}
+.bank-info-value.positive{color:#3F8B52}
+.bank-info-value.negative{color:#B64B35}
+.bank-progress{height:6px;border-radius:3px;background:#EDE8DC;margin-top:8px;overflow:hidden}
+.bank-progress i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#7DBD61,#3E8B55);transition:width .6s var(--ease)}
+.bank-actions{display:flex;gap:8px;margin-top:12px}
+.bank-actions .btn{flex:1}
+.bank-actions .btn.small{flex:0 0 auto}
+.bank-loan-form{display:flex;flex-direction:column;gap:12px}
+.bank-loan-form .input-group{display:flex;flex-direction:column;gap:4px}
+.bank-loan-form label{font-size:11px;font-weight:700;color:#7A786F}
+.bank-loan-form input{height:44px;border-radius:12px;border:1.5px solid #EAE3D5;background:#FAF7F0;padding:0 12px;font-family:inherit;font-size:14px;font-weight:600;color:#242820;outline:0}
+.bank-loan-form input:focus{border-color:#78A87A;box-shadow:0 0 0 3px rgba(115,164,114,.14);background:#FFFDF8}
+.bank-loan-form .hint{font-size:10px;color:#8B8981}
+.bank-repay-btn{margin-top:8px}
+
+/* ================= SOCIAL/ONLINE STYLES ================= */
+.friends-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.friends-header h3{font-size:16px;font-weight:800;color:#1B1D19;margin:0}
+.friends-header .badge{font-size:10px;padding:3px 8px;border-radius:999px;font-weight:700}
+.friends-header .badge.online{background:#E9F3E4;color:#3F7C4D}
+.friends-content{display:flex;flex-direction:column;gap:10px}
+.friend-card{
+  display:flex;align-items:center;gap:12px;padding:14px;border-radius:18px;
+  background:var(--card);box-shadow:var(--shadow);position:relative
+}
+.friend-card.online::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:4px;height:4px;background:#3F8B52;border-radius:50%;
+  animation:pulse 2s infinite
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.friend-avatar{width:48px;height:48px;border-radius:14px;background:#EAF4E7;display:grid;place-items:center;font-size:24px;flex:0 0 auto}
+.friend-info{flex:1;min-width:0}
+.friend-name{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:800;letter-spacing:-.2px}
+.level-badge{font-size:10px;font-weight:700;color:#6D8A5C;background:#E9F3E4;padding:2px 6px;border-radius:999px}
+.friend-farm{font-size:11px;color:#8B8981;margin-top:2px;font-weight:500}
+.friend-status{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:10px;color:#7A786F}
+.status-dot{width:7px;height:7px;border-radius:50%}
+.status-dot.online{background:#3F8B52;box-shadow:0 0 6px #3F8B52}
+.status-dot.offline{background:#C4C2B9}
+.friend-actions{display:flex;gap:6px;flex-wrap:wrap}
+.friend-actions .btn{font-size:11px;padding:6px 10px}
+
+.leaderboard-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.leaderboard-header h3{font-size:16px;font-weight:800;color:#1B1D19;margin:0}
+.player-rank-card{background:#F5F1E8;padding:10px 14px;border-radius:14px;display:flex;align-items:center;gap:8px}
+.rank-label{font-size:10.5px;color:#7A786F;font-weight:600}
+.player-rank-card b{font-size:18px;font-weight:800;color:#2C6B42}
+.leaderboard-content{display:flex;flex-direction:column;gap:8px}
+.leaderboard-row{
+  display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;
+  background:var(--card);box-shadow:var(--shadow);transition:transform .18s var(--ease)
+}
+.leaderboard-row:active{transform:scale(.985)}
+.leaderboard-row.you{background:#FCFEF9;border:1.5px solid #3F8350}
+.rank-badge{width:30px;height:30px;border-radius:50%;background:#F5F1E8;display:grid;place-items:center;font-size:12px;font-weight:800;color:#7A786F;flex:0 0 auto}
+.leaderboard-row.you .rank-badge{background:#E9F3E4;color:#3F7C4D}
+.player-avatar{width:36px;height:36px;border-radius:50%;background:#EAF4E7;display:grid;place-items:center;font-size:18px;flex:0 0 auto}
+.player-info{flex:1;min-width:0}
+.player-name{display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:800;letter-spacing:-.2px}
+.you-badge{font-size:9px;font-weight:700;color:#3F7C4D;background:#E9F3E4;padding:1px 6px;border-radius:999px}
+.player-farm{font-size:10px;color:#8B8981;margin-top:1px;font-weight:500}
+.player-stats{display:flex;gap:16px;text-align:right;flex:0 0 auto}
+.player-stats .stat{display:flex;flex-direction:column;gap:1px}
+.player-stats b{font-size:12.5px;font-weight:800;color:#1B1D19}
+.player-stats small{font-size:8.5px;color:#8B8981;font-weight:600;letter-spacing:.3px;text-transform:uppercase}
+
+.events-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.events-header h3{font-size:16px;font-weight:800;color:#1B1D19;margin:0}
+.events-header .badge{font-size:10px;padding:3px 8px;border-radius:999px;font-weight:700;background:#E9F3E4;color:#3F7C4D}
+.events-content{display:flex;flex-direction:column;gap:16px}
+.events-active h4,.events-upcoming h4{font-size:12px;font-weight:700;color:#7A786F;margin:0 0 10px;display:flex;align-items:center;gap:6px}
+.event-card{
+  display:flex;align-items:center;gap:12px;padding:14px;border-radius:18px;
+  background:var(--card);box-shadow:var(--shadow)
+}
+.event-card.active{border-left:4px solid #F5C34B;background:#FFFDF8}
+.event-card.upcoming{border-left:4px solid #7DBD61}
+.event-icon{width:42px;height:42px;border-radius:12px;background:#F5F1E8;display:grid;place-items:center;font-size:20px;flex:0 0 auto}
+.event-info{flex:1;min-width:0}
+.event-info h4{font-size:13.5px;font-weight:800;letter-spacing:-.2px;margin:0 0 3px}
+.event-info p{font-size:11px;color:#7A786F;margin:0 0 6px;line-height:1.4}
+.event-reward{font-size:10px;font-weight:700;color:#C08A32}
+.event-time{font-size:10.5px;font-weight:700;color:#F5C34B;flex:0 0 auto;white-space:nowrap}
+
+.online-tabs{display:flex;gap:6px;margin:16px 0;padding:0 2px;overflow-x:auto}
+.tab-btn{
+  flex:0 0 auto;padding:8px 14px;border-radius:999px;font-size:11px;font-weight:700;color:#7A786F;
+  background:#F5F1E8;white-space:nowrap;display:flex;align-items:center;gap:6px;
+  transition:all .25s var(--ease)
+}
+.tab-btn:active{transform:scale(.96)}
+.tab-btn.active{background:#3F8350;color:#FFFDF8}
+.tab-btn .ic{width:16px;height:16px}
+.online-content{display:flex;flex-direction:column;gap:12px}
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feature-card{
+  padding:14px;border-radius:18px;background:var(--card);box-shadow:var(--shadow);
+  text-align:center;transition:transform .18s var(--ease)
+}
+.feature-card:active{transform:scale(.98)}
+.feature-card.locked{opacity:.65;background:#FAF7F0}
+.feature-icon{font-size:28px;margin-bottom:8px;display:block}
+.feature-card h4{font-size:13px;font-weight:800;letter-spacing:-.2px;margin:0 0 6px}
+.feature-card p{font-size:10px;color:#7A786F;margin:0 0 10px;line-height:1.4}
+.lock-badge{font-size:9px;font-weight:700;color:#A06E18;background:#FBF0DA;padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:8px}
+.feature-card .btn{width:100%}
+
+.friends-count{font-size:11px;color:#7A786F;font-weight:600}
+.friends-count b{color:#3F8350}
+.player-rank-card b{font-size:18px;font-weight:800;color:#2C6B42}
+.events-badge{font-size:11px;color:#F5C34B;font-weight:700}
+.events-badge b{color:#F5C34B}
+
+/* ================= COMMUNITY TAB STYLES ================= */
+.community-tabs{display:flex;gap:4px;margin:16px 0;padding:0 2px;overflow-x:auto;background:#F5F1E8;border-radius:14px;padding:4px}
+.com-tab-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 6px;
+  border-radius:10px;font-size:9.5px;font-weight:700;color:#7A786F;
+  background:transparent;white-space:nowrap;transition:all .25s var(--ease);min-width:0;
+}
+.com-tab-btn .ic{width:18px;height:18px;transition:transform .2s var(--ease)}
+.com-tab-btn span{font-size:8.5px;letter-spacing:.1px}
+.com-tab-btn:active{transform:scale(.95)}
+.com-tab-btn.active{background:#3F8350;color:#FFFDF8}
+.com-tab-btn.active .ic{transform:translateY(-1px)}
+.community-content{display:flex;flex-direction:column;gap:12px}
+
+/* Bank icon fix */
+.bank-card-header h3{display:flex;align-items:center;gap:8px}
+.bank-card-header h3::before{content:'';width:20px;height:20px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232C6B42' stroke-width='1.6'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M9 9h6M9 13h6M9 17h6' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;flex:0 0 auto}
+
+/* Bank screen improvements */
+.bank .subhead{padding-bottom:8px}
+.bank-content{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+
 
 </style>
 </head>
@@ -1760,6 +1913,36 @@ body.app-paused .rain-drop,body.app-paused .snow-flake,body.app-paused .sun-mote
           </div>
         </section>
 
+        <!-- ================= BANKA ================= -->
+        <section class="screen" id="scr-bank" data-tab="bank">
+          <div class="simple bank">
+            <header class="subhead">
+              <button class="back-btn" data-back="farm" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Banka</h1><p>Kredi ve bankacılık işlemleri</p></div>
+            </header>
+            <div id="bankContent" class="bank-content"></div>
+          </div>
+        </section>
+
+        <!-- ================= TOPLULUK ================= -->
+        <section class="screen" id="scr-community" data-tab="community">
+          <div class="simple community">
+            <header class="subhead">
+              <button class="back-btn" data-back="home" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Topluluk</h1><p>Arkadaşlar, liderlik ve etkinlikler</p></div>
+            </header>
+            <div class="community-tabs">
+              <button class="com-tab-btn active" data-com-tab="friends"><svg class="ic"><use href="#i-users"/></svg><span>Arkadaşlar</span></button>
+              <button class="com-tab-btn" data-com-tab="leaderboard"><svg class="ic"><use href="#i-trophy"/></svg><span>Liderlik</span></button>
+              <button class="com-tab-btn" data-com-tab="events"><svg class="ic"><use href="#i-calendar"/></svg><span>Etkinlikler</span></button>
+              <button class="com-tab-btn" data-com-tab="features"><svg class="ic"><use href="#i-globe"/></svg><span>Özellikler</span></button>
+            </div>
+            <div class="community-content" id="communityContent">
+              <!-- Dynamically rendered -->
+            </div>
+          </div>
+        </section>
+
         <!-- ================= PROFİL ================= -->
         <section class="screen" id="scr-profile" data-tab="profile">
           <div class="simple profile">
@@ -1823,6 +2006,8 @@ body.app-paused .rain-drop,body.app-paused .snow-flake,body.app-paused .sun-mote
         <button data-nav="livestock" class="tab"><svg class="ic"><use href="#i-cow"/></svg><span>Hayvan</span></button>
         <button data-nav="factory" class="tab"><svg class="ic"><use href="#i-factory"/></svg><span>Fabrikalar</span></button>
         <button data-nav="market" class="tab"><svg class="ic"><use href="#i-tag"/></svg><span>Pazar</span></button>
+        <button data-nav="bank" class="tab"><svg class="ic"><use href="#i-bank"/></svg><span>Banka</span></button>
+        <button data-nav="community" class="tab"><svg class="ic"><use href="#i-users"/></svg><span>Topluluk</span></button>
         <button data-nav="profile" class="tab"><svg class="ic"><use href="#i-user"/></svg><span>Profil</span></button>
       </nav>
 
@@ -2000,6 +2185,13 @@ body.app-paused .rain-drop,body.app-paused .snow-flake,body.app-paused .sun-mote
   <symbol id="i-jar" viewBox="0 0 24 24"><path d="M7.2 6.8h9.6l1.2 12.2a2 2 0 0 1-2 2.2H8a2 2 0 0 1-2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 4h12v2.8H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 11.2h8M8 14.2h8M8 17.2h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-can" viewBox="0 0 24 24"><path d="M6.2 7.4h11.6v12.2a2 2 0 0 1-2 2H8.2a2 2 0 0 1-2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><ellipse cx="12" cy="7.4" rx="5.8" ry="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.4 11.4h7.2M8.4 15h7.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-ketchup" viewBox="0 0 24 24"><path d="M9 6.6h6l1.8 11.8a2 2 0 0 1-2 2.2H9.2a2 2 0 0 1-2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.4 3.4h5.2v3.2H9.4zM10.4 2h3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9.4 12.2h5.2v5H9.4z" fill="currentColor" opacity=".25"/></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 9h6M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M12 4v8"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v5M7 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 9v2M12 15h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-trade" viewBox="0 0 24 24"><path d="m12 5-3 3 3 3M19 13H5a2 2 0 0 1 0-4h14a2 2 0 0 1 0 4Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M19 13v-2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
 </defs>
 </svg>
 <svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -3205,7 +3397,7 @@ function makeDefaultState() {
   const factories = {};
   FACTORY_KEYS.forEach(id => { factories[id] = { unlocked:false, slots:1, jobs:[] }; });
   return {
-    version: 2,
+    version: 3,
     money: 2500,
     level: 1,
     xp: 0,
@@ -3270,7 +3462,7 @@ function makeDefaultState() {
 }
 function mergeState(raw) {
   const base = makeDefaultState();
-  if (!raw || typeof raw !== 'object' || raw.version !== 2) return base;
+  if (!raw || typeof raw !== 'object' || raw.version !== 3) return base;
   const S = Object.assign(base, raw);
   S.profile = Object.assign(base.profile, raw.profile || {});
   if (!raw.profile || typeof raw.profile.onboarded !== 'boolean') S.profile.onboarded = false;
@@ -3314,6 +3506,8 @@ function mergeState(raw) {
   S.day = Math.max(1, S.day || 1);
   if (!S.weather || !WEATHER[S.weather]) S.weather = 'sunny';
   if (!S.forecast || !WEATHER[S.forecast]) S.forecast = 'cloudy';
+  S.credit = Object.assign({ active:false, principal:0, interest:0, dueDay:0, totalPaid:0, lastInterestDay:0 }, raw.credit || {});
+  S.social = Object.assign(base.social, raw.social || {});
   return S;
 }
 
@@ -3894,6 +4088,244 @@ function achievementRows(S) {
   }).join('');
 }
 
+/* ================= ONLINE/SOCIAL FEATURES ================= */
+const FRIENDS = [
+  {id:'friend_1', name:'Ahmet Çiftçi', level:12, farm:'Güneşli Çiftlik', avatar:'👨‍🌾', lastVisit:'2 saat önce', online:true, gifts:['seed','fertilizer']},
+  {id:'friend_2', name:'Ayşe Yıldız', level:8, farm:'Yeşil Bahçe', avatar:'👩‍🌾', lastVisit:'5 saat önce', online:false, gifts:['water']},
+  {id:'friend_3', name:'Mehmet Demir', level:15, farm:'Demir Çiftliği', avatar:'👨‍🌾', lastVisit:'1 gün önce', online:true, gifts:['fertilizer','seed']},
+  {id:'friend_4', name:'Fatma Kaya', level:10, farm:'Kaya Çiftliği', avatar:'👩‍🌾', lastVisit:'3 saat önce', online:true, gifts:['water','fertilizer']},
+  {id:'friend_5', name:'Ali Vural', level:22, farm:'Vural Farm', avatar:'👨‍🌾', lastVisit:'30 dk önce', online:true, gifts:['seed','water','fertilizer']},
+];
+
+const LEADERBOARD = [
+  {rank:1, name:'MasterFarmer', level:50, money:1250000, farm:'Altın Vadisi', avatar:'🏆'},
+  {rank:2, name:'GreenThumb', level:45, money:980000, farm:'Yeşil Vadi', avatar:'🥈'},
+  {rank:3, name:'FarmMaster', level:42, money:875000, farm:'Yeşil Vadisi', avatar:'🥉'},
+  {rank:4, name:'CropKing', level:38, money:720000, farm:'Mahsul Krallığı', avatar:'👑'},
+  {rank:5, name:'FarmPro', level:35, money:650000, farm:'Pro Çiftlik', avatar:'⭐'},
+  {rank:6, name:'HarvestHero', level:32, money:580000, farm:'Hasat Kahramanı', avatar:'🌾'},
+  {rank:7, name:'CropMaster', level:30, money:520000, farm:'Mahsul Ustası', avatar:'🌱'},
+  {rank:8, name:'GreenFarmer', level:28, money:480000, farm:'Yeşil Çiftçi', avatar:'🌿'},
+  {rank:9, name:'SeedSower', level:25, money:410000, farm:'Tohum Ekimci', avatar:'🌱'},
+  {rank:10, name:'FarmRookie', level:22, money:350000, farm:'Yeni Çiftlik', avatar:'🌿'},
+];
+
+const EVENTS = [
+  {id:'harvest_festival', name:'Hasat Festivali', desc:'Tüm hasatlar %50 daha fazla verir!', duration:3, reward:{money:5000, xp:1000}, icon:'🎉', active:false},
+  {id:'rain_week', name:'Yağmurlu Hafta', desc:'Su kullanımı %50 azalır, hasat %20 artar', duration:7, reward:{water:5000, xp:500}, icon:'🌧️', active:false},
+  {id:'double_xp', name:'Çift XP Haftası', desc:'Tüm aktivitelerden çift XP kazanırsınız', duration:3, reward:{xp:2000}, icon:'⚡', active:false},
+  {id:'market_boom', name:'Pazar Boom', desc:'Tüm satış fiyatları %30 artar', duration:2, reward:{money:10000}, icon:'📈', active:false},
+  {id:'animal_joy', name:'Hayvan Şenliği', desc:'Hayvan sağlığı %20 artar, üretim %25 artar', duration:4, reward:{feed:1000, xp:800}, icon:'🐄', active:false},
+];
+
+const SOCIAL_ACTIONS = [
+  {id:'visit', name:'Ziyaret Et', desc:'Arkadaş çiftliğini ziyaret et', reward:{xp:50, money:200}, icon:'👋'},
+  {id:'gift', name:'Hediye Gönder', desc:'Arkadaşına hediye gönder', reward:{xp:30, money:100}, icon:'🎁'},
+  {id:'help', name:'Yardım Et', desc:'Arkadaşının çiftliğinde yardım et', reward:{xp:100, money:500}, icon:'🤝'},
+  {id:'trade', name:'Ticaret Yap', desc:'Arkadaşınla ürün ticareti yap', reward:{xp:50, money:300}, icon:'🤝'},
+];
+
+const ONLINE_FEATURES = {
+  leaderboard:{name:'Liderlik Tablosu', desc:'Dünya sıralamasında yerinizi görün', icon:'🏆', unlocked:true},
+  friends:{name:'Arkadaşlar', desc:'Arkadaşlarınızı ziyaret edin, hediye gönderin', icon:'👥', unlocked:true},
+  events:{name:'Etkinlikler', desc:'Aktif etkinliklere katılın, ödül kazanın', icon:'🎪', unlocked:true},
+  coop:{name:'Kooperatif', desc:'Arkadaşlarınızla kooperatif kurun', icon:'🤝', unlocked:false, reqLevel:15},
+  trade:{name:'Global Pazar', desc:'Dünya çapında ticaret yapın', icon:'🌍', unlocked:false, reqLevel:20},
+  chat:{name:'Sohbet', desc:'Arkadaşlarınızla sohbet edin', icon:'💬', unlocked:false, reqLevel:10},
+};
+
+const FRIEND_INTERACTIONS = {
+  visit:{xp:50, money:200, cooldown:3600},
+  gift:{xp:30, money:100, cooldown:7200},
+  help:{xp:100, money:500, cooldown:14400},
+  trade:{xp:50, money:300, cooldown:10800},
+};
+
+function renderFriends(S){
+  const onlineCount = FRIENDS.filter(f => f.online).length;
+  return `
+    <div class="friends-header">
+      <h3>${icon('i-users')} Arkadaşlar <span class="badge">${FRIENDS.length}</span><span class="badge online">${onlineCount} çevrimiçi</span></h3>
+    </div>
+    <div class="friends-list">
+      ${FRIENDS.map(f => `
+        <div class="friend-card ${f.online ? 'online' : 'offline'}" data-friend="${f.id}">
+          <span class="friend-avatar">${f.avatar}</span>
+          <div class="friend-info">
+            <div class="friend-name">${f.name} <span class="level-badge">Seviye ${f.level}</span></div>
+            <div class="friend-farm">${f.farm}</div>
+            <div class="friend-status">
+              <span class="status-dot ${f.online ? 'online' : 'offline'}"></span>
+              <span>${f.online ? 'Çevrimiçi' : 'Son giriş: ' + f.lastVisit}</span>
+            </div>
+          </div>
+          <div class="friend-actions">
+            ${SOCIAL_ACTIONS.map(a => `
+              <button class="btn small ${a.id === 'visit' ? 'primary' : 'ghost'}" 
+                data-action="friend-${a.id}" data-friend="${f.id}" 
+                ${f.online ? '' : a.id !== 'gift' ? 'disabled' : ''}>
+                ${icon(a.id === 'visit' ? 'i-user' : a.id === 'gift' ? 'i-gift' : a.id === 'help' ? 'i-help' : 'i-trade')}
+                ${a.name}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `).join('')}
+      <div class="friend-card add-friend-card">
+        <span class="friend-avatar add-avatar">+</span>
+        <div class="friend-info">
+          <div class="friend-name">Arkadaş Ekle</div>
+          <div class="friend-farm">Kod veya ID ile arkadaş ekle</div>
+        </div>
+        <button class="btn small primary" data-action="add-friend">${icon('i-plus')} Ekle</button>
+      </div>
+    </div>
+  `;
+}
+function renderLeaderboard(S){
+  return `
+    <div class="leaderboard-header">
+      <h3>${icon('i-trophy')} Liderlik Tablosu</h3>
+      <div class="player-rank">Sizin Sıralamanız: #${Math.max(1, Math.floor(1000 / Math.max(1, S.level * 10)))}</div>
+    </div>
+    <div class="leaderboard-list">
+      ${LEADERBOARD.map(p => `
+        <div class="leaderboard-row ${S.profile.name === p.name ? 'you' : ''}" data-rank="${p.rank}">
+          <span class="rank-badge">${p.rank <= 3 ? '🥇🥈🥉'.charAt(p.rank-1) : '#' + p.rank}</span>
+          <span class="player-avatar">${p.avatar}</span>
+          <div class="player-info">
+            <div class="player-name">${p.name} ${p.name === S.profile.name ? '<span class="you-badge">Siz</span>' : ''}</div>
+            <div class="player-farm">${p.farm}</div>
+          </div>
+          <div class="player-stats">
+            <span class="stat"><b>${p.level}</b> seviye</span>
+            <span class="stat"><b>${fmt(p.money)}</b> ₺</span>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+function renderEvents(S){
+  const activeEvents = EVENTS.filter(e => e.active);
+  const upcomingEvents = EVENTS.filter(e => !e.active);
+  return `
+    <div class="events-header">
+      <h3>${icon('i-calendar')} Etkinlikler</h3>
+      <span class="badge">${activeEvents.length} aktif</span>
+    </div>
+    ${activeEvents.length ? `
+      <div class="events-active">
+        <h4>${icon('i-fire')} Aktif Etkinlikler</h4>
+        ${activeEvents.map(e => `
+          <div class="event-card active" data-event="${e.id}">
+            <span class="event-icon">${e.icon}</span>
+            <div class="event-info">
+              <h4>${e.name}</h4>
+              <p>${e.desc}</p>
+              <div class="event-reward">${e.reward.money ? money(e.reward.money) + ' ₺' : ''} ${e.reward.xp ? e.reward.xp + ' XP' : ''} ${e.reward.water ? e.reward.water + ' L su' : ''} ${e.reward.feed ? e.reward.feed + ' kg yem' : ''}</div>
+            </div>
+            <span class="event-time">${e.duration} gün kaldı</span>
+          </div>
+        `).join('')}
+      </div>
+    ` : ''}
+    ${upcomingEvents.length ? `
+      <div class="events-upcoming">
+        <h4>${icon('i-clock')} Yaklaşan Etkinlikler</h4>
+        ${upcomingEvents.map(e => `
+          <div class="event-card upcoming" data-event="${e.id}">
+            <span class="event-icon">${e.icon}</span>
+            <div class="event-info">
+              <h4>${e.name}</h4>
+              <p>${e.desc}</p>
+              <div class="event-reward">${e.reward.money ? money(e.reward.money) + ' ₺' : ''} ${e.reward.xp ? e.reward.xp + ' XP' : ''}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    ` : ''}
+  `;
+}
+function renderOnline(S){
+  return `
+    <div class="online-tabs">
+      <button class="tab-btn active" data-action="online-tab" data-online-tab="leaderboard">${icon('i-trophy')} Liderlik</button>
+      <button class="tab-btn" data-action="online-tab" data-online-tab="friends">${icon('i-users')} Arkadaşlar</button>
+      <button class="tab-btn" data-action="online-tab" data-online-tab="events">${icon('i-calendar')} Etkinlikler</button>
+      <button class="tab-btn" data-action="online-tab" data-online-tab="features">${icon('i-globe')} Özellikler</button>
+    </div>
+    <div class="online-content" id="onlineContent">
+      ${renderLeaderboard(S)}
+    </div>
+  `;
+}
+function renderOnlineFeatures(S){
+  return `
+    <div class="features-grid">
+      ${Object.entries(ONLINE_FEATURES).map(([key, f]) => `
+        <div class="feature-card ${f.unlocked ? '' : 'locked'}" data-feature="${key}">
+          <span class="feature-icon">${f.icon}</span>
+          <h4>${f.name}</h4>
+          <p>${f.desc}</p>
+          ${!f.unlocked ? `<span class="lock-badge">Seviye ${f.reqLevel} gerekli</span>` : `<button class="btn small primary" data-action="online-feature" data-online-feature="${key}">${icon('i-play')} Aç</button>`}
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ================= BANK FUNCTIONS ================= */
+function renderBank(S){
+  const c = S.credit || { active:false, principal:0, interest:0, dueDay:0, totalPaid:0, lastInterestDay:0 };
+  const maxLoan = Math.max(1000, Math.floor(S.money * 5));
+  const interestRate = 0.02;
+  if (!c.active){
+    return `
+      <div class="bank-card">
+        <div class="bank-card-header"><h3>Kredi Başvurusu</h3><span class="badge">Yeni</span></div>
+        <div class="bank-info-row"><span class="bank-info-label">Maksimum Kredi</span><span class="bank-info-value">${money(maxLoan)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Faiz Oranı</span><span class="bank-info-value">%${Math.round(interestRate*100)} / gün</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Vade</span><span class="bank-info-value">30 gün</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Günlük Faiz</span><span class="bank-info-value negative">${money(Math.floor(maxLoan * interestRate))} / gün</span></div>
+      <div class="bank-loan-form">
+        <div class="input-group"><label>Kredi Miktarı (₺)</label><input type="number" id="loanAmount" min="1000" max="${maxLoan}" step="100" placeholder="Örn: 10000"></div>
+        <div class="hint">En fazla ${money(maxLoan)} kredi çekebilirsiniz. Günlük faiz %2. Vade 30 gün.</div>
+      </div>
+      <div class="bank-actions"><button class="btn primary" data-action="take-loan">${icon('i-bank')} Kredi Çek</button></div>
+    </div>
+    `;
+  }
+  const remaining = c.principal + c.interest - c.totalPaid;
+  const daysLeft = Math.max(0, c.dueDay - S.day);
+  const progress = c.principal > 0 ? Math.min(100, (c.totalPaid / (c.principal + c.interest)) * 100) : 0;
+  const dailyInterest = Math.floor(c.principal * 0.02);
+  return `
+    <div class="bank-card">
+      <div class="bank-card-header"><h3>Aktif Kredi</h3><span class="badge ${daysLeft > 0 ? 'active' : 'danger'}">${daysLeft > 0 ? 'Aktif' : 'Gecikmiş'}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Ana Para</span><span class="bank-info-value">${money(c.principal)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Biriken Faiz</span><span class="bank-info-value negative">${money(c.interest)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Toplam Borç</span><span class="bank-info-value negative">${money(c.principal + c.interest)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Ödenen</span><span class="bank-info-value positive">${money(c.totalPaid)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Kalan</span><span class="bank-info-value">${money(remaining)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Vade</span><span class="bank-info-value">${daysLeft > 0 ? daysLeft + ' gün' : 'Geçti'}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Günlük Faiz</span><span class="bank-info-value negative">${money(dailyInterest)} / gün</span></div>
+      <div class="bank-progress"><i style="width:${progress}%"></i></div>
+      <div class="bank-actions">
+        <button class="btn primary" data-action="repay-loan">${icon('i-coin')} Öde (${money(Math.min(remaining, S.money))})</button>
+        <button class="btn ghost small" data-action="repay-all">${icon('i-coin')} Tümünü Öde</button>
+      </div>
+    </div>
+    <div class="bank-card">
+      <div class="bank-card-header"><h3>Kredi Hesaplayıcı</h3></div>
+      <div class="bank-info-row"><span class="bank-info-label">Miktar</span><span class="bank-info-value">${money(maxLoan)}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Günlük Faiz</span><span class="bank-info-value">${money(Math.floor(maxLoan * 0.02))}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">30 Gün Toplam Faiz</span><span class="bank-info-value">${money(Math.floor(maxLoan * 0.02 * 30))}</span></div>
+      <div class="bank-info-row"><span class="bank-info-label">Toplam Geri Ödeme</span><span class="bank-info-value">${money(maxLoan + Math.floor(maxLoan * 0.02 * 30))}</span></div>
+    </div>
+  `;
+}
+
 /* ---------- bildirim / hava / yardım ---------- */
 function notificationRows(S) {
   const list = (S.notifications || []).slice(0, 30);
@@ -3971,7 +4403,9 @@ window.GVF = {
   animalUpgradeCard, cowSheet, trendText, marketRows, supplyRows, orderRows, marketContent,
   factoryCard, factoryContent, factoryRecipeRow, factoryJobRow,
   questRow, questSheet, dailyCard, dailySheet, achievementRows,
-  notificationRows, notificationsSheet, weatherSheet, helpSheet, tutorialSheet
+  notificationRows, notificationsSheet, weatherSheet, helpSheet, tutorialSheet,
+  FRIENDS, LEADERBOARD, EVENTS, SOCIAL_ACTIONS, ONLINE_FEATURES, FRIEND_INTERACTIONS,
+  renderFriends, renderLeaderboard, renderEvents, renderOnline, renderOnlineFeatures, renderBank
 };
 })();
 /* ================= Yeşil Vadi Çiftliği — oyun motoru ================= */
@@ -4826,6 +5260,8 @@ function showScreen(id, tab, opts){
   if (id === 'scr-market') renderMarket();
   if (id === 'scr-profile') renderProfile();
   if (id === 'scr-analytics') renderReports();
+  if (id === 'scr-community') renderCommunity();
+  if (id === 'scr-bank') renderBankScreen();
   renderStatus();
   syncTopbarScrim();
 }
@@ -4843,6 +5279,8 @@ function showTab(key){
   if (key === 'market'){ showScreen('scr-market','market'); return; }
   if (key === 'profile'){ showScreen('scr-profile','profile'); return; }
   if (key === 'reports'){ showScreen('scr-analytics','profile'); return; }
+  if (key === 'bank'){ showScreen('scr-bank','bank'); return; }
+  if (key === 'community'){ showScreen('scr-community','community'); return; }
 }
 function centerChip(zone){
   const chips = $('#farmChips'), chip = $('#farmChips .chip[data-zone="' + zone + '"]');
@@ -5233,6 +5671,25 @@ function renderHome(live){
   updateBell();
 }
 function renderHomeLive(){ renderHome(true); }
+
+function renderCommunity(){
+  const content = $('#communityContent');
+  if (!content) return;
+  const activeBtn = $('.com-tab-btn.active');
+  const tab = activeBtn ? activeBtn.dataset.comTab : 'friends';
+  if (tab === 'friends') content.innerHTML = G.renderFriends(S);
+  else if (tab === 'leaderboard') content.innerHTML = G.renderLeaderboard(S);
+  else if (tab === 'events') content.innerHTML = G.renderEvents(S);
+  else if (tab === 'features') content.innerHTML = G.renderOnlineFeatures(S);
+}
+function renderCommunityLive(){ renderCommunity(); }
+
+function renderBankScreen(){
+  const c = $('#bankContent');
+  if (!c) return;
+  c.innerHTML = G.renderBank(S);
+}
+function renderBankScreenLive(){ renderBankScreen(); }
 
 /* ---------------- başlangıç ekranı ---------------- */
 function renderStart(){
@@ -5932,6 +6389,176 @@ function autoWater(){
   toast(dry.length + ' tarla sulandı · ' + G.fmt(need) + ' L');
   feedback('water');
 }
+
+/* ================= BANK ACTIONS ================= */
+function actOpenBank(){
+  showScreen('scr-bank', 'bank');
+  feedback('tap');
+}
+function actTakeLoan(){
+  const amount = Number($('#loanAmount')?.value || 0);
+  const maxLoan = Math.max(1000, Math.floor(S.money * 5));
+  if (amount < 1000 || amount > maxLoan){
+    toast('Miktar 1.000 - ' + G.money(maxLoan) + ' aralığında olmalı.');
+    feedback('error');
+    return;
+  }
+  const principal = Math.floor(amount);
+  const dailyInterest = Math.floor(principal * 0.02);
+  const dueDay = S.day + 30;
+  S.credit = { active:true, principal, interest:0, dueDay, totalPaid:0, lastInterestDay:S.day };
+  S.money += principal;
+  S.stats.earned += principal;
+  saveState(); renderAll(true);
+  toast('Kredi onaylandı! ' + G.money(principal) + ' hesabınıza eklendi.');
+  feedback('success');
+}
+function repayLoan(amount){
+  const c = S.credit;
+  const remaining = c.principal + c.interest - c.totalPaid;
+  const payAmount = Math.min(amount || remaining, remaining, S.money);
+  if (payAmount <= 0){ toast('Ödenecek tutar yok.'); feedback('error'); return; }
+  S.money -= payAmount;
+  c.totalPaid += payAmount;
+  if (c.totalPaid >= c.principal + c.interest){
+    c.active = false; c.principal = 0; c.interest = 0; c.dueDay = 0; c.totalPaid = 0; c.lastInterestDay = 0;
+    toast('Kredi tamamen ödendi! Tebrikler.');
+    feedback('success');
+  } else {
+    toast('Kredi ödemesi yapıldı: ' + G.money(payAmount));
+    feedback('success');
+  }
+  saveState(); renderAll(true);
+}
+function actRepayLoan(){
+  const c = S.credit;
+  if (!c.active){ toast('Aktif kredi yok.'); feedback('error'); return; }
+  const remaining = c.principal + c.interest - c.totalPaid;
+  const amount = Number($('#loanAmount')?.value || remaining);
+  repayLoan(amount);
+}
+function actRepayAll(){
+  const c = S.credit;
+  if (!c.active){ toast('Aktif kredi yok.'); feedback('error'); return; }
+  const remaining = c.principal + c.interest - c.totalPaid;
+  if (S.money < remaining){
+    toast('Tüm borcu ödemek için yeterli bakiyeniz yok. (Gereken: ' + G.money(remaining) + ')');
+    feedback('error');
+    return;
+  }
+  repayLoan(remaining);
+}
+
+/* ================= SOCIAL ACTIONS ================= */
+function actFriendVisit(friendId){
+  const friend = G.FRIENDS.find(f => f.id === friendId);
+  if (!friend) return;
+  if (!friend.online){
+    toast(friend.name + ' çevrimiçi değil. Hediye gönderebilirsiniz.');
+    feedback('error');
+    return;
+  }
+  const reward = G.FRIEND_INTERACTIONS.visit;
+  S.xp += reward.xp;
+  S.money += reward.money;
+  toast(friend.name + ' çiftliğini ziyaret ettiniz! +' + reward.xp + ' XP, +' + G.money(reward.money));
+  feedback('success');
+  G.renderFriends(S);
+}
+function actFriendGift(friendId){
+  const friend = G.FRIENDS.find(f => f.id === friendId);
+  if (!friend) return;
+  const reward = G.FRIEND_INTERACTIONS.gift;
+  S.xp += reward.xp;
+  S.money += reward.money;
+  toast('Hediye gönderildi: ' + friend.name + ' · +' + reward.xp + ' XP, +' + G.money(reward.money));
+  feedback('success');
+  G.renderFriends(S);
+}
+function actFriendHelp(friendId){
+  const friend = G.FRIENDS.find(f => f.id === friendId);
+  if (!friend) return;
+  if (!friend.online){
+    toast(friend.name + ' çevrimiçi değil, yardım edemezsiniz.');
+    feedback('error');
+    return;
+  }
+  const reward = G.FRIEND_INTERACTIONS.help;
+  S.xp += reward.xp;
+  S.money += reward.money;
+  toast(friend.name + ' çiftliğinde yardım ettiniz! +' + reward.xp + ' XP, +' + G.money(reward.money));
+  feedback('success');
+  G.renderFriends(S);
+}
+function actFriendTrade(friendId){
+  const friend = G.FRIENDS.find(f => f.id === friendId);
+  if (!friend) return;
+  if (!friend.online){
+    toast(friend.name + ' çevrimiçi değil, ticaret yapamazsınız.');
+    feedback('error');
+    return;
+  }
+  const reward = G.FRIEND_INTERACTIONS.trade;
+  S.xp += reward.xp;
+  S.money += reward.money;
+  toast(friend.name + ' ile ticaret yaptınız! +' + reward.xp + ' XP, +' + G.money(reward.money));
+  feedback('success');
+  G.renderFriends(S);
+}
+function actAddFriend(){
+  const code = prompt('Arkadaş kodunu girin (örn: FRIEND_12345):');
+  if (!code) return;
+  const newFriend = {
+    id: 'friend_' + Date.now(),
+    name: 'Yeni Arkadaş',
+    level: Math.floor(Math.random() * 20) + 5,
+    farm: 'Yeni Çiftlik',
+    avatar: ['👨‍🌾','👩‍🌾','🧑‍🌾'][Math.floor(Math.random()*3)],
+    lastVisit: 'Az önce',
+    online: true,
+    gifts: ['seed','fertilizer','water'][Math.floor(Math.random()*3)]
+  };
+  G.FRIENDS.push(newFriend);
+  S.social.friends.push({id: newFriend.id, lastInteraction: 0});
+  toast('Yeni arkadaş eklendi: ' + newFriend.name + ' (Seviye ' + newFriend.level + ')');
+  feedback('success');
+  if (currentScreen === 'scr-community'){
+    const content = $('#communityContent');
+    const activeBtn = $('.com-tab-btn.active');
+    if (activeBtn && activeBtn.dataset.comTab === 'friends' && content){
+      content.innerHTML = G.renderFriends(S);
+    }
+  }
+}
+function switchOnlineTab(tab){
+  $$('.online-tabs .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.onlineTab === tab));
+  const content = $('#onlineContent');
+  if (!content) return;
+  if (tab === 'leaderboard') content.innerHTML = G.renderLeaderboard(S);
+  else if (tab === 'friends') content.innerHTML = G.renderFriends(S);
+  else if (tab === 'events') content.innerHTML = G.renderEvents(S);
+  else if (tab === 'features') content.innerHTML = G.renderOnlineFeatures(S);
+  feedback('tap');
+}
+function actOnlineFeature(feature){
+  const f = G.ONLINE_FEATURES[feature];
+  if (!f || f.unlocked){
+    toast(f ? f.name + ' zaten açık.' : 'Özellik bulunamadı.');
+    return;
+  }
+  if (S.level < f.reqLevel){
+    toast(f.name + ' için seviye ' + f.reqLevel + ' gerekli. (Siz: ' + S.level + ')');
+    feedback('error');
+    return;
+  }
+  f.unlocked = true;
+  toast(f.name + ' özelliği açıldı!');
+  feedback('success');
+  if (currentScreen === 'scr-online'){
+    const content = $('#onlineContent');
+    if (content) content.innerHTML = G.renderOnlineFeatures(S);
+  }
+}
 function selectCat(cat){
   if (!ANIMALS[cat]) return;
   S.selectedCat = cat;
@@ -5952,6 +6579,8 @@ function routeFromHash(){
   if (h === 'market'){ showTab('market'); return; }
   if (h === 'profile'){ showTab('profile'); return; }
   if (h === 'reports' || h === 'analytics'){ showTab('reports'); return; }
+  if (h === 'bank'){ showTab('bank'); return; }
+  if (h === 'community'){ showTab('community'); return; }
   if (h.indexOf('farm-') === 0){ showTab('farm'); selectZone(h.slice(5), { animate:false, silent:true }); return; }
   if (h.indexOf('detail-') === 0){ showTab('farm'); openDetail(h.slice(7)); return; }
   if (h.indexOf('map-') === 0){ showTab('farm'); openMap(h.slice(4)); return; }
@@ -5970,6 +6599,8 @@ function renderAll(force){
   else if (currentScreen === 'scr-market') renderMarket();
   else if (currentScreen === 'scr-profile') renderProfile();
   else if (currentScreen === 'scr-analytics') renderReports();
+  else if (currentScreen === 'scr-community') renderCommunity();
+  else if (currentScreen === 'scr-bank') renderBankScreen();
   renderMapOverlay(force);
 }
 function tickUI(){
@@ -5982,6 +6613,8 @@ function tickUI(){
   else if (currentScreen === 'scr-factory') renderFactoryLive();
   else if (currentScreen === 'scr-market') renderMarketLive();
   else if (currentScreen === 'scr-profile') renderProfileLive();
+  else if (currentScreen === 'scr-community') renderCommunityLive();
+  else if (currentScreen === 'scr-bank') renderBankScreenLive();
   updateBell();
 }
 function tick(){
@@ -6070,6 +6703,22 @@ function bind(){
     feedback('tap');
     e.stopPropagation();
   });
+  const communityTabsContainer = $('#communityContent')?.parentElement?.querySelector('.community-tabs');
+  if (communityTabsContainer) {
+    communityTabsContainer.addEventListener('click', e => {
+      const btn = e.target.closest('.com-tab-btn');
+      if (btn) {
+        const tab = btn.dataset.comTab;
+        const content = $('#communityContent');
+        $$('.com-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.comTab === tab));
+        if (tab === 'friends') content.innerHTML = G.renderFriends(S);
+        else if (tab === 'leaderboard') content.innerHTML = G.renderLeaderboard(S);
+        else if (tab === 'events') content.innerHTML = G.renderEvents(S);
+        else if (tab === 'features') content.innerHTML = G.renderOnlineFeatures(S);
+        feedback('tap');
+      }
+    });
+  }
   const scrim = $('#sheetScrim');
   if (scrim) scrim.addEventListener('click', e => { if (e.target === scrim) closeSheet(); });
   const confirm = $('#confirm');
@@ -6148,6 +6797,16 @@ function bind(){
         case 'claim-quest': claimQuest(actionEl.dataset.quest); break;
         case 'claim-daily': claimDaily(); break;
         case 'mark-read': markAllRead(); break;
+        case 'friend-visit': actFriendVisit(actionEl.dataset.friend); break;
+        case 'friend-gift': actFriendGift(actionEl.dataset.friend); break;
+        case 'friend-help': actFriendHelp(actionEl.dataset.friend); break;
+        case 'friend-trade': actFriendTrade(actionEl.dataset.friend); break;
+        case 'add-friend': actAddFriend(); break;
+        case 'take-loan': actTakeLoan(); break;
+        case 'repay-loan': actRepayLoan(); break;
+        case 'repay-all': actRepayAll(); break;
+        case 'online-tab': switchOnlineTab(actionEl.dataset.onlineTab); break;
+        case 'online-feature': actOnlineFeature(actionEl.dataset.onlineFeature); break;
       }
       return;
     }
@@ -6207,7 +6866,7 @@ function runSelftest(){
   const bad = html => /undefined|NaN/.test(html);
   const t = G.makeDefaultState();
   try {
-    add('varsayılan durum', t.version === 2 && t.money === 2500 && t.day === 1);
+    add('varsayılan durum', t.version === 3 && t.money === 2500 && t.day === 1, 'v' + t.version);
     add('görev üretimi', G.makeQuests(3).length === 3);
     add('sipariş üretimi', G.makeOrders(2).length === 2);
     add('yükseltme maliyeti', G.zoneUpgradeCost('house',1) === 1500, G.zoneUpgradeCost('house',1));
@@ -6301,6 +6960,28 @@ function runSelftest(){
     add('fabrika üretimi tamamlandı', !!job && job.done && (S.inventory.packagedMilk || 0) > craftedBefore, 'süt=' + S.inventory.packagedMilk);
     const np = buildNativePlan(), nowNp = Date.now();
     add('bildirim planı', np.length > 0 && np.every(e => e.id && e.title && e.text && e.icon && e.at > nowNp && e.at <= nowNp + 72*3600*1000), np.length + ' bildirim');
+
+    // Social features tests
+    add('friends data loaded', G.FRIENDS.length === 5);
+    add('leaderboard data loaded', G.LEADERBOARD.length === 10);
+    add('events data loaded', G.EVENTS.length === 5);
+    add('online features data loaded', Object.keys(G.ONLINE_FEATURES).length === 6);
+    add('friend interactions defined', Object.keys(G.FRIEND_INTERACTIONS).length === 4);
+    const friendsHtml = G.renderFriends(S);
+    add('friends render', friendsHtml && friendsHtml.includes('Arkadaşlar'));
+    const lbHtml = G.renderLeaderboard(S);
+    add('leaderboard render', lbHtml && lbHtml.includes('Liderlik'));
+    const eventsHtml = G.renderEvents(S);
+    add('events render', eventsHtml && eventsHtml.includes('Etkinlikler'));
+    const onlineHtml = G.renderOnline(S);
+    add('online render', onlineHtml && onlineHtml.includes('leaderboard-list'));
+    const featHtml = G.renderOnlineFeatures(S);
+    add('online özellikler render', featHtml && featHtml.includes('feature-card'));
+    const bankHtml = G.renderBank(S);
+    add('banka render', bankHtml && (bankHtml.includes('Kredi Başvurusu') || bankHtml.includes('Aktif Kredi')));
+    const comHtml = G.renderFriends(S);
+    add('arkadaş ekle kartı', comHtml && comHtml.includes('Arkadaş Ekle'));
+
     S = backup;
     add('durum geri yüklendi', S === backup);
   } catch(err){

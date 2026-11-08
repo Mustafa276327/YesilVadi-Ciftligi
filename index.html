@@ -332,6 +332,36 @@
           </div>
         </section>
 
+        <!-- ================= BANKA ================= -->
+        <section class="screen" id="scr-bank" data-tab="bank">
+          <div class="simple bank">
+            <header class="subhead">
+              <button class="back-btn" data-back="farm" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Banka</h1><p>Kredi ve bankacılık işlemleri</p></div>
+            </header>
+            <div id="bankContent" class="bank-content"></div>
+          </div>
+        </section>
+
+        <!-- ================= TOPLULUK ================= -->
+        <section class="screen" id="scr-community" data-tab="community">
+          <div class="simple community">
+            <header class="subhead">
+              <button class="back-btn" data-back="home" aria-label="Geri"><svg class="ic"><use href="#i-arrow-left"/></svg></button>
+              <div class="subhead-title"><h1>Topluluk</h1><p>Arkadaşlar, liderlik ve etkinlikler</p></div>
+            </header>
+            <div class="community-tabs">
+              <button class="com-tab-btn active" data-com-tab="friends"><svg class="ic"><use href="#i-users"/></svg><span>Arkadaşlar</span></button>
+              <button class="com-tab-btn" data-com-tab="leaderboard"><svg class="ic"><use href="#i-trophy"/></svg><span>Liderlik</span></button>
+              <button class="com-tab-btn" data-com-tab="events"><svg class="ic"><use href="#i-calendar"/></svg><span>Etkinlikler</span></button>
+              <button class="com-tab-btn" data-com-tab="features"><svg class="ic"><use href="#i-globe"/></svg><span>Özellikler</span></button>
+            </div>
+            <div class="community-content" id="communityContent">
+              <!-- Dynamically rendered -->
+            </div>
+          </div>
+        </section>
+
         <!-- ================= PROFİL ================= -->
         <section class="screen" id="scr-profile" data-tab="profile">
           <div class="simple profile">
@@ -395,6 +425,8 @@
         <button data-nav="livestock" class="tab"><svg class="ic"><use href="#i-cow"/></svg><span>Hayvan</span></button>
         <button data-nav="factory" class="tab"><svg class="ic"><use href="#i-factory"/></svg><span>Fabrikalar</span></button>
         <button data-nav="market" class="tab"><svg class="ic"><use href="#i-tag"/></svg><span>Pazar</span></button>
+        <button data-nav="bank" class="tab"><svg class="ic"><use href="#i-bank"/></svg><span>Banka</span></button>
+        <button data-nav="community" class="tab"><svg class="ic"><use href="#i-users"/></svg><span>Topluluk</span></button>
         <button data-nav="profile" class="tab"><svg class="ic"><use href="#i-user"/></svg><span>Profil</span></button>
       </nav>
 
@@ -572,6 +604,13 @@
   <symbol id="i-jar" viewBox="0 0 24 24"><path d="M7.2 6.8h9.6l1.2 12.2a2 2 0 0 1-2 2.2H8a2 2 0 0 1-2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 4h12v2.8H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 11.2h8M8 14.2h8M8 17.2h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-can" viewBox="0 0 24 24"><path d="M6.2 7.4h11.6v12.2a2 2 0 0 1-2 2H8.2a2 2 0 0 1-2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><ellipse cx="12" cy="7.4" rx="5.8" ry="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.4 11.4h7.2M8.4 15h7.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-ketchup" viewBox="0 0 24 24"><path d="M9 6.6h6l1.8 11.8a2 2 0 0 1-2 2.2H9.2a2 2 0 0 1-2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.4 3.4h5.2v3.2H9.4zM10.4 2h3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9.4 12.2h5.2v5H9.4z" fill="currentColor" opacity=".25"/></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 9h6M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M12 4v8"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v5M7 8h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 9v2M12 15h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-trade" viewBox="0 0 24 24"><path d="m12 5-3 3 3 3M19 13H5a2 2 0 0 1 0-4h14a2 2 0 0 1 0 4Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M19 13v-2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
 </defs>
 </svg>
 <svg class="svgdefs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
