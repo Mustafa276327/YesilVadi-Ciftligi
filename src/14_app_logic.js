@@ -2043,17 +2043,7 @@ function actRepayAll(){
 function actFriendVisit(friendId){
   const friend = G.FRIENDS.find(f => f.id === friendId);
   if (!friend) return;
-  if (!friend.online){
-    toast(friend.name + ' çevrimiçi değil. Hediye gönderebilirsiniz.');
-    feedback('error');
-    return;
-  }
-  const reward = G.FRIEND_INTERACTIONS.visit;
-  S.xp += reward.xp;
-  S.money += reward.money;
-  toast(friend.name + ' çiftliğini ziyaret ettiniz! +' + reward.xp + ' XP, +' + G.money(reward.money));
-  feedback('success');
-  G.renderFriends(S);
+  openFriendModal(friend);
 }
 function actFriendGift(friendId){
   const friend = G.FRIENDS.find(f => f.id === friendId);
@@ -2119,6 +2109,230 @@ function actAddFriend(){
       content.innerHTML = G.renderFriends(S);
     }
   }
+}
+
+/* ================= FRIEND INTERACTION MODAL ================= */
+let currentFriendModal = null;
+let currentFriendData = null;
+let friendModalTab = 'trade';
+
+function openFriendModal(friend){
+  currentFriendData = friend;
+  friendModalTab = 'trade';
+  const modal = document.createElement('div');
+  modal.className = 'friend-modal-overlay';
+  modal.innerHTML = `
+    <div class="friend-modal" role="dialog" aria-modal="true" aria-labelledby="friendModalTitle">
+      <div class="friend-modal-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="friend-modal-avatar">${friend.avatar}</span>
+          <div class="friend-modal-info">
+            <div class="friend-modal-name" id="friendModalTitle">${friend.name}</div>
+            <div class="friend-modal-farm">${friend.farm} · Seviye ${friend.level}</div>
+          </div>
+        </div>
+        <button class="friend-modal-close" data-action="close-friend-modal" aria-label="Kapat">${G.icon('i-close')}</button>
+      </div>
+      <div class="friend-modal-body" id="friendModalBody">
+        ${renderFriendModalTab(friend, 'trade')}
+      </div>
+      <div class="friend-modal-tabs" style="display:flex;border-top:1px solid var(--line);padding:0 16px">
+        <button class="friend-modal-tab-btn ${friendModalTab==='trade'?'active':''}" data-friend-tab="trade" style="flex:1;padding:14px 0;font-size:13px;font-weight:700;color:${friendModalTab==='trade'?'#3F8350':'#7A786F'};background:none;border:none;border-bottom:2px solid ${friendModalTab==='trade'?'#3F8350':'transparent'};">${G.icon('i-trade')} Ticaret</button>
+        <button class="friend-modal-tab-btn ${friendModalTab==='gift'?'active':''}" data-friend-tab="gift" style="flex:1;padding:14px 0;font-size:13px;font-weight:700;color:${friendModalTab==='gift'?'#3F8350':'#7A786F'};background:none;border:none;border-bottom:2px solid ${friendModalTab==='gift'?'#3F8350':'transparent'};">${G.icon('i-gift')} Hediye</button>
+        <button class="friend-modal-tab-btn ${friendModalTab==='help'?'active':''}" data-friend-tab="help" style="flex:1;padding:14px 0;font-size:13px;font-weight:700;color:${friendModalTab==='help'?'#3F8350':'#7A786F'};background:none;border:none;border-bottom:2px solid ${friendModalTab==='help'?'#3F8350':'transparent'};">${G.icon('i-help')} Yardım</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  currentFriendModal = modal;
+  modal.addEventListener('click', e => {
+    const tabBtn = e.target.closest('.friend-modal-tab-btn');
+    if (tabBtn){
+      friendModalTab = tabBtn.dataset.friendTab;
+      const body = $('#friendModalBody');
+      if (body) body.innerHTML = renderFriendModalTab(friend, friendModalTab);
+      $$('.friend-modal-tab-btn').forEach(b => {
+        const active = b.dataset.friendTab === friendModalTab;
+        b.style.color = active ? '#3F8350' : '#7A786F';
+        b.style.borderBottomColor = active ? '#3F8350' : 'transparent';
+      });
+      return;
+    }
+    const closeBtn = e.target.closest('[data-action="close-friend-modal"]');
+    if (closeBtn || e.target === modal) closeFriendModal();
+    const tradeConfirm = e.target.closest('[data-action="confirm-trade"]');
+    if (tradeConfirm) confirmFriendTrade(friend);
+    const giftOption = e.target.closest('.friend-modal-gift-option');
+    if (giftOption){
+      $$('.friend-modal-gift-option').forEach(o => o.classList.remove('selected'));
+      giftOption.classList.add('selected');
+      return;
+    }
+    const helpOption = e.target.closest('.friend-modal-help-option');
+    if (helpOption){
+      $$('.friend-modal-help-option').forEach(o => o.classList.remove('selected'));
+      helpOption.classList.add('selected');
+      return;
+    }
+    const giftConfirm = e.target.closest('[data-action="confirm-gift"]');
+    if (giftConfirm) confirmFriendGift(friend);
+    const helpConfirm = e.target.closest('[data-action="confirm-help"]');
+    if (helpConfirm) confirmFriendHelp(friend);
+  });
+  feedback('tap');
+}
+
+function closeFriendModal(){
+  if (currentFriendModal){
+    currentFriendModal.remove();
+    currentFriendModal = null;
+    currentFriendData = null;
+  }
+}
+
+function renderFriendModalTab(friend, tab){
+  if (tab === 'trade'){
+    return `
+      <div class="friend-modal-section friend-modal-trade">
+        <div class="friend-modal-section-title">Ticaret Teklifi</div>
+        <p style="font-size:13px;color:#7A786F;margin:0 0 16px">${friend.name} ile ürün takası yapın. Fiyatları ayarlayın.</p>
+        <div class="friend-modal-trade-inputs">
+          <div class="friend-modal-trade-input">
+            <span class="friend-modal-trade-label">Vereceğiniz (₺)</span>
+            <input type="number" id="tradeGive" min="0" max="${S.money}" value="0" placeholder="0">
+          </div>
+          <div class="friend-modal-trade-input">
+            <span class="friend-modal-trade-label">Alacağınız (₺)</span>
+            <input type="number" id="tradeGet" min="0" value="0" placeholder="0">
+          </div>
+        </div>
+        <div class="friend-modal-trade-actions">
+          <button class="btn ghost" data-action="close-friend-modal">${G.icon('i-close')} İptal</button>
+          <button class="btn primary" data-action="confirm-trade">${G.icon('i-check-circle')} Ticaret Et</button>
+        </div>
+      </div>
+    `;
+  }
+  if (tab === 'gift'){
+    const gifts = [
+      {id:'seeds', name:'Tohum Paketi', desc:'5x Rastgele Tohum', icon:'🌱', value:500},
+      {id:'fertilizer', name:'Gübre', desc:'Hızlı büyüme +%25', icon:'🧪', value:800},
+      {id:'water', name:'Su Tankı', desc:'10.000 L Su', icon:'💧', value:600},
+      {id:'feed', name:'Yem Paketi', desc:'20 kg Hayvan Yemi', icon:'🌾', value:700},
+      {id:'energy', name:'Enerji İçeceği', desc:'+30 Enerji', icon:'⚡', value:900},
+    ];
+    return `
+      <div class="friend-modal-section">
+        <div class="friend-modal-section-title">Hediye Seçin</div>
+        <p style="font-size:13px;color:#7A786F;margin:0 0 16px">Bir hediye gönderin. Değer: ${G.money(G.FRIEND_INTERACTIONS.gift.money)}</p>
+        <div class="friend-modal-gift-options">
+          ${gifts.map(g => `
+            <label class="friend-modal-gift-option">
+              <input type="radio" name="gift" value="${g.id}" data-value="${g.value}">
+              <span class="friend-modal-gift-icon">${g.icon}</span>
+              <div class="friend-modal-gift-info">
+                <div class="friend-modal-gift-name">${g.name}</div>
+                <div class="friend-modal-gift-desc">${g.desc}</div>
+              </div>
+              <span class="friend-modal-gift-check">${G.icon('i-check-circle')}</span>
+            </label>
+          `).join('')}
+        </div>
+        <div style="margin-top:16px">
+          <button class="btn primary" style="width:100%" data-action="confirm-gift">${G.icon('i-gift')} Hediye Gönder</button>
+        </div>
+      </div>
+    `;
+  }
+  if (tab === 'help'){
+    const helpTypes = [
+      {id:'water', name:'Sulama Yardımı', desc:'Tüm tarlalarını sular', icon:'💧', reward:{xp:100, money:500}},
+      {id:'feed', name:'Besleme Yardımı', desc:'Hayvanlarını besler', icon:'🌾', reward:{xp:150, money:800}},
+      {id:'harvest', name:'Hasat Yardımı', desc:'Olgun ürünleri toplar', icon:'✂️', reward:{xp:200, money:1000}},
+      {id:'clean', name:'Temizlik Yardımı', desc:'Çiftliği temizler', icon:'🧹', reward:{xp:80, money:300}},
+    ];
+    return `
+      <div class="friend-modal-section friend-modal-help-options">
+        <div class="friend-modal-section-title">Yardım Türü Seçin</div>
+        <p style="font-size:13px;color:#7A786F;margin:0 0 16px">${friend.name} çiftliğinde yardım edin. Ödül: ${G.money(G.FRIEND_INTERACTIONS.help.money)} + ${G.FRIEND_INTERACTIONS.help.xp} XP</p>
+        ${helpTypes.map(h => `
+          <label class="friend-modal-help-option">
+            <input type="radio" name="help" value="${h.id}">
+            <span class="friend-modal-help-icon">${h.icon}</span>
+            <div class="friend-modal-help-info">
+              <div class="friend-modal-help-name">${h.name}</div>
+              <div class="friend-modal-help-desc">${h.desc}</div>
+            </div>
+            <span class="friend-modal-help-reward">+${h.reward.xp} XP · ${G.money(h.reward.money)}</span>
+            <span class="friend-modal-help-check">${G.icon('i-check-circle')}</span>
+          </label>
+        `).join('')}
+        <div style="margin-top:16px">
+          <button class="btn primary" style="width:100%" data-action="confirm-help">${G.icon('i-help')} Yardım Et</button>
+        </div>
+      </div>
+    `;
+  }
+  return '';
+}
+
+function confirmFriendTrade(friend){
+  const give = Number($('#tradeGive')?.value || 0);
+  const get = Number($('#tradeGet')?.value || 0);
+  if (give <= 0 && get <= 0){
+    toast('En az bir taraf için miktar girin.');
+    feedback('error');
+    return;
+  }
+  if (give > S.money){
+    toast('Paranız yetmiyor.');
+    feedback('error');
+    return;
+  }
+  S.money -= give;
+  S.money += get;
+  S.xp += G.FRIEND_INTERACTIONS.trade.xp;
+  toast(`${friend.name} ile ticaret tamamlandı! Verdi: ${G.money(give)}, Aldı: ${G.money(get)} · +${G.FRIEND_INTERACTIONS.trade.xp} XP`);
+  feedback('success');
+  closeFriendModal();
+  if (currentScreen === 'scr-community') renderCommunity();
+}
+
+function confirmFriendGift(friend){
+  const selected = document.querySelector('.friend-modal-gift-option.selected input');
+  if (!selected){
+    toast('Bir hediye seçin.');
+    feedback('error');
+    return;
+  }
+  const giftId = selected.value;
+  const giftValue = Number(selected.dataset.value);
+  S.money -= giftValue;
+  S.xp += G.FRIEND_INTERACTIONS.gift.xp;
+  toast(`${friend.name} hediye gönderdiniz! Değer: ${G.money(giftValue)} · +${G.FRIEND_INTERACTIONS.gift.xp} XP`);
+  feedback('success');
+  closeFriendModal();
+  if (currentScreen === 'scr-community') renderCommunity();
+}
+
+function confirmFriendHelp(friend){
+  const selected = document.querySelector('.friend-modal-help-option.selected input');
+  if (!selected){
+    toast('Bir yardım türü seçin.');
+    feedback('error');
+    return;
+  }
+  if (!friend.online){
+    toast(friend.name + ' çevrimiçi değil, yardım edemezsiniz.');
+    feedback('error');
+    return;
+  }
+  S.xp += G.FRIEND_INTERACTIONS.help.xp;
+  S.money += G.FRIEND_INTERACTIONS.help.money;
+  toast(`${friend.name} çiftliğinde yardım ettiniz! +${G.FRIEND_INTERACTIONS.help.xp} XP, +${G.money(G.FRIEND_INTERACTIONS.help.money)}`);
+  feedback('success');
+  closeFriendModal();
+  if (currentScreen === 'scr-community') renderCommunity();
 }
 function switchOnlineTab(tab){
   $$('.online-tabs .tab-btn').forEach(b => b.classList.toggle('active', b.dataset.onlineTab === tab));
@@ -2361,6 +2575,7 @@ function bind(){
           break;
         }
         case 'close-sheet': closeSheet(); break;
+        case 'close-friend-modal': closeFriendModal(); break;
         case 'close-map': closeMap(); break;
         case 'open-map': openMap(zone || (currentScreen === 'scr-detail' ? detailZone : farmZone)); break;
         case 'levelup-close': closeLevelUp(); break;

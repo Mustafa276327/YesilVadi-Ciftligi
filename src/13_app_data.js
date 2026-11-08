@@ -1239,7 +1239,7 @@ function renderFriends(S){
   const onlineCount = FRIENDS.filter(f => f.online).length;
   return `
     <div class="friends-header">
-      <h3>${icon('i-users')} Arkadaşlar <span class="badge">${FRIENDS.length}</span><span class="badge online">${onlineCount} çevrimiçi</span></h3>
+      <h3>${icon('i-users')} Arkadaşlar <span class="badge online">${onlineCount}/${FRIENDS.length} çevrimiçi</span></h3>
     </div>
     <div class="friends-list">
       ${FRIENDS.map(f => `
@@ -1254,14 +1254,9 @@ function renderFriends(S){
             </div>
           </div>
           <div class="friend-actions">
-            ${SOCIAL_ACTIONS.slice(0,3).map(a => `
-              <button class="btn small ${a.id === 'visit' ? 'primary' : 'ghost'}" 
-                data-action="friend-${a.id}" data-friend="${f.id}" 
-                ${f.online ? '' : a.id !== 'gift' ? 'disabled' : ''}>
-                ${icon(a.id === 'visit' ? 'i-user' : a.id === 'gift' ? 'i-gift' : 'i-help')}
-                ${a.name}
-              </button>
-            `).join('')}
+            <button class="btn small primary visit-btn" data-action="friend-visit" data-friend="${f.id}" ${!f.online ? 'disabled' : ''}>
+              ${icon('i-user')} Ziyaret Et
+            </button>
           </div>
         </div>
       `).join('')}

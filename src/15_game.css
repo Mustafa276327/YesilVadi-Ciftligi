@@ -849,6 +849,63 @@ body.app-paused .rain-drop,body.app-paused .snow-flake,body.app-paused .sun-mote
 .status-dot.offline{background:#C4C2B9}
 .friend-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .friend-actions .btn{font-size:11px;padding:7px 12px;flex:1;min-width:0;text-align:center;white-space:nowrap}
+.friend-actions .visit-btn{width:100%;justify-content:center}
+
+/* ================= FRIEND INTERACTION MODAL ================= */
+.friend-modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .2s var(--ease)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.friend-modal{background:var(--card);border-radius:24px;max-width:380px;width:100%;max-height:90vh;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,.15);animation:slideUp .3s var(--ease)}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.friend-modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line)}
+.friend-modal-avatar{width:56px;height:56px;border-radius:16px;background:#EAF4E7;display:flex;align-items:center;justify-content:center;font-size:28px}
+.friend-modal-info{flex:1;margin-left:16px;min-width:0}
+.friend-modal-name{font-size:18px;font-weight:800;color:#1B1D19;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.friend-modal-farm{font-size:13px;color:#7A786F;margin-top:2px}
+.friend-modal-close{width:36px;height:36px;border-radius:12px;background:#F5F1E8;display:flex;align-items:center;justify-content:center;color:#7A786F}
+.friend-modal-close:active{transform:scale(.95)}
+.friend-modal-body{padding:20px 24px}
+.friend-modal-section{margin-bottom:20px}
+.friend-modal-section:last-child{margin-bottom:0}
+.friend-modal-section-title{font-size:12px;font-weight:700;color:#7A786F;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.friend-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.friend-modal-action-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 12px;border-radius:16px;background:#F5F1E8;border:1px solid var(--line);transition:all .2s var(--ease)}
+.friend-modal-action-btn:active{transform:scale(.97)}
+.friend-modal-action-btn.primary{background:#3F8350;border-color:#3F8350;color:#FFFDF8}
+.friend-modal-action-btn .action-icon{font-size:24px}
+.friend-modal-action-btn .action-name{font-size:13px;font-weight:700;color:inherit}
+.friend-modal-action-btn .action-desc{font-size:10px;color:inherit;opacity:.8;text-align:center}
+.friend-modal-divider{height:1px;background:var(--line);margin:16px 0}
+.friend-modal-trade{padding-top:8px}
+.friend-modal-trade-inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.friend-modal-trade-input{display:flex;flex-direction:column;gap:6px}
+.friend-modal-trade-label{font-size:11px;font-weight:700;color:#7A786F}
+.friend-modal-trade-input input{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:600;color:#1B1D19;text-align:center}
+.friend-modal-trade-input input:focus{outline:none;border-color:#3F8350;box-shadow:0 0 0 3px rgba(63,131,80,.15)}
+.friend-modal-trade-actions{display:flex;gap:10px;margin-top:16px}
+.friend-modal-trade-actions .btn{flex:1}
+.friend-modal-gift-options{display:flex;flex-direction:column;gap:8px}
+.friend-modal-gift-option{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:#F5F1E8;border:1px solid var(--line);transition:all .2s var(--ease)}
+.friend-modal-gift-option:active{transform:scale(.98)}
+.friend-modal-gift-option.selected{background:#E9F3E4;border-color:#3F8350}
+.friend-modal-gift-option input{display:none}
+.friend-modal-gift-icon{width:44px;height:44px;border-radius:12px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:20px}
+.friend-modal-gift-info{flex:1}
+.friend-modal-gift-name{font-size:14px;font-weight:700;color:#1B1D19}
+.friend-modal-gift-desc{font-size:11px;color:#7A786F;margin-top:2px}
+.friend-modal-gift-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;color:#3F8350;transition:all .2s var(--ease)}
+.friend-modal-gift-option.selected .friend-modal-gift-check{border-color:#3F8350;background:#3F8350;color:#FFFDF8}
+.friend-modal-help-options{display:flex;flex-direction:column;gap:8px}
+.friend-modal-help-option{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:#F5F1E8;border:1px solid var(--line);transition:all .2s var(--ease)}
+.friend-modal-help-option:active{transform:scale(.98)}
+.friend-modal-help-option.selected{background:#E9F3E4;border-color:#3F8350}
+.friend-modal-help-option input{display:none}
+.friend-modal-help-icon{width:44px;height:44px;border-radius:12px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:20px}
+.friend-modal-help-info{flex:1}
+.friend-modal-help-name{font-size:14px;font-weight:700;color:#1B1D19}
+.friend-modal-help-desc{font-size:11px;color:#7A786F;margin-top:2px}
+.friend-modal-help-reward{font-size:11px;font-weight:700;color:#C08A32;white-space:nowrap}
+.friend-modal-help-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;color:#3F8350;transition:all .2s var(--ease)}
+.friend-modal-help-option.selected .friend-modal-help-check{border-color:#3F8350;background:#3F8350;color:#FFFDF8}
 
 .leaderboard-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .leaderboard-header h3{font-size:16px;font-weight:800;color:#1B1D19;margin:0}
