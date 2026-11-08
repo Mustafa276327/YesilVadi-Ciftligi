@@ -1254,11 +1254,11 @@ function renderFriends(S){
             </div>
           </div>
           <div class="friend-actions">
-            ${SOCIAL_ACTIONS.map(a => `
+            ${SOCIAL_ACTIONS.slice(0,3).map(a => `
               <button class="btn small ${a.id === 'visit' ? 'primary' : 'ghost'}" 
                 data-action="friend-${a.id}" data-friend="${f.id}" 
                 ${f.online ? '' : a.id !== 'gift' ? 'disabled' : ''}>
-                ${icon(a.id === 'visit' ? 'i-user' : a.id === 'gift' ? 'i-gift' : a.id === 'help' ? 'i-help' : 'i-trade')}
+                ${icon(a.id === 'visit' ? 'i-user' : a.id === 'gift' ? 'i-gift' : 'i-help')}
                 ${a.name}
               </button>
             `).join('')}
