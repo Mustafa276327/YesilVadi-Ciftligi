@@ -1317,7 +1317,7 @@ function renderEvents(S){
             <div class="event-info">
               <h4>${e.name}</h4>
               <p>${e.desc}</p>
-              <div class="event-reward">${e.reward.money ? money(e.reward.money) + ' ₺' : ''} ${e.reward.xp ? e.reward.xp + ' XP' : ''} ${e.reward.water ? e.reward.water + ' L su' : ''} ${e.reward.feed ? e.reward.feed + ' kg yem' : ''}</div>
+              <div class="event-reward">${e.reward.money ? money(e.reward.money) : ''} ${e.reward.xp ? e.reward.xp + ' XP' : ''} ${e.reward.water ? e.reward.water + ' L su' : ''} ${e.reward.feed ? e.reward.feed + ' kg yem' : ''}</div>
             </div>
             <span class="event-time">${e.duration} gün kaldı</span>
           </div>
@@ -1333,7 +1333,7 @@ function renderEvents(S){
             <div class="event-info">
               <h4>${e.name}</h4>
               <p>${e.desc}</p>
-              <div class="event-reward">${e.reward.money ? money(e.reward.money) + ' ₺' : ''} ${e.reward.xp ? e.reward.xp + ' XP' : ''}</div>
+              <div class="event-reward">${e.reward.money ? money(e.reward.money) : ''} ${e.reward.xp ? e.reward.xp + ' XP' : ''}</div>
             </div>
           </div>
         `).join('')}
